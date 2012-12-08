@@ -8,7 +8,7 @@ describe Family do
   # だけ(いまのところは)。
 
   before(:all) do
-    Family.clear
+    Family.destroy_all
   end
 
   before(:each) do

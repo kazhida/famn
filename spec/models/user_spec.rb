@@ -11,7 +11,7 @@ describe User do
   #   aruji
 
   before(:all) do
-    User.clear
+    User.destroy_all
   end
 
   before(:each) do
@@ -38,6 +38,14 @@ describe User do
     @user.login_name = 'foo'
     @user.display_name = 'Foo'
     @user.password_digest = 'bar'
+    @user.save.should be_false
+  end
+
+  it 'arujiがなければ保存できないはず' do
+    @user.login_name = 'foo'
+    @user.display_name = 'Foo'
+    @user.password_digest = 'bar'
+    @user.mail_address = 'foo@example.com'
     @user.save.should be_false
   end
 end
