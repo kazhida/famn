@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Family do
+describe Family, '新規作成するとき' do
   # Familyが持つフィールドは、
   #   name
   # だけ(いまのところは)。

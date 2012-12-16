@@ -2,24 +2,21 @@
 
 require 'spec_helper'
 
-describe User do
-  # Userがもっているフィールドは、
-  #   login_name
-  #   display_name
-  #   password_digest
-  #   mail_address
-  #   aruji
+# Userがもっているフィールドは、
+#   login_name
+#   display_name
+#   password_digest
+#   mail_address
+#   aruji
 
-  before(:all) do
-    User.destroy_all
-  end
+describe User, 'ユーザを新規作成するとき' do
 
   before(:each) do
     # まっさらなユーザを作る
     @user = User.new
   end
 
-  describe 'validation' do
+  describe '妥当性チェック' do
 
     it 'login_nameがなければ保存できないはず' do
       @user.save.should be_false
@@ -90,33 +87,6 @@ describe User do
       }
       @user.save.should be_false
     end
-  end
-
-  describe 'accessible' do
-
-    it 'password_digestはmath_accessibleではないはず' do
-      lambda {
-        @user.attributes = {
-            login_name: 'foo',
-            display_name: 'Foo',
-            password_digest: 'bar',
-            mail_address: 'foo@example.com',
-            aruji: true
-        }
-      }.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end
-
-    it 'passwordはmass_accessibleのはず' do
-      lambda {
-        @user.attributes = {
-            login_name: 'foo',
-            display_name: 'Foo',
-            password: 'bar',
-            mail_address: 'foo@example.com',
-            aruji: true
-        }
-      }.should_not raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end
 
     it 'passwordを設定するとpassword_digestも設定されるはず' do
       @user.attributes = {
@@ -128,5 +98,37 @@ describe User do
       }
       @user.save.should be_true
     end
+  end
+end
+
+describe User, 'マスアサインについて' do
+
+  before(:each) do
+    # まっさらなユーザを作る
+    @user = User.new
+  end
+
+  it 'password_digestはaccessibleではないはず' do
+    lambda {
+      @user.attributes = {
+          login_name: 'foo',
+          display_name: 'Foo',
+          password_digest: 'bar',
+          mail_address: 'foo@example.com',
+          aruji: true
+      }
+    }.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+  end
+
+  it 'passwordはaccessibleのはず' do
+    lambda {
+      @user.attributes = {
+          login_name: 'foo',
+          display_name: 'Foo',
+          password: 'bar',
+          mail_address: 'foo@example.com',
+          aruji: true
+      }
+    }.should_not raise_error(ActiveModel::MassAssignmentSecurity::Error)
   end
 end
