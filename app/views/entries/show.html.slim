@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Message:
+  = @entry.message
+p
+  strong User:
+  = @entry.user_id
+p
+  strong Family:
+  = @entry.family_id
+
+= link_to 'Edit', edit_entry_path(@entry)
+'|
+= link_to 'Back', entries_path

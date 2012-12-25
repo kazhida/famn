@@ -11,22 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208055647) do
+ActiveRecord::Schema.define(:version => 20121225011251) do
 
-  create_table "families", :force => true do |t|
-    t.string   "name"
+  create_table "entries", :force => true do |t|
+    t.text     "message",    :null => false
+    t.integer  "user_id",    :null => false
+    t.integer  "family_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "login_name"
-    t.string   "display_name"
-    t.string   "password_digest"
-    t.string   "mail_address"
-    t.boolean  "aruji"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table "families", :force => true do |t|
+    t.string   "name",       :limit => 64, :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
+
+  add_index "families", ["name"], :name => "index_families_on_name", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.string   "login_name",      :limit => 64,                     :null => false
+    t.string   "display_name",    :limit => 250,                    :null => false
+    t.string   "password_digest",                                   :null => false
+    t.string   "mail_address",    :limit => 250,                    :null => false
+    t.boolean  "aruji",                          :default => false, :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "users", ["login_name"], :name => "index_users_on_login_name", :unique => true
 
 end

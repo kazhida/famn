@@ -18,37 +18,37 @@ describe User, 'ユーザを新規作成するとき' do
 
   describe '妥当性チェック' do
 
-    it 'login_nameがなければ保存できないはず' do
-      @user.save.should be_false
+    it 'login_nameがなければいけない' do
+      @user.should_not be_valid
     end
 
-    it 'display_nameがなければ保存できないはず' do
+    it 'display_nameがなければいけない' do
       @user.login_name = 'foo'
-      @user.save.should be_false
+      @user.should_not be_valid
     end
 
-    it 'password_digestがなければ保存できないはず' do
+    it 'password_digestがなければいけない' do
       @user.login_name = 'foo'
       @user.display_name = 'Foo'
-      @user.save.should be_false
+      @user.should_not be_valid
     end
 
-    it 'mail_addressがなければ保存できないはず' do
+    it 'mail_addressがなければいけない' do
       @user.login_name = 'foo'
       @user.display_name = 'Foo'
       @user.password_digest = 'bar'
-      @user.save.should be_false
+      @user.should_not be_valid
     end
 
-    it 'arujiがなければ保存できないはず' do
+    it 'arujiがなければいけない' do
       @user.login_name = 'foo'
       @user.display_name = 'Foo'
       @user.password_digest = 'bar'
       @user.mail_address = 'foo@example.com'
-      @user.save.should be_false
+      @user.should_not be_valid
     end
 
-    it 'passwordは6文字以上のはず' do
+    it 'passwordは6文字未満ではいけない' do
       @user.attributes = {
           login_name: 'foo',
           display_name: 'Foo',
@@ -56,7 +56,7 @@ describe User, 'ユーザを新規作成するとき' do
           mail_address: 'foo@example.com',
           aruji: true
       }
-      @user.save.should be_false
+      @user.should_not be_valid
     end
 
     it 'passwordは6文字以上のはず' do
@@ -67,10 +67,10 @@ describe User, 'ユーザを新規作成するとき' do
           mail_address: 'foo@example.com',
           aruji: true
       }
-      @user.save.should be_true
+      @user.should be_valid
     end
 
-    it 'login_nameはユニークなはず' do
+    it 'login_nameはユニークでなければいけない' do
       User.new({
           login_name: 'foo',
           display_name: 'Foo',
@@ -85,7 +85,7 @@ describe User, 'ユーザを新規作成するとき' do
           mail_address: 'foo@example.com',
           aruji: true
       }
-      @user.save.should be_false
+      @user.should_not be_valid
     end
 
     it 'passwordを設定するとpassword_digestも設定されるはず' do
@@ -96,7 +96,7 @@ describe User, 'ユーザを新規作成するとき' do
           mail_address: 'foo@example.com',
           aruji: true
       }
-      @user.save.should be_true
+      @user.should be_valid
     end
   end
 end

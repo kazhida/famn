@@ -16,7 +16,7 @@ describe Family, '新規作成するとき' do
     @family = Family.new
   end
 
-  it 'nameがなければ保存できない。' do
-    @family.save.should be_false
+  it 'nameがなければいけない' do
+    @family.should_not be_valid
   end
 end
