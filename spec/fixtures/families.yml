@@ -1,6 +1,8 @@
-sakamoto
+sakamoto:
   id: 1
-  name: 坂本
-ito
+  login_name: sakamoto
+  display_name: 坂本
+ito:
   id: 2
-  name: 伊藤
+  login_name: ito
+  display_name: 伊藤

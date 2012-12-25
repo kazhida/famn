@@ -1,0 +1,31 @@
+hirohumi_first:
+  message:  'hi.'
+  user_id:    1
+  family_id:  2
+  posted_on: 2012-01-01
+hirohumi_last:
+  message:  'ho.'
+  user_id:    1
+  family_id:  2
+  posted_on: 2012-12-12
+yoma_first:
+  message:  '仁しぇんしぇい。'
+  user_id:    4
+  family_id:  1
+  posted_on: 2012-01-01
+yoma_second:
+  message:  '大変がぜよ。'
+  user_id:    4
+  family_id:  1
+  posted_on: 2012-02-02
+yoma_last:
+  message:  '日本の夜明けぜよ。'
+  user_id:    4
+  family_id:  1
+  posted_on: 2012-11-11
+otome_first:
+  message:  'ぼけ'
+  user_id:    5
+  family_id:  1
+  posted_on: 2012-03-03
+

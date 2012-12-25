@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121225011251) do
+ActiveRecord::Schema.define(:version => 20121225040204) do
 
   create_table "entries", :force => true do |t|
     t.text     "message",    :null => false
@@ -19,15 +19,17 @@ ActiveRecord::Schema.define(:version => 20121225011251) do
     t.integer  "family_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.date     "posted_on"
   end
 
   create_table "families", :force => true do |t|
-    t.string   "name",       :limit => 64, :null => false
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "login_name",   :limit => 64, :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "display_name"
   end
 
-  add_index "families", ["name"], :name => "index_families_on_name", :unique => true
+  add_index "families", ["login_name"], :name => "index_families_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "login_name",      :limit => 64,                     :null => false
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20121225011251) do
     t.boolean  "aruji",                          :default => false, :null => false
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
+    t.integer  "family_id",                                         :null => false
   end
 
   add_index "users", ["login_name"], :name => "index_users_on_login_name", :unique => true

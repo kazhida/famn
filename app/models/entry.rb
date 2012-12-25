@@ -1,7 +1,11 @@
 class Entry < ActiveRecord::Base
-  attr_accessible :family_id, :message, :user_id
+  belongs_to :family
+  belongs_to :user
+
+  attr_accessible :message, :user, :family, :posted_on
 
   validates_presence_of :message
-  validates_presence_of :user_id
-  validates_presence_of :family_id
+  validates_presence_of :user
+  validates_presence_of :family
+  validates_presence_of :posted_on
 end
