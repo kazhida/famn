@@ -1,8 +1,11 @@
 = form_tag :session do
   ul
     li
-      = label_tag :login_name, 'ログイン'
-      = text_field_tag :login_name, params[:login_name]
+      = label_tag :family_name, '家族名'
+      = text_field_tag :family_name, params[:family_name]
+    li
+      = label_tag :user_name, 'ユーザ名'
+      = text_field_tag :user_name, params[:user_name]
     li
       = label_tag :password, 'パスワード'
       = password_field_tag :password

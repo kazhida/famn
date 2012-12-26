@@ -73,7 +73,7 @@ describe User, 'ユーザを新規作成するとき' do
     @user.should be_valid
   end
 
-  it 'login_nameはユニークでなければいけない' do
+  it 'login_nameは家族内でユニークでなければいけない' do
     @user.attributes = {
         login_name: 'hirohumi',
         display_name: 'Foo2',
@@ -83,6 +83,18 @@ describe User, 'ユーザを新規作成するとき' do
         aruji: true
     }
     @user.should_not be_valid
+  end
+
+  it 'login_nameは家族が異なれば、かぶってもOK' do
+    @user.attributes = {
+        login_name: 'hirohumi',
+        display_name: 'Foo2',
+        password: 'barboo',
+        mail_address: 'foo@example.com',
+        family: Family.find_by_login_name('sakamoto'),
+        aruji: true
+    }
+    @user.should be_valid
   end
 
   it 'passwordを設定するとpassword_digestも設定されるはず' do

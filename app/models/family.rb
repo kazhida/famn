@@ -12,6 +12,6 @@ class Family < ActiveRecord::Base
 
   validates_presence_of :display_name
 
-  has_many :users
-  has_many :entries
+  has_many :users,   :dependent => :destroy
+  has_many :entries, :dependent => :destroy
 end
