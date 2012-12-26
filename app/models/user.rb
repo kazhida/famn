@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   validates_presence_of :mail_address
   validates_length_of :password, :minimum => 6
 
-  has_many :entry, :dependent => :destroy
+  has_many :entries, :dependent => :destroy
 
   before_validation do
     self.password_digest = BCrypt::Password.create(self.password)

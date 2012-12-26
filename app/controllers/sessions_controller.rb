@@ -16,4 +16,3 @@ class SessionsController < ApplicationController
     redirect_to [:new, :session]
   end
 end
-
