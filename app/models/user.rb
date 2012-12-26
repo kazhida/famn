@@ -10,11 +10,16 @@ class User < ActiveRecord::Base
   validates_presence_of :login_name
 
   validate do
-    unless User.find_by_login_name_and_family_id(login_name, family_id).nil?
+    if User.find_by_login_name_and_family_id(login_name, family_id).nil?
+      if Family.find_by_login_name(login_name).nil?
+        true
+      else
+        errors.add(:login_name, '%s is already used at families.' % login_name)
+        false
+      end
+    else
       errors.add(:login_name, '%s is already used at users same family.' % login_name)
-    end
-    unless Family.find_by_login_name(login_name).nil?
-      errors.add(:login_name, '%s is already used at families.' % login_name)
+      false
     end
   end
 
@@ -36,6 +41,6 @@ class User < ActiveRecord::Base
 
   def self.find_by_names(family_name, user_name)
     family = Family.find_by_login_name(family_name)
-    find_by_login_name_and_family_id(user_name, family.id)
+    find_by_login_name_and_family_id(user_name, family.nil? ? nil : family.id)
   end
 end

@@ -38,4 +38,12 @@ otome:
   mail_address: otome@example.com
   family_id: 1
   aruji:  true
+ryoma2:
+  id: 6
+  login_name: ryoma
+  display_name: 亮馬
+  password_digest: foobar
+  mail_address: hirohumi@example.com
+  family_id: 2
+  aruji:  true
 

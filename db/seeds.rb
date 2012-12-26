@@ -56,6 +56,14 @@ end
     mail_address: 'otome@example.com',
     family: Family.find_by_login_name('sakamoto'),
     aruji:  true
+  },
+  {
+    login_name: 'ryoma',
+    display_name: '亮馬',
+    password: 'foobar',
+    mail_address: 'ryoma@example.com',
+    family: Family.find_by_login_name('ito'),
+    aruji:  false
   }
 ].each do |u|
   User.create(

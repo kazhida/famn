@@ -167,3 +167,15 @@ describe User, 'マスアサインについて' do
     }.should_not raise_error(ActiveModel::MassAssignmentSecurity::Error)
   end
 end
+
+describe User, 'ユーザを探すとき' do
+  fixtures :families, :users
+
+  it '家族名とユーザ名を指定することでレコードをとってくることができる' do
+    User.find_by_names('sakamoto', 'ryoma').should_not be_nil
+  end
+
+  it '家族名とユーザ名を指定することでレコードを特定できる' do
+    User.find_by_names('ito', 'hirohumi').login_name.should eql('hirohumi')
+  end
+end
