@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
   before_validation do
     self.password_digest = BCrypt::Password.create(self.password)
   end
+
+  def authenticate(password)
+    BCrypt::Password.new(password_digest) == password
+  end
 end
