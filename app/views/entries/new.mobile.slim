@@ -1,3 +1,8 @@
+div data-role="header" data-position="fixed"
+  h1 famn
+  = link_to '戻る', entries_path,  :class => 'ui-btn-left'
+  = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right'
+
 = form_for @entry do |f|
   - if @entry.errors.any?
     #error_explanation
@@ -5,8 +10,7 @@
       ul
         - @entry.errors.full_messages.each do |message|
           li = message
-
   .field
-    = f.label :message
+    = f.label :message, 'メッセージ'
     = f.text_area :message
   .actions = f.submit 'Save'

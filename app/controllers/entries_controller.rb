@@ -11,17 +11,6 @@ class EntriesController < ApplicationController
     end
   end
 
-  # GET /entries/1
-  # GET /entries/1.json
-  def show
-    @entry = Entry.find_by_user(current_user).find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.slim
-      format.json { render json: @entry }
-    end
-  end
-
   # GET /entries/new
   # GET /entries/new.json
   def new
@@ -33,17 +22,13 @@ class EntriesController < ApplicationController
     end
   end
 
-  # GET /entries/1/edit
-  #def edit
-  #  @entry = current_user.entries.find(params[:id])
-  #end
-
   # POST /entries
   # POST /entries.json
   def create
     @entry = Entry.new(params[:entry])
     @entry.user   = current_user
     @entry.family = current_user.family
+    @entry.posted_on = DateTime.now
 
     respond_to do |format|
       if @entry.save
@@ -55,22 +40,6 @@ class EntriesController < ApplicationController
       end
     end
   end
-
-  # PUT /entries/1
-  # PUT /entries/1.json
-  #def update
-  #  @entry = current_user.entries.find(params[:id])
-  #
-  #  respond_to do |format|
-  #    if @entry.update_attributes(params[:entry])
-  #      format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
-  #      format.json { head :no_content }
-  #    else
-  #      format.html { render action: "edit" }
-  #      format.json { render json: @entry.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
 
   # DELETE /entries/1
   # DELETE /entries/1.json
@@ -87,7 +56,7 @@ class EntriesController < ApplicationController
   private
 
   def list_item(entry)
-    render_to_string :partial => 'shared/entry_item', :locals => {entry: entry}
+    render_to_string :partial => 'shared/entry_list_item', :locals => {entry: entry}
   end
   helper_method :list_item
 end
