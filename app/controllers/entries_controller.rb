@@ -5,6 +5,7 @@ class EntriesController < ApplicationController
     @entries = Entry.find_by_user(current_user)
 
     respond_to do |format|
+      print "#{format}\n"
       format.html # index.html.slim
       format.json { render json: @entries }
     end
@@ -82,4 +83,11 @@ class EntriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def list_item(entry)
+    render_to_string :partial => 'shared/entry_item', :locals => {entry: entry}
+  end
+  helper_method :list_item
 end

@@ -1,0 +1,6 @@
+= link_to image_tag('famn_logo.png', :size => '250x92', :alt => 'サイトロゴ'), :root
+ul data-role="listview"
+  - @entries.each do |entry|
+    li
+      = link_to entry do
+        == list_item(entry)

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   clear_helpers
 
+  before_filter :set_mobile_format
   before_filter :authenticate_user
 
   private
@@ -16,5 +17,13 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     redirect_to [:new, :session]  unless current_user
+  end
+
+  def set_mobile_format
+    request.format = :mobile  if mobile_request?
+  end
+
+  def mobile_request?
+    request.user_agent =~ /(WebKit.+Mobile)/
   end
 end
