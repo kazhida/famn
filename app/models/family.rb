@@ -5,7 +5,9 @@ class Family < ActiveRecord::Base
   validates_uniqueness_of :login_name
 
   validate do
-    unless User.find_by_login_name(login_name).nil?
+    if not /^[0-9a-zA-Z_]+$/ =~ login_name then
+      errors.add(:login_name, '%s must be number, alphabetic character or "_".' % login_name)
+    elsif not User.find_by_login_name(login_name).nil?
       errors.add(:login_name, '%s is already used at users.' % login_name)
     end
   end

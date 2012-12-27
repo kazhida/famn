@@ -10,16 +10,12 @@ class User < ActiveRecord::Base
   validates_presence_of :login_name
 
   validate do
-    if User.find_by_login_name_and_family_id(login_name, family_id).nil?
-      if Family.find_by_login_name(login_name).nil?
-        true
-      else
-        errors.add(:login_name, '%s is already used at families.' % login_name)
-        false
-      end
-    else
+    if not /^[0-9a-zA-Z_]+$/ =~ login_name
+      errors.add(:login_name, '%s must be number, alphabetic character or "_".' % login_name)
+    elsif not User.find_by_login_name_and_family_id(login_name, family_id).nil?
+      errors.add(:login_name, '%s is already used at families.' % login_name)
+    elsif not Family.find_by_login_name(login_name).nil?
       errors.add(:login_name, '%s is already used at users same family.' % login_name)
-      false
     end
   end
 

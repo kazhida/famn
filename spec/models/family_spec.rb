@@ -10,12 +10,24 @@ describe Family, '新規作成するとき' do
     @family = Family.new
   end
 
-  it 'nameがなければいけない' do
+  it 'login_nameがなければいけない' do
     @family.should_not be_valid
   end
 
   it 'display_nameがなければいけない' do
     @family.login_name = 'foo'
+    @family.should_not be_valid
+  end
+
+  it 'login_nameとdisplay_nameがそろっていればOK' do
+    @family.login_name = 'foo'
+    @family.display_name = 'ななし'
+    @family.should be_valid
+  end
+
+  it 'login_nameは英数字およびアンダースコア(_)のみ' do
+    @family.login_name = 'foo-bar-2'
+    @family.display_name = 'ななし'
     @family.should_not be_valid
   end
 

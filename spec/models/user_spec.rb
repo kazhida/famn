@@ -73,6 +73,18 @@ describe User, 'ユーザを新規作成するとき' do
     @user.should be_valid
   end
 
+  it 'login_nameは英数字およびアンダースコア(_)のみ' do
+    @user.attributes = {
+        login_name: 'foo-bar2',
+        display_name: 'Foo',
+        password: 'barboo',
+        mail_address: 'foo@example.com',
+        aruji: true,
+        family: Family.find_by_login_name('ito')
+    }
+    @user.should_not be_valid
+  end
+
   it 'login_nameは家族内でユニークでなければいけない' do
     @user.attributes = {
         login_name: 'hirohumi',
