@@ -1,9 +1,8 @@
 div class="span3"
   = link_to image_tag('famn_logo.png', :size => '250x92', :alt => 'サイトロゴ'), :root
-  p
-    span class="label" 家族名
-    | &nbsp;
+  h3
     = current_user.family.display_name
+    | &nbsp;家
 div class="span5"
   table class="table table-striped" width="100%"
     thead
@@ -16,7 +15,6 @@ div class="span5"
           span class="label" 日時
         th
           span class="label" 削除
-
     tbody
       - @entries.each do |entry|
         tr

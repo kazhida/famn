@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.find_by_user(current_user)
+    @entries = Entry.by_user(current_user)
 
     respond_to do |format|
       print "#{format}\n"

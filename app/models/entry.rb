@@ -9,7 +9,11 @@ class Entry < ActiveRecord::Base
   validates_presence_of :family
   validates_presence_of :posted_on
 
-  def self.find_by_user(user)
-    user.family.entries
+  def self.by_user(user)
+    user.family.entries.sort do |e1, e2|
+      # 降順でソート
+      e2.posted_on <=> e1.posted_on
+    end
   end
 end
+

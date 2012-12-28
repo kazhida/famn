@@ -42,3 +42,21 @@ describe Entry, 'エントリを追加するとき' do
     }.should change(Entry, :count).by(1)
   end
 end
+
+describe Entry, 'エントリを取り出したとき' do
+  fixtures :families, :users, :entries
+
+  before(:each) do
+    user = User.find_by_names('sakamoto', 'ryoma')
+    @entries = Entry.by_user(user)
+  end
+
+  it '坂本家のエントリは4件' do
+    @entries.count.should eql(4)
+  end
+
+  it 'posted_onの降順になっている' do
+    posted_ons = @entries.map {|e| e.posted_on}
+    posted_ons.should eql(posted_ons.sort.reverse)
+  end
+end
