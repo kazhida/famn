@@ -7,7 +7,11 @@ html
     = csrf_meta_tags
   body
     div id='wrapper'
-      = render 'shared/header'
+      div id="header" class="span12"
+        div class="hero-unit"
+          h1 famn
+          p famnは、家族向けSNSです。家族の内輪でメッセージを共有します。
       div id='content'
         = yield
-      = render 'shared/footer'
+      div id="footer" class="span12 user_menu_items"
+        = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？'

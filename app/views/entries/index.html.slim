@@ -1,22 +1,34 @@
-h1 Listing entries
+div class="span3"
+  = link_to image_tag('famn_logo.png', :size => '250x92', :alt => 'サイトロゴ'), :root
+  p
+    span class="label" 家族名
+    | &nbsp;
+    = current_user.family.display_name
+div class="span5"
+  table class="table table-striped" width="100%"
+    thead
+      tr
+        th
+          span class="label" メッセージ
+        th
+          span class="label" 名前
+        th
+          span class="label" 日時
+        th
+          span class="label" 削除
 
-table
-  tr
-    th Message
-    th User
-    th Family
-    th
-    th
-    th
-
-  - @entries.each do |entry|
-    tr
-      td = entry.message
-      td = entry.user_id
-      td = entry.family_id
-      td = link_to 'Show', entry
-      td = link_to 'Destroy', entry, :confirm => 'Are you sure?', :method => :delete
-
-br
-
-= link_to 'New Entry', new_entry_path
+    tbody
+      - @entries.each do |entry|
+        tr
+          td = entry.message
+          td = entry.user.display_name
+          td = entry.posted_on
+          - if entry.user == current_user
+            td = link_to entry, :confirm => '本当に削除しますか?', :method => :delete do
+              button class="btn btn-primary"
+                i class="icon-envelope icon-white" style="margin-top: 1px;"
+                | &nbsp;delete
+          - else
+            td
+div class="span4"
+  = link_to 'New Entry', new_entry_path
