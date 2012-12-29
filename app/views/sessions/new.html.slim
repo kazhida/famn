@@ -1,13 +1,27 @@
-= form_tag :session do
-  ul
-    li
-      = label_tag :family_name, '家族名'
-      = text_field_tag :family_name, params[:family_name]
-    li
-      = label_tag :user_name, 'ユーザ名'
-      = text_field_tag :user_name, params[:user_name]
-    li
-      = label_tag :password, 'パスワード'
-      = password_field_tag :password
-    li class="buttons"
-      = submit_tag 'ログイン'
+div class="span3"
+  = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
+  p
+  button class="btn btn-primary" 新規登録
+  p
+    | 初めてのかたは、
+    = link_to '詳細を確認', {:controller => :info, :action => :about}
+    | の上、
+    | こちら
+    | から新規登録してください。
+div class="span3"
+  = form_tag :session do
+    = label_tag      :family_name, '家族名 (例: sakamoto)'
+    = text_field_tag :family_name, params[:family_name], :class => 'span3'
+    = label_tag      :user_name, 'ユーザ名 (例: ryoma)'
+    = text_field_tag :user_name, params[:user_name], :class => 'span3'
+    = label_tag      :password, 'パスワード'
+    = password_field_tag :password, '', :class => 'span3'
+    = submit_tag 'ログイン', :class => 'btn'
+div class="span5"
+  h5 famn とは？
+  p  famnは、Family oriented な Social Networking Serviceです。ファムと読みます(nは発音しなくていいです)。
+  p
+    | 詳細は、
+    = link_to 'こちらのページ', {:controller => :info, :action => :about}
+    | を参照してください。
+

@@ -5,7 +5,6 @@ class EntriesController < ApplicationController
     @entries = Entry.by_user(current_user)
 
     respond_to do |format|
-      print "#{format}\n"
       format.html # index.html.slim
       format.json { render json: @entries }
     end
@@ -44,7 +43,7 @@ class EntriesController < ApplicationController
   # DELETE /entries/1
   # DELETE /entries/1.json
   def destroy
-    @entry = current_user.entries.find(params[:id])
+    @entry = Entry.find(params[:id])
     @entry.destroy
 
     respond_to do |format|

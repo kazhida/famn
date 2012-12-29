@@ -1,11 +1,10 @@
+div data-role="header"
+  h1 famn
 = form_tag :session do
-  ul data-role="listview"
-    li data-role="list-divider" 家族名 (例: sakamoto)
-    li = text_field_tag :family_name, params[:family_name]
-    li data-role="list-divider" ユーザ名 (例: ryoma)
-    li = text_field_tag :user_name, params[:user_name]
-    li data-role="list-divider" パスワード
-    li = password_field_tag :password
-    li data-role="list-divider"  ↓
-    li class="buttons"
-    li = submit_tag 'ログイン'
+  = label_tag      :family_name, '家族名 (例: sakamoto)'
+  = text_field_tag :family_name, params[:family_name]
+  = label_tag      :user_name,   'ユーザ名 (例: ryoma)'
+  = text_field_tag :user_name,   params[:user_name]
+  = label_tag      :password,    'パスワード'
+  = password_field_tag :password
+  = submit_tag 'ログイン', :class => 'buttons'

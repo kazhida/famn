@@ -1,5 +1,5 @@
 div class="span3"
-  = link_to image_tag('famn_logo.png', :size => '250x92', :alt => 'サイトロゴ'), :root
+  = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
   h3
     = current_user.family.display_name
     | &nbsp;家
@@ -23,9 +23,12 @@ div class="span5"
           td = entry.posted_on
           - if entry.user == current_user
             td = link_to entry, :confirm => '本当に削除しますか?', :method => :delete do
-              button class="btn btn-primary"
-                i class="icon-envelope icon-white" style="margin-top: 1px;"
-                | &nbsp;delete
+              button class="btn"
+                i class="icon-trash icon-white" style="margin-top: 1px;"
+          - elsif current_user.aruji
+            td = link_to entry, :confirm => '自分のエントリではありません。本当に削除しますか?', :method => :delete do
+              button class="btn btn-danger"
+                i class="icon-trash icon-white" style="margin-top: 1px;"
           - else
             td
 div class="span4"
