@@ -1,5 +1,15 @@
-h1 New entry
-
-== render 'form'
-
-= link_to 'Back', entries_path
+div class="span3"
+  = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
+  h3
+    = current_user.family.display_name
+    | &nbsp;家
+div class="span4"
+  = form_for @entry do |f|
+    = f.label     :message do
+      span class="label" 新規メッセージ(250文字以内)
+    = f.text_area :message, :maxlength => 250, :class => 'span4'
+    = f.submit :class => 'btn btn-primary' do
+      i class="icon-trash icon-white" style="margin-top: 1px;"
+      | %nbsp;送信
+div class="span5"
+  = link_to 'Back', entries_path

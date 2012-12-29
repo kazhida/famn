@@ -24,17 +24,18 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
-    @entry = Entry.new(params[:entry])
-    @entry.user   = current_user
-    @entry.family = current_user.family
+    @entry = Entry.new
+    @entry.message = params[:message]
+    @entry.user    = current_user
+    @entry.family  = current_user.family
     @entry.posted_on = DateTime.now
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        format.html { redirect_to :entries, notice: 'Entry was successfully created.' }
         format.json { render json: @entry, status: :created, location: @entry }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
       end
     end

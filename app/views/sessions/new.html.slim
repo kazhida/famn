@@ -10,12 +10,12 @@ div class="span3"
     | から新規登録してください。
 div class="span3"
   = form_tag :session do
-    = label_tag      :family_name, '家族名 (例: sakamoto)'
-    = text_field_tag :family_name, params[:family_name], :class => 'span3'
-    = label_tag      :user_name, 'ユーザ名 (例: ryoma)'
-    = text_field_tag :user_name, params[:user_name], :class => 'span3'
-    = label_tag      :password, 'パスワード'
-    = password_field_tag :password, '', :class => 'span3'
+    = label_tag      :family_name,  '家族名 (例: sakamoto)'
+    = text_field_tag :family_name,  params[:family_name], :class => 'span3'
+    = label_tag      :user_name,    'ユーザ名 (例: ryoma)'
+    = text_field_tag :user_name,    params[:user_name],   :class => 'span3'
+    = label_tag      :password,     'パスワード'
+    = password_field_tag :password, '',                   :class => 'span3'
     = submit_tag 'ログイン', :class => 'btn'
 div class="span5"
   h5 famn とは？
