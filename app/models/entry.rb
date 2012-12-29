@@ -9,6 +9,12 @@ class Entry < ActiveRecord::Base
   validates_presence_of :family
   validates_presence_of :posted_on
 
+  validate do
+    if (not message.nil?) && (message.length > 250)
+      errors.add(:login_name, 'message length <= 250.')
+    end
+  end
+
   def self.by_user(user)
     user.family.entries.sort do |e1, e2|
       # 降順でソート
