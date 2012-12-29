@@ -15,5 +15,13 @@ class Entry < ActiveRecord::Base
       e2.posted_on <=> e1.posted_on
     end
   end
+
+  def posted_on_as_string
+    if posted_on.today?
+      posted_on.strftime('%H:%M:%S')
+    else
+      posted_on.strftime('%y/%m/%d')
+    end
+  end
 end
 

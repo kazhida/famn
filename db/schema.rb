@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226051850) do
+ActiveRecord::Schema.define(:version => 20121229073248) do
 
   create_table "entries", :force => true do |t|
     t.text     "message",    :null => false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20121226051850) do
     t.integer  "family_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.date     "posted_on"
+    t.datetime "posted_on",  :null => false
   end
 
   create_table "families", :force => true do |t|
