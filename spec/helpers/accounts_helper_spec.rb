@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe SessionsHelper do
+describe AccountsHelper do
 end
