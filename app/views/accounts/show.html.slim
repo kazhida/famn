@@ -1,0 +1,17 @@
+div class="span3"
+  = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
+  h3
+    = current_user.family.display_name
+    | &nbsp
+    = current_user.display_name
+div class="span5"
+  = form_tag :url => :account do
+    - if current_user.aruji
+      = label_tag      :family_name, '家族名'
+      = text_field_tag :family_name, current_user.family.display_name, {:class => 'span3'}
+    = label_tag        :user_name, 'ユーザ名'
+    = text_field_tag   :user_name, current_user.display_name, {:class => 'span3'}
+    = label_tag        :password, 'パスワード'
+    = password_field_tag :password, nil, {:class => 'span3'}
+    p
+      = submit_tag '更新', :class => 'btn'

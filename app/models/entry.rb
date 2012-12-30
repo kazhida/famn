@@ -2,7 +2,10 @@ class Entry < ActiveRecord::Base
   belongs_to :family
   belongs_to :user
 
-  attr_accessible :message, :user, :family, :posted_on
+  attr_accessible :message
+  attr_accessible :user
+  attr_accessible :family
+  attr_accessible :posted_on
 
   validates_presence_of :message
   validates_presence_of :user

@@ -13,5 +13,8 @@ html
           p famnは、家族向けSNSです。家族の内輪でメッセージを共有します。
       div id='content'
         = yield
-      div id="footer" class="span12 user_menu_items"
-        = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？'
+      - unless current_user.nil?
+        div id="footer" class="span12 btn-group"
+          = link_to_unless_current 'アカウント編集', :account, :class => 'btn'
+          = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'btn'
+

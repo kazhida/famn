@@ -54,6 +54,7 @@ describe User, 'ユーザを新規作成するとき' do
         login_name: 'foo2',
         display_name: 'Foo',
         password: 'barbe',
+        setting_password: true,
         mail_address: 'foo@example.com',
         aruji: true,
         family: Family.find_by_login_name('ito')
@@ -66,6 +67,7 @@ describe User, 'ユーザを新規作成するとき' do
         login_name: 'foo3',
         display_name: 'Foo',
         password: 'barboo',
+        setting_password: true,
         mail_address: 'foo@example.com',
         aruji: true,
         family: Family.find_by_login_name('ito')
@@ -78,6 +80,7 @@ describe User, 'ユーザを新規作成するとき' do
         login_name: 'foo-bar2',
         display_name: 'Foo',
         password: 'barboo',
+        setting_password: true,
         mail_address: 'foo@example.com',
         aruji: true,
         family: Family.find_by_login_name('ito')
@@ -90,6 +93,7 @@ describe User, 'ユーザを新規作成するとき' do
         login_name: 'hirohumi',
         display_name: 'Foo2',
         password: 'barboo',
+        setting_password: true,
         mail_address: 'foo@example.com',
         family: Family.find_by_login_name('ito'),
         aruji: true
@@ -102,6 +106,7 @@ describe User, 'ユーザを新規作成するとき' do
         login_name: 'hirohumi',
         display_name: 'Foo2',
         password: 'barboo',
+        setting_password: true,
         mail_address: 'foo@example.com',
         family: Family.find_by_login_name('sakamoto'),
         aruji: true
@@ -114,6 +119,7 @@ describe User, 'ユーザを新規作成するとき' do
         login_name: 'foo3',
         display_name: 'Foo3',
         password: 'barboo',
+        setting_password: true,
         mail_address: 'foo@example.com',
         family: Family.find_by_login_name('ito'),
         aruji: true
@@ -126,6 +132,7 @@ describe User, 'ユーザを新規作成するとき' do
         login_name: 'sakamoto',
         display_name: 'さかもと',
         password: 'barboo',
+        setting_password: true,
         mail_address: 'foo@example.com',
         family: Family.find_by_login_name('ito'),
         aruji: true
@@ -139,6 +146,7 @@ describe User, 'ユーザを新規作成するとき' do
           login_name: 'kinpachi',
           display_name: '金八',
           password: 'barboo',
+          setting_password: true,
           family: Family.find_by_login_name('sakamoto'),
           mail_address: 'foo@example.com',
           aruji: false

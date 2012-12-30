@@ -1,5 +1,7 @@
 class Family < ActiveRecord::Base
-  attr_accessible :login_name, :display_name
+
+  attr_accessible :login_name
+  attr_accessible :display_name
 
   validates_presence_of :login_name
   validates_uniqueness_of :login_name
