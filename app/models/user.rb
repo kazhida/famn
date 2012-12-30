@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
     @changing_password = true
   end
 
-
   validates_presence_of :login_name
 
   validate do
