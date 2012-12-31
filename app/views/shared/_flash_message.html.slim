@@ -6,3 +6,8 @@
   div class="alert alert-error"
     button class="close" data-dismiss="alert" &times;
     = flash.alert
+- if !current_user.nil? && current_user.errors.any?
+  div class="alert alert-error"
+    ul
+    - current_user.errors.full_messages.each do |msg|
+      li = msg

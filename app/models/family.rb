@@ -1,4 +1,8 @@
+# -*- encoding: utf-8 -*-
+
 class Family < ActiveRecord::Base
+  has_many :users,   :dependent => :destroy
+  has_many :entries, :dependent => :destroy
 
   attr_accessible :login_name
   attr_accessible :display_name
@@ -15,7 +19,4 @@ class Family < ActiveRecord::Base
   end
 
   validates_presence_of :display_name
-
-  has_many :users,   :dependent => :destroy
-  has_many :entries, :dependent => :destroy
 end

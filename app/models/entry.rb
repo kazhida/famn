@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 class Entry < ActiveRecord::Base
   belongs_to :family
   belongs_to :user

@@ -12,10 +12,10 @@ html
           h1 famn
           p famnは、家族向けSNSです。家族の内輪でメッセージを共有します。
       div id='content'
-        = render 'shared/flash_message'
         = yield
       - unless current_user.nil?
         div id="footer" class="span12 btn-group"
-          = link_to_unless_current 'アカウント編集', [:edit, :account], :class => 'btn'
-          = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'btn'
-
+          = link_to_function '戻る', 'history.back()', :class => 'btn'
+          = link_to_unless_current  'アカウント編集', [:edit, :account], :class => 'btn'
+          - if current_user
+            = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'btn'

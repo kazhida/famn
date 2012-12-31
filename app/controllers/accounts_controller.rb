@@ -10,24 +10,15 @@ class AccountsController < ApplicationController
   # PUT /account/
   def update
     print "きたよ\n"
-    current_user.family.display_name = params[:family_name]   if params.has_key?(:family_name)
-    current_user.display_name        = params[:user_name]
 
-    unless params[:new_password].empty?
-      if current_user.authenticate(params[:current_password])
-        current_user.new_password = params[:new_password]
-      else
-        flash.now.alert = '現在のパスワードが正しくありません。'
-        render :edit
-        return
-      end
-    end
+    current_user.attributes = params[:user]
+    current_user.changing_password = true   unless current_user.new_password.empty?
 
     if current_user.save
-      flash.notice = '変更しました。'
-      redirect_to :action => :edit, :id => current_user.id
+      flash.now.notice = 'アカウント情報を変更しました。'
+      render :edit
     else
-      flash.now.alert = '変更できませんでした。'
+      flash.now.alert = '変更できませんでした。' + "#{current_user.inspect}" + "#{params}"
       render :edit
     end
   end

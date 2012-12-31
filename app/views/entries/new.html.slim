@@ -1,8 +1,5 @@
 div class="span3"
-  = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
-  h3
-    = current_user.family.display_name
-    | &nbsp;家
+  = render '/shared/info_pane'
 div class="span4"
   = form_for @entry do |f|
     = f.label     :message do

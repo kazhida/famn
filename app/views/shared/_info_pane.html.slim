@@ -1,0 +1,7 @@
+= link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
+h3
+  = current_user.family.display_name
+  | &nbsp;
+  = current_user.display_name
+p
+  = render 'shared/flash_message'

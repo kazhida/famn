@@ -1,21 +1,20 @@
 div class="span3"
-  = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
-  h3
-    = current_user.family.display_name
-    | &nbsp
-    = current_user.display_name
-div class="span5"
-  = form_tag(:controller => :account, :action => :update, :method => :put) do
+  = render '/shared/info_pane'
+
+div class="span4"
+  = form_for current_user, :url => :account do |f|
     - if current_user.aruji
-      = label_tag         :family_name, '家族名'
-      = text_field_tag    :family_name, current_user.family.display_name, {:class => 'span3'}
-    = label_tag           :user_name, 'ユーザ名'
-    = text_field_tag      :user_name, current_user.display_name, {:class => 'span3'}
-    = label_tag           :current_password, '現在のパスワード'
-    = password_field_tag  :current_password, nil, {:class => 'span3'}
-    = label_tag           :new_password, '新しいパスワード'
-    = password_field_tag  :new_password, nil, {:class => 'span3'}
-    = label_tag           :new_password_confirm, '新しいパスワードの確認'
-    = password_field_tag  :new_password_confirm, nil, {:class => 'span3'}
+      = f.label         :family_name,               '家族名'
+      = f.text_field    :family_name,               {:class => 'span3'}
+    = f.label           :display_name,              'ユーザ名'
+    = f.text_field      :display_name,              {:class => 'span3'}
+    = f.label           :current_password,          '現在のパスワード'
+    = f.password_field  :current_password,          {:class => 'span3'}
+    = f.label           :new_password,              '新しいパスワード'
+    = f.password_field  :new_password,              {:class => 'span3'}
+    = f.label           :new_password_confirmation, '新しいパスワードの確認'
+    = f.password_field  :new_password_confirmation, {:class => 'span3'}
     p
-      = submit_tag '更新', :class => 'btn'
+      = f.submit '更新', :class => 'btn'
+
+div class="span5"
