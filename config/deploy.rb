@@ -16,6 +16,7 @@ require    'bundler/capistrano'
 
 # rbenv configuration
 set :default_environment, {
+    :FAMN_DATABASE_PASSWORD => ENV['FAMN_DATABASE_PASSWORD'],
     :RBENV_ROOT => '$HOME/.rbenv',
     :PATH => '$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH'
 }

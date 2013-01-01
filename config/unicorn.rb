@@ -1,14 +1,13 @@
 worker_processes 2
 
 working_directory '/var/famn'
-#user "kazhida", "kazhida"
 
 listen '/tmp/famn.sock'
 timeout 60
 
 stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-  
+
 preload_app true
 
 before_fork do |server, worker|
