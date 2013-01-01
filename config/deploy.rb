@@ -12,10 +12,11 @@ role :web, 'famn.kazhida.jp'                    # Your HTTP server, Apache/etc
 role :app, 'famn.kazhida.jp'                    # This may be the same as your `Web` server
 role :db,  'famn.kazhida.jp', :primary => true  # This is where Rails migrations will run
 
-after 'deploy:update_code', bundle_install
+require    'bundler/capistrano'
 
-desc 'install the necessary prerequisites'
-task :bundle_install, :roles => :app do
-  run "cd #{release_path} && bundle install"
-end
-
+# rbenv configuration
+set :default_environment, {
+    :RBENV_ROOT => '$HOME/.rbenv',
+    :PATH => '$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH'
+}
+set :bundle_flags, '--deployment --quiet --binstubs --shebang ruby-local-exec'

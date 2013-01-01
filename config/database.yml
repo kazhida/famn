@@ -23,6 +23,7 @@ production:
   encoding: unicode
   database: famn_production
   pool: 5
-  username: famn
-  password: fam_no_password
+  username: <%= ENV['FAMN_DATABASE_USERNAME'] || 'famn' %>
+  password: <%= ENV['FAMN_DATABASE_PASSWORD'] %>
+  host:     <%= ENV['FAMN_DATABASE_HOST'] || 'localhost' %>
   timeout:  5000
