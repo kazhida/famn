@@ -1,5 +1,5 @@
 set :application, 'famn'
-set :repository,  'kazhida@kazhida.jp/~/work/famn.git'
+set :repository,  'git://github.com/kazhida/famn.git'
 set :deploy_to,   '/home/kazhida/work/famn'
 
 set :scm, :git
@@ -12,8 +12,10 @@ role :web, 'famn.kazhida.jp'                    # Your HTTP server, Apache/etc
 role :app, 'famn.kazhida.jp'                    # This may be the same as your `Web` server
 role :db,  'famn.kazhida.jp', :primary => true  # This is where Rails migrations will run
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+after 'deploy:update_code', bundle_install
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+desc 'install the necessary prerequisites'
+task :bundle_install, :roles => :app do
+  run "cd #{release_path} && bundle install"
+end
+
