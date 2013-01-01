@@ -5,8 +5,6 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,14 +31,14 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'jbuilder'
 
 gem 'unicorn'
-gem 'capistrano'
 gem 'pg'
 
-gem 'debugger'
-
 group :development do
+  gem 'capistrano'
+  gem 'debugger'
+  gem 'sqlite3'
   gem 'better_errors'
+  gem 'rspec-rails'
 end
 
-gem 'rspec-rails'
 
