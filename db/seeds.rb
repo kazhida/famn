@@ -76,22 +76,6 @@ end
     mail_address: 'kazhida@abplus.com',
     family: Family.find_by_login_name('ito'),
     aruji:  true
-  },
-  {
-      login_name: 'ayako',
-      display_name: '綾子',
-      password: 'foobar',
-      mail_address: 'ayako@example.com',
-      family: Family.find_by_login_name('ito'),
-      aruji:  false
-  },
-  {
-      login_name: 'yuta',
-      display_name: '優太',
-      password: 'foobar',
-      mail_address: 'yuta@example.com',
-      family: Family.find_by_login_name('ito'),
-      aruji:  false
   }
 ].each do |u|
   User.create(
