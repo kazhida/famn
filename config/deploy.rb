@@ -1,6 +1,6 @@
 set :application, 'famn'
 set :repository,  'git://github.com/kazhida/famn.git'
-set :deploy_to,   '/home/kazhida/work/famn'
+set :deploy_to,   '/home/kazhida/rails_app/famn'
 
 set :scm, :git
 set :branch, :master
