@@ -30,26 +30,34 @@ body {
     z-index:  5;
 }
 
+#header {
+  .hero-unit {
+    background: #f6c;
+    opacity: 0.6;
+  }
+}
+
 #content {
   #left_info {
-    background: #dfe;
+    background: #ffc;
     padding: 8px 8px 0 8px;
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   #center_content {
-    background: #dfe;
+    background: #ffc;
     padding: 8px 8px 0 8px;
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   #right_info {
-    background: #dfe;
+    background: #ffc;
     padding: 8px 8px 0 8px;
-    opacity: 0.7;
+    opacity: 0.8;
   }
 }
 
 #user_menu {
   padding: 0 0 16px 0;
 }
+
