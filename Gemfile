@@ -17,11 +17,10 @@ group :assets do
   gem 'libv8', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'slim-rails'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
 end
-
+gem 'slim-rails'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
