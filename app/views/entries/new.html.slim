@@ -1,6 +1,7 @@
-div class="span3" id='left_info'
+div class="span3 float-pane"
   = render '/shared/info_pane'
-div class="span5" id='center_content'
+
+div class="span5 float-pane"
   = form_for @entry do |f|
     = f.label     :message do
       span class="label" 新規メッセージ(250文字以内)
@@ -8,5 +9,6 @@ div class="span5" id='center_content'
     = f.submit :class => 'btn btn-primary' do
       i class="icon-trash icon-white" style="margin-top: 1px;"
       | %nbsp;送信
-div class="span4" id='right_info'
+
+div class="span4 float-pane"
   = link_to 'Back', entries_path

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.grrrid-1.0.0
 //= require twitter/bootstrap
 
 (function($){
@@ -30,3 +31,7 @@
         return this;
     };
 })(jQuery);
+
+$(document).ready(function() {
+    $("div.float-pane").grrrid("equalize");
+});
