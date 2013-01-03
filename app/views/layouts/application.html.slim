@@ -13,7 +13,7 @@ html
     div id="wrapper"
       div id="header" class="span12"
         div class="hero-unit"
-          h1 famn
+          = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
           p famnは、家族向けSNSです。家族の内輪でメッセージを共有します。
         = render '/shared/user_menu'
       div id='content'
