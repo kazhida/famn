@@ -74,7 +74,7 @@ end
     display_name: '一幸',
     password: 'foobar',
     mail_address: 'kazhida@abplus.com',
-    family: Family.find_by_login_name('ito'),
+    family: Family.find_by_login_name('hida'),
     aruji:  true
   }
 ].each do |u|

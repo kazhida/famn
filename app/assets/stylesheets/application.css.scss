@@ -39,25 +39,36 @@ body {
 
 #content {
   #left_info {
-    background: #ffc;
+    background: #f0f7ff;
     padding: 8px 8px 0 8px;
-    opacity: 0.8;
+    opacity: 0.9;
+
+    p {
+      opacity: 1.25;
+    }
+
+    form {
+      opacity: 1.25;
+    }
   }
 
   #center_content {
-    background: #ffc;
+    background: #f0f7ff;
     padding: 8px 8px 0 8px;
-    opacity: 0.8;
+    opacity: 0.9;
+
+    tr {
+      opacity: 1;
+    }
   }
 
   #right_info {
-    background: #ffc;
+    background: #f0f7ff;
     padding: 8px 8px 0 8px;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 }
 
 #user_menu {
   padding: 0 0 16px 0;
 }
-
