@@ -1,7 +1,7 @@
-div class="span3"
+div class="span3" id="left_info"
   = render '/shared/info_pane'
 
-div class="span4"
+div class="span5" id="center_content"
   = form_for current_user, :url => :account do |f|
     - if current_user.aruji
       = f.label         :family_name,               '家族名'
@@ -17,4 +17,4 @@ div class="span4"
     p
       = f.submit '更新', :class => 'btn'
 
-div class="span5"
+div class="span4"

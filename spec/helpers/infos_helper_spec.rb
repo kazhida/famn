@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe InfoHelper do
+describe InfosHelper do
 end

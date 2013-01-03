@@ -11,3 +11,45 @@
  *= require_self
  *= require bootstrap_and_overrides
  */
+body {
+    margin:  0;
+    padding: 0;
+}
+
+#bg_image {
+    position: absolute;
+    width:  100%;
+    top:    0;
+    left:   0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#wrapper {
+    position: absolute;
+    z-index:  5;
+}
+
+#content {
+  #left_info {
+    background: #dfe;
+    padding: 8px 8px 0 8px;
+    opacity: 0.7;
+  }
+
+  #center_content {
+    background: #dfe;
+    padding: 8px 8px 0 8px;
+    opacity: 0.7;
+  }
+
+  #right_info {
+    background: #dfe;
+    padding: 8px 8px 0 8px;
+    opacity: 0.7;
+  }
+}
+
+#user_menu {
+  padding: 0 0 16px 0;
+}

@@ -1,6 +1,14 @@
-div class="span3"
+div class="span3" id="left_info"
   = render '/shared/info_pane'
-div class="span5"
+  = form_tag :entries do
+    = label_tag :message do
+      p
+        span class="label label-info" 新規メッセージ(250文字以内)
+    = text_area_tag :message, '', :maxlength => 250, :class => 'span3'
+    | &nbsp;
+    = submit_tag '送信', :class => 'btn btn-info'
+
+div class="span5" id="center_content"
   table class="table table-striped" width="100%"
     thead
       tr
@@ -28,11 +36,5 @@ div class="span5"
                 i class="icon-trash icon-white" style="margin-top: 1px;"
           - else
             td
+
 div class="span4"
-  = form_tag :entries do
-    = label_tag :message do
-      p
-        span class="label label-info" 新規メッセージ(250文字以内)
-    = text_area_tag :message, '', :maxlength => 250, :class => 'span3'
-    | &nbsp;
-    = submit_tag '送信', :class => 'btn btn-info'

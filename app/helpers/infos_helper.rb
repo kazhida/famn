@@ -1,4 +1,4 @@
 # -*- encoding: utf-8 -*-
 
-module InfoHelper
+module InfosHelper
 end

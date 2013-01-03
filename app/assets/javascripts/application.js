@@ -13,3 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+
+(function($){
+    $.fn.fullbg = function(w0, h0) {
+        // Get browser window size
+        var w = $(window).width();
+        var h = $(window).height();
+        // Scale the image
+        if (h * h0 > w0 * w){
+            $(this).height(h);
+            $(this).width(h * w0 / h0);
+        } else {
+            $(this).width(w);
+            $(this).height(w / w0 * h0);
+        }
+        return this;
+    };
+})(jQuery);

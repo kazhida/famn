@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe InfoController do
+describe InfosController do
 
   #describe 'GET \'about\'' do
   #  it 'returns http success' do
