@@ -3,6 +3,9 @@
 class SessionsController < ApplicationController
   skip_before_filter :authenticate_user
 
+  def new
+  end
+
   # POST /sessions
   # POST /sessions.json
   def create

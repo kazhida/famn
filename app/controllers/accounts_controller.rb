@@ -2,15 +2,14 @@
 
 class AccountsController < ApplicationController
 
+
+
   # GET /account/edit
   def edit
-
   end
 
   # PUT /account/
   def update
-    print "きたよ\n"
-
     current_user.attributes = params[:user]
     current_user.changing_password = true   unless current_user.new_password.empty?
 
