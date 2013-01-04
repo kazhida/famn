@@ -12,3 +12,5 @@ ul data-role="listview"
 
 div data-role="footer" data-position="fixed" class="ui-bar"
   = link_to '新規書込', {:controller => 'entries', :action => 'new'}
+  = paginate @entries
+

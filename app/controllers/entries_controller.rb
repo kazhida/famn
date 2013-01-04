@@ -36,11 +36,13 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to :entries, notice: 'Entry was successfully created.' }
-        format.json { render json: @entry, status: :created, location: @entry }
+        format.mobile { redirect_to :entries, notice: '書き込みました。' }
+        format.html   { redirect_to :entries, notice: '書き込みました。' }
+        format.json   { render json: @entry, status: :created, location: @entry }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @entry.errors, status: :unprocessable_entity }
+        format.mobile { render action: 'new', alert: '書き込めませんでした。' }
+        format.html   { render action: 'new', alert: '書き込めませんでした。' }
+        format.json   { render json: @entry.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,8 +54,9 @@ class EntriesController < ApplicationController
     @entry.destroy
 
     respond_to do |format|
-      format.html { redirect_to entries_url }
-      format.json { head :no_content }
+      format.mobile { redirect_to entries_url }
+      format.html   { redirect_to entries_url }
+      format.json   { head :no_content }
     end
   end
 

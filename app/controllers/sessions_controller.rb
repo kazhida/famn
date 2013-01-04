@@ -34,8 +34,9 @@ class SessionsController < ApplicationController
   def destroy
     session.delete :user_id
     respond_to do |format|
-      format.html { redirect_to [:new, :session] }
-      format.json { head :no_content }
+      format.mobile { redirect_to [:new, :session] }
+      format.html   { redirect_to [:new, :session] }
+      format.json   { head :no_content }
     end
   end
 end
