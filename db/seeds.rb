@@ -70,6 +70,14 @@ end
     aruji:  false
   },
   {
+      login_name: 'kyu',
+      display_name: '九',
+      password: 'foobar',
+      mail_address: 'ryoma@example.com',
+      family: Family.find_by_login_name('sakamoto'),
+      aruji:  false
+  },
+  {
     login_name: 'kazuyuki',
     display_name: '一幸',
     password: 'foobar',
@@ -131,5 +139,23 @@ end
       user: e[:user],
       family: e[:family],
       posted_on: e[:posted_on]
+  )
+end
+
+(1..31).each do |i|
+  Entry.create(
+      message:  "#{i}日ぜよ。",
+      user:     User.find_by_login_name('ryoma'),
+      family:   Family.find_by_login_name('sakamoto'),
+      posted_on: Date::new(2012, 12, i)
+  )
+end
+
+(1..12).each do |i|
+  Entry.create(
+      message:  "#{i}月9日です。",
+      user:     User.find_by_login_name('kyu'),
+      family:   Family.find_by_login_name('sakamoto'),
+      posted_on: Date::new(2012, i, 9)
   )
 end

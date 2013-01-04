@@ -4,6 +4,8 @@ class Entry < ActiveRecord::Base
   belongs_to :family
   belongs_to :user
 
+  #pagenates_per 20
+
   attr_accessible :message
   attr_accessible :user
   attr_accessible :family
@@ -21,10 +23,7 @@ class Entry < ActiveRecord::Base
   end
 
   def self.by_user(user)
-    user.family.entries.sort do |e1, e2|
-      # 降順でソート
-      e2.posted_on <=> e1.posted_on
-    end
+    user.family.entries.order('posted_on DESC')
   end
 
   def posted_on_as_string

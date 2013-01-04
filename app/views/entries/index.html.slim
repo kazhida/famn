@@ -36,5 +36,6 @@ div class="span5 float-pane"
                 i class="icon-trash icon-white" style="margin-top: 1px;"
           - else
             td
+  = paginate @entries, :window => 2, :outer_window => 2
 
 div class="span4"

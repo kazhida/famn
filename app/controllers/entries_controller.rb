@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.by_user(current_user)
+    @entries = Entry.by_user(current_user).page(params[:page]).per(12)
 
     respond_to do |format|
       format.html # index.html.slim
