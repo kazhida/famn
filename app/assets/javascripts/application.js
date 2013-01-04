@@ -33,5 +33,5 @@
 })(jQuery);
 
 $(document).ready(function() {
-    $("div.float-pane").grrrid("equalize");
+    $("div.equal-height").grrrid("equalize");
 });

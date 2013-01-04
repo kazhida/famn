@@ -1,7 +1,7 @@
-div class="span3 float-pane"
+div class="span3 float-pane equal-height"
   = render '/shared/info_pane'
 
-div class="span4 float-pane"
+div class="span4 float-pane equal-height"
   = form_for current_user, :url => :account do |f|
     - if current_user.aruji
       = f.label         :family_name,               '家族名'
@@ -17,9 +17,10 @@ div class="span4 float-pane"
     | &nbsp;&nbsp;
     = f.submit '更新', :class => 'btn'
 
-div class="span5"
+div class="span5 equal-height"
   - if current_user.aruji?
     div class="float-pane"
-      h3 ユーザの管理
+      h5 ユーザの管理
+
     div class="float-pane"
-      h3 ユーザの追加
+      h5 ユーザの追加
