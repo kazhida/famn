@@ -10,7 +10,8 @@ ul data-role="listview"
     - else
       li == list_item(entry)
 
+= paginate @entries
+
 div data-role="footer" data-position="fixed" class="ui-bar"
-  = link_to '新規書込', {:controller => 'entries', :action => 'new'}, {'data-inline' => true}
-  = paginate @entries
+  = link_to '新規書込', {:controller => 'entries', :action => 'new'}, {'data-inline' => true, 'data-icon' => 'plus'}
 
