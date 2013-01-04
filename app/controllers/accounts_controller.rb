@@ -3,19 +3,16 @@
 class AccountsController < ApplicationController
   skip_before_filter :authenticate_user, :only => [:new, :create]
 
-  # GET /account/new
-  def new
-  end
-
-  # POST /account
-  def create
-  end
-
   # GET /account/edit
   def edit
+    respond_to do |format|
+      format.mobile
+      format.html
+      format.json   { head :no_content }
+    end
   end
 
-  # PUT /account/
+  # PUT /account
   def update
     current_user.attributes = params[:user]
     current_user.changing_password = true   unless current_user.new_password.empty?
@@ -26,15 +23,6 @@ class AccountsController < ApplicationController
     else
       flash.now.alert = '変更できませんでした。' + "#{current_user.inspect}" + "#{params}"
       render :edit
-    end
-  end
-
-  # DELETE /account/
-  def destroy
-    respond_to do |format|
-      format.mobile { render :edit }
-      format.html   { render :edit }
-      format.json   { head :no_content }
     end
   end
 end

@@ -28,6 +28,7 @@ group :development do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'rspec-rails'
+  gem 'rails-footnotes'
 end
 
 

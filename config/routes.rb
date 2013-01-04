@@ -11,8 +11,8 @@ Famn::Application.routes.draw do
     get 'page/:page', :action => :index, :on => :collection
   end
   resource  :session, :only   => [:new, :create, :destroy]
-  resource  :account, :except => [:index, :show]
-#  resource  :account, :only   => [:edit, :update]
+  resource  :account, :only   => [:edit, :update]
+  resources :users,   :only   => [:new, :create, :destroy]
 
   match '*anything' => 'error#not_found'
 end

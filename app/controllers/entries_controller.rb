@@ -36,8 +36,8 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
-        format.mobile { redirect_to :entries, notice: '書き込みました。' }
-        format.html   { redirect_to :entries, notice: '書き込みました。' }
+        format.mobile { redirect_to :entries }
+        format.html   { redirect_to :entries }
         format.json   { render json: @entry, status: :created, location: @entry }
       else
         format.mobile { render action: 'new', alert: '書き込めませんでした。' }
