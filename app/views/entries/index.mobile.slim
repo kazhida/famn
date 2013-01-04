@@ -11,6 +11,6 @@ ul data-role="listview"
       li == list_item(entry)
 
 div data-role="footer" data-position="fixed" class="ui-bar"
-  = link_to '新規書込', {:controller => 'entries', :action => 'new'}
+  = link_to '新規書込', {:controller => 'entries', :action => 'new'}, {'data-inline' => true}
   = paginate @entries
 

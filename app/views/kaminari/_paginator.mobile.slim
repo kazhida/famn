@@ -1,5 +1,5 @@
 = paginator.render do
-  div class="pagination" data-role="controlgroup" data-type="horizontal"
+  div class="pagination" data-role="controlgroup" data-type="horizontal" data-inline="true"
     == first_page_tag unless current_page.first?
     == prev_page_tag unless current_page.first?
     - each_page do |page|
