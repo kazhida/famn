@@ -12,7 +12,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
-  gem 'jquery_mobile_rails'
 end
 
 gem 'slim-rails'
@@ -21,7 +20,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn'
 gem 'pg'
 gem 'kaminari'
-
+gem 'jquery_mobile_rails'
 
 group :development do
   gem 'capistrano'
