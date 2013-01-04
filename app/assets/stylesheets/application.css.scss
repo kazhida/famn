@@ -45,7 +45,6 @@ body {
 #content {
   .float-pane {
     background: #f0f7ff;
-    padding: 8px 8px 0 8px;
     opacity: 0.9;
 
     p {
@@ -66,8 +65,22 @@ body {
   }
 }
 
+.inset {
+  padding: 8px;
+}
+
+.margin16-0-0-0 {
+  margin: 16px 0 0 0;
+}
+
+#user-table {
+  td {
+    vertical-align: middle;
+  }
+}
+
 #user_menu {
-  padding: 0 0 16px 0;
+  margin: 0 0 16px 0;
 }
 
 .send-button {

@@ -1,57 +1,61 @@
 div class="span3 float-pane equal-height"
-  = render '/shared/info_pane'
+  div class="inset"
+    = render '/shared/info_pane'
 
 div class="span4 float-pane equal-height"
-  = form_for current_user, :url => :account do |f|
-    - if current_user.aruji
-      = f.label         :family_name,               '家族名'
-      = f.text_field    :family_name,               {:class => 'span3'}
-    = f.label           :display_name,              'ユーザ名'
-    = f.text_field      :display_name,              {:class => 'span3'}
-    = f.label           :current_password,          '現在のパスワード'
-    = f.password_field  :current_password,          {:class => 'span3'}
-    = f.label           :new_password,              '新しいパスワード'
-    = f.password_field  :new_password,              {:class => 'span3'}
-    = f.label           :new_password_confirmation, '新しいパスワードの確認'
-    = f.password_field  :new_password_confirmation, {:class => 'span3'}
-    | &nbsp;&nbsp;
-    = f.submit '更新', :class => 'btn'
+  div class="inset"
+    = form_for current_user, :url => :account do |f|
+      - if current_user.aruji
+        = f.label         :family_name,               '家族名'
+        = f.text_field    :family_name,               {:class => 'span3'}
+      = f.label           :display_name,              'ユーザ名'
+      = f.text_field      :display_name,              {:class => 'span3'}
+      = f.label           :current_password,          '現在のパスワード'
+      = f.password_field  :current_password,          {:class => 'span3'}
+      = f.label           :new_password,              '新しいパスワード'
+      = f.password_field  :new_password,              {:class => 'span3'}
+      = f.label           :new_password_confirmation, '新しいパスワードの確認'
+      = f.password_field  :new_password_confirmation, {:class => 'span3'}
+      | &nbsp;&nbsp;
+      = f.submit '更新', :class => 'btn'
 
 div class="span5"
   - if current_user.aruji?
     div class="float-pane"
-      h5 ユーザの管理
-      table class="table table-striped" width="100%"
-        thead
-          tr
-            th ユーザ
-            th 登録
-            th 削除
-        tbody
-          - User.family_users(current_user.family_id, current_user.id).each do |user|
+      div class="inset"
+        h5 ユーザの管理
+        table class="table" width="100%" id="user-table"
+          thead
             tr
-              td = "#{user.display_name} (@#{user.login_name})"
-              td
-                - if user.verified_at.nil?
-                  span class="label" 登録済
-                - else
-                  span class="label label-info" 仮登録
-              td = link_to user, :confirm => '本当に削除しますか?', :method =>:delete do
-                button class="btn btn-danger"
-                  i class="icon-trash icon-" style="margin-top: 1px;"
+              th ユーザ
+              th 登録
+              th 削除
+          tbody
+            - User.family_users(current_user.family_id, current_user.id).each do |user|
+              tr
+                td = "#{user.display_name} (@#{user.login_name})"
+                td
+                  - if user.verified_at.nil?
+                    span class="label" 登録済
+                  - else
+                    span class="label label-info" 仮登録
+                td = link_to user, :confirm => '本当に削除しますか?', :method =>:delete do
+                  button class="btn btn-danger"
+                    i class="icon-trash icon-" style="margin-top: 1px;"
 
-    div class="float-pane"
-      h5 ユーザの追加
-      = form_tag :users do
-        = label_tag      :user_name, 'ユーザ名 (例: ryoma)'
-        = text_field_tag :user_name
-        = label_tag      :mail_address, 'メール・アドレス (例: ryoma@example.com)'
-        = text_field_tag :mail_address
-        p
-          | 　上記のユーザを作成し、本人確認のメールを指定したアドレスに送信します。
-          | メールを受けとったユーザが本登録を行う必要があります。
-        = submit_tag '送信', :class => 'btn btn-info'
-        p &nbsp;
+    div class="float-pane margin16-0-0-0"
+      div class="inset"
+        h5 ユーザの追加
+        = form_tag :users do
+          = label_tag      :user_name, 'ユーザ名 (例: ryoma)'
+          = text_field_tag :user_name
+          = label_tag      :mail_address, 'メール・アドレス (例: ryoma@example.com)'
+          = text_field_tag :mail_address
+          p
+            | 　上記のユーザを作成し、本人確認のメールを指定したアドレスに送信します。
+            | メールを受けとったユーザが本登録を行う必要があります。
+          = submit_tag '送信', :class => 'btn btn-info'
+          p &nbsp;
 
 div id="footnotes_holder" class="span12"
 

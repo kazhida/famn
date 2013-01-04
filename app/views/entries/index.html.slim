@@ -1,37 +1,39 @@
 div class="span3 float-pane equal-height"
-  = render '/shared/info_pane'
-  = form_tag :entries do
-    = label_tag :message do
+  div class="inset"
+    = render '/shared/info_pane'
+    = form_tag :entries do
+      = label_tag :message do
+        p
+          span class="label label-info" 新規メッセージ(250文字以内)
+      = text_area_tag :message, '', :maxlength => 250
       p
-        span class="label label-info" 新規メッセージ(250文字以内)
-    = text_area_tag :message, '', :maxlength => 250, :class => 'span3'
-    p
-      = submit_tag '送信', :class => 'btn btn-info'
+        = submit_tag '送信', :class => 'btn btn-info'
 
 div class="span5 float-pane equal-height"
-  table class="table table-striped" width="100%"
-    thead
-      tr
-        th メッセージ
-        th 名前
-        th 日時
-        th 削除
-    tbody
-      - @entries.each do |entry|
+  div class="inset"
+    table class="table table-striped" width="100%"
+      thead
         tr
-          td = entry.message
-          td = entry.user.display_name
-          td = entry.posted_on_as_string
-          - if entry.user == current_user
-            td = link_to entry, :confirm => '本当に削除しますか?', :method => :delete do
-              button class="btn"
-                i class="icon-trash icon-white" style="margin-top: 1px;"
-          - elsif current_user.aruji
-            td = link_to entry, :confirm => '自分のエントリではありません。本当に削除しますか?', :method => :delete do
-              button class="btn btn-danger"
-                i class="icon-trash icon-white" style="margin-top: 1px;"
-          - else
-            td
-  = paginate @entries, :window => 2, :outer_window => 2
+          th メッセージ
+          th 名前
+          th 日時
+          th 削除
+      tbody
+        - @entries.each do |entry|
+          tr
+            td = entry.message
+            td = entry.user.display_name
+            td = entry.posted_on_as_string
+            - if entry.user == current_user
+              td = link_to entry, :confirm => '本当に削除しますか?', :method => :delete do
+                button class="btn"
+                  i class="icon-trash icon-white" style="margin-top: 1px;"
+            - elsif current_user.aruji
+              td = link_to entry, :confirm => '自分のエントリではありません。本当に削除しますか?', :method => :delete do
+                button class="btn btn-danger"
+                  i class="icon-trash icon-white" style="margin-top: 1px;"
+            - else
+              td
+    = paginate @entries, :window => 2, :outer_window => 2
 
 div class="span4"
