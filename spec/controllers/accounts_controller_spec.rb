@@ -14,7 +14,9 @@ describe AccountsController do
     it '名前が変わる' do
       put :update, {
           :user_id => valid_user_id,
-          :user_name => 'りょうま'
+          :user => {
+              :display_name => 'りょうま'
+          }
       }
       User.find_by_names('sakamoto', 'ryoma').display_name.should == 'りょうま'
     end
@@ -22,8 +24,10 @@ describe AccountsController do
     it 'パスワードを変更する場合は、現在のパスワードも入力する必要がある' do
       put :update, {
           :user_id => valid_user_id,
-          :user_name => 'りょうま',
-          :new_password => 'hogehoge'
+          :user => {
+              :display_name => 'りょうま',
+              :new_password => 'hogehoge'
+          }
       }
       flash.alert.present?.should be_true
     end

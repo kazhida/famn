@@ -17,10 +17,38 @@ div class="span4 float-pane equal-height"
     | &nbsp;&nbsp;
     = f.submit '更新', :class => 'btn'
 
-div class="span5 equal-height"
+div class="span5"
   - if current_user.aruji?
     div class="float-pane"
       h5 ユーザの管理
+      table class="table table-striped" width="100%"
+        thead
+          tr
+            th ユーザ
+            th 登録
+            th 削除
+        tbody
+          - User.family_users(current_user.family_id, current_user.id).each do |user|
+            tr
+              td = "#{user.display_name} (@#{user.login_name})"
+              td
+                - if user.verified_at.nil?
+                  span class="label" 登録済
+                - else
+                  span class="label label-info" 仮登録
+              td = link_to( {:url => :account, :method =>:delete }, {:confirm => '本当に削除しますか?'}) do
+                button class="btn btn-danger"
+                  i class="icon-trash icon-" style="margin-top: 1px;"
 
     div class="float-pane"
       h5 ユーザの追加
+      = form_tag(:url => :account, :method =>:delete) do
+        = label_tag      :user_name, 'ユーザ名 (例: ryoma)'
+        = text_field_tag :user_name
+        = label_tag      :mail_address, 'メール・アドレス (例: ryoma@example.com)'
+        = text_field_tag :mail_address
+        p 　上記のユーザを作成し、本人確認のメールを指定したアドレスに送信します。
+        p 　受けとったユーザがメールの指示に従って、本登録を行うことによって、正式に登録されます。
+        = submit_tag '送信', :class => 'btn btn-info'
+        p &nbsp;
+

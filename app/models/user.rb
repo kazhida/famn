@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
     if not /^[0-9a-zA-Z_]+$/ =~ login_name
       # 英数字+_
       errors.add(:login_name, '%s must be number, alphabetic character or "_".' % login_name)
-    elsif already_used_name(login_name, family.id)
+    elsif (not family.nil?) && already_used_name(login_name, family.id)
       # 同じ家族でかぶっている
       errors.add(:login_name, '%s is already used at families.' % login_name)
     elsif already_used_name(login_name)
@@ -96,6 +96,15 @@ class User < ActiveRecord::Base
     family = Family.find_by_login_name(family_name)
     find_by_login_name_and_family_id(user_name, family.nil? ? nil : family.id)
   end
+
+  def self.family_users(family_id, except_id = nil)
+    if except_id.nil?
+      User.where('family_id = ?', family_id).order(:created_at)
+    else
+      User.where('family_id = ?', family_id).where('NOT id = ?', except_id).order(:created_at)
+    end
+  end
+
 
   def already_used_name(name, family_id = nil)
     if family_id

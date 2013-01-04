@@ -12,14 +12,10 @@ div class="span5 float-pane equal-height"
   table class="table table-striped" width="100%"
     thead
       tr
-        th
-          span class="label" メッセージ
-        th
-          span class="label" 名前
-        th
-          span class="label" 日時
-        th
-          span class="label" 削除
+        th メッセージ
+        th 名前
+        th 日時
+        th 削除
     tbody
       - @entries.each do |entry|
         tr

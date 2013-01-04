@@ -28,14 +28,16 @@ describe User, 'ユーザを新規作成するとき' do
   it 'mail_addressがなければいけない' do
     @user.login_name = 'foo'
     @user.display_name = 'Foo'
-    @user.password_digest = 'bar'
+    @user.password_digest = 'foobar'
+    @user.setting_password = true
     @user.should_not be_valid
   end
 
   it 'arujiがなければいけない' do
     @user.login_name = 'foo'
     @user.display_name = 'Foo'
-    @user.password_digest = 'bar'
+    @user.password_digest = 'foobar'
+    @user.setting_password = true
     @user.mail_address = 'foo@example.com'
     @user.should_not be_valid
   end
@@ -44,6 +46,7 @@ describe User, 'ユーザを新規作成するとき' do
     @user.login_name = 'foo'
     @user.display_name = 'Foo'
     @user.password_digest = 'bar'
+    @user.setting_password = true
     @user.mail_address = 'foo@example.com'
     @user.aruji = false
     @user.should_not be_valid
@@ -197,5 +200,15 @@ describe User, 'ユーザを探すとき' do
 
   it '家族名とユーザ名を指定することでレコードを特定できる' do
     User.find_by_names('ito', 'hirohumi').login_name.should eql('hirohumi')
+  end
+
+  it '坂本家は3人' do
+    otome = User.find_by_names('sakamoto', 'otome')
+    User.family_users(otome.family_id).count.should == 3
+  end
+
+  it '乙女を除くと2人' do
+    otome = User.find_by_names('sakamoto', 'otome')
+    User.family_users(otome.family_id, otome.id).count.should == 2
   end
 end
