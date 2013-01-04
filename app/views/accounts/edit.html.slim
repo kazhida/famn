@@ -17,5 +17,9 @@ div class="span4 float-pane"
     | &nbsp;&nbsp;
     = f.submit '更新', :class => 'btn'
 
-div class="span1"
-div class="span4"
+div class="span5"
+  - if current_user.aruji?
+    div class="float-pane"
+      h3 ユーザの管理
+    div class="float-pane"
+      h3 ユーザの追加
