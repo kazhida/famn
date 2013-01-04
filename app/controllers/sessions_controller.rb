@@ -15,14 +15,16 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash.notice = 'ログインしました。'
       respond_to do |format|
-        format.html {redirect_to :root}
-        format.json { head 201 }
+        format.mobile { redirect_to :root }
+        format.html   { redirect_to :root }
+        format.json   { head 201 }
       end
     else
       flash.now.alert = 'ログイン名またはパスワードが正しくありません。'
       respond_to do |format|
-        format.html { render :new}
-        format.json { head 401 }
+        format.mobile { render :new }
+        format.html   { render :new }
+        format.json   { head 401 }
       end
     end
   end

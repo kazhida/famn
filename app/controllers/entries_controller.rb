@@ -7,6 +7,7 @@ class EntriesController < ApplicationController
     @entries = Entry.by_user(current_user).page(params[:page]).per(12)
 
     respond_to do |format|
+      format.mobile
       format.html # index.html.slim
       format.json { render json: @entries }
     end
@@ -18,6 +19,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new
 
     respond_to do |format|
+      format.mobile
       format.html # new.html.slim
       format.json { render json: @entry }
     end
