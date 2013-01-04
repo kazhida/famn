@@ -1,4 +1,4 @@
-div data-role="header" data-position="fixed"
+div data-role="header" data-position="fixed" data-theme="a"
   h1 famn
   = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right'
 
@@ -12,6 +12,6 @@ ul data-role="listview"
 
 = paginate @entries
 
-div data-role="footer" data-position="fixed" class="ui-bar"
+div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
   = link_to '新規書込', {:controller => 'entries', :action => 'new'}, {'data-inline' => true, 'data-icon' => 'plus'}
 

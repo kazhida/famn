@@ -1,15 +1,9 @@
-div data-role="header" data-position="fixed"
+div data-role="header" data-position="fixed" data-theme="a"
   h1 famn
-  = link_to '戻る', entries_path,  :class => 'ui-btn-left'
+  = link_to '戻る', :root,  :class => 'ui-btn-left'
   = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right'
 
 = form_tag :entries do
-  - if @entry.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@entry.errors.count, "error")} prohibited this entry from being saved:"
-      ul
-        - @entry.errors.full_messages.each do |message|
-          li = message
   = label_tag     :message, 'メッセージ'
   = text_area_tag :message, '', :maxlength => 250
   = submit_tag '送信'

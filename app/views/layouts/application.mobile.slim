@@ -6,7 +6,7 @@ html
     = javascript_include_tag 'mobile_application'
     = csrf_meta_tags
     meta charset="utf-8"
-    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;"
   body
-    div data-role="page"
+    div data-role="page" data-theme="d"
       = yield
