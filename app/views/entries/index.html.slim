@@ -5,7 +5,7 @@ div class="span3 float-pane equal-height"
       = label_tag :message do
         p
           span class="label label-info" 新規メッセージ(250文字以内)
-      = text_area_tag :message, '', :maxlength => 250
+      = text_area_tag :message, '', :maxlength => 250, :class => 'width90'
       p
         = submit_tag '送信', :class => 'btn btn-info'
 
