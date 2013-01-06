@@ -55,7 +55,7 @@ describe Entry, 'エントリを取り出したとき' do
   fixtures :families, :users, :entries
 
   before(:each) do
-    user = User.find_by_names('sakamoto', 'ryoma')
+    user = User.user_by_names('sakamoto', 'ryoma')
     @entries = Entry.by_user(user)
   end
 

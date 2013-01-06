@@ -6,7 +6,7 @@ describe AccountsController do
   fixtures :families, :users
 
   def valid_user_id
-    User.find_by_names('sakamoto', 'ryoma').id
+    User.user_by_names('sakamoto', 'ryoma').id
   end
 
   describe 'アカウント情報を変更するとき' do
@@ -18,7 +18,7 @@ describe AccountsController do
               :display_name => 'りょうま'
           }
       }
-      User.find_by_names('sakamoto', 'ryoma').display_name.should == 'りょうま'
+      User.user_by_names('sakamoto', 'ryoma').display_name.should == 'りょうま'
     end
 
     it 'パスワードを変更する場合は、現在のパスワードも入力する必要がある' do

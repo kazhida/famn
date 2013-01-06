@@ -14,5 +14,7 @@ Famn::Application.routes.draw do
   resource  :account, :only   => [:edit, :update]
   resources :users,   :only   => [:new, :create, :destroy]
 
+  get 'v/:id/:token' => 'user#verify', id: /\d+/, token: /[0-9a-f]+/, :as => :user_verification
+
   match '*anything' => 'error#not_found'
 end

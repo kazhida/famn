@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-    user = User.find_by_names(params[:family_name], params[:user_name])
+    user = User.user_by_names(params[:family_name], params[:user_name])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id

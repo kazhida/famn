@@ -1,0 +1,8 @@
+div class="span3 float-pane equal-height"
+  div class="inset"
+    = render 'shared/info_pane'
+
+div class="span4 float-pane equal-height"
+  h3 メールアドレスの確認が完了しました。
+  p = link_to 'ログイン・ページへ', [:new, :session]
+

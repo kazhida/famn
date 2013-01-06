@@ -1,21 +1,5 @@
-hirohumi:
-  id: 1
-  login_name: hirohumi
-  display_name: 博文
-  password_digest: foobar
-  mail_address: hirohumi@example.com
-  family_id: 2
-  aruji:  true
-hideaki:
-  id: 2
-  login_name: hideaki
-  display_name: 英明
-  password_digest: foobar2
-  mail_address: hideaki@example.com
-  family_id: 2
-  aruji:  false
 ryuichi:
-  id: 3
+  id: 1
   login_name: ryuichi
   display_name: 龍一
   password_digest: foobar
@@ -23,7 +7,7 @@ ryuichi:
   family_id: 1
   aruji:  false
 ryoma:
-  id: 4
+  id: 2
   login_name: ryoma
   display_name: 龍馬
   password_digest: foobar
@@ -31,13 +15,29 @@ ryoma:
   family_id: 1
   aruji:  false
 otome:
-  id: 5
+  id: 3
   login_name: otome
   display_name: 乙女
   password_digest: foobar
   mail_address: otome@example.com
   family_id: 1
   aruji:  true
+hirohumi:
+  id: 4
+  login_name: hirohumi
+  display_name: 博文
+  password_digest: foobar
+  mail_address: hirohumi@example.com
+  family_id: 2
+  aruji:  true
+hideaki:
+  id: 5
+  login_name: hideaki
+  display_name: 英明
+  password_digest: foobar2
+  mail_address: hideaki@example.com
+  family_id: 2
+  aruji:  false
 ryoma2:
   id: 6
   login_name: ryoma
@@ -46,4 +46,51 @@ ryoma2:
   mail_address: hirohumi@example.com
   family_id: 2
   aruji:  true
-
+shiro:
+  id: 7
+  login_name: shiro
+  display_name: 四郎
+  password_digest: foobar
+  mail_address: shiro@example.com
+  family_id: 2
+  aruji:  false
+goro:
+  id: 8
+  login_name: goro
+  display_name: 五郎
+  password_digest: foobar
+  mail_address: goro@example.com
+  family_id: 2
+  aruji:  false
+rokuro:
+  id: 9
+  login_name: rokuro
+  display_name: 六郎
+  password_digest: foobar
+  mail_address: rokuro@example.com
+  family_id: 2
+  aruji:  false
+shichiro:
+  id: 10
+  login_name: shichiro
+  display_name: 七郎
+  password_digest: foobar
+  mail_address: shichiro@example.com
+  family_id: 2
+  aruji:  false
+hachiro:
+  id: 11
+  login_name: hachiro
+  display_name: 八郎
+  password_digest: foobar
+  mail_address: hachiro@example.com
+  family_id: 2
+  aruji:  false
+kuro:
+  id: 12
+  login_name: kuro
+  display_name: 九朗
+  password_digest: foobar
+  mail_address: kuro@example.com
+  family_id: 2
+  aruji:  false

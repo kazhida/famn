@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_mobile_format
   before_filter :authenticate_user
+  before_filter :reject_unverified_user
 
   private
 
@@ -19,6 +20,10 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     redirect_to [:new, :session]  unless current_user
+  end
+
+  def reject_unverified_user
+    redirect_to [ :unverified, :account ] unless current_user.verified?
   end
 
   def set_mobile_format

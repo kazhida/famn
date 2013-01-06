@@ -35,7 +35,7 @@ div class="span5"
               tr
                 td = "#{user.display_name} (@#{user.login_name})"
                 td
-                  - if user.verified_at.nil?
+                  - if user.verified?
                     span class="label" 登録済
                   - else
                     span class="label label-info" 仮登録

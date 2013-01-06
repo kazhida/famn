@@ -26,6 +26,15 @@ class Entry < ActiveRecord::Base
     user.family.entries.order('posted_on DESC')
   end
 
+  def post(user, message)
+    entry = Entry.new
+    entry.message   = message
+    entry.user      = user
+    entry.family    = user.family
+    entry.posted_on = DateTime.current
+    entry.save
+  end
+
   def posted_on_as_string
     if posted_on.today?
       posted_on.strftime('%H:%M:%S')

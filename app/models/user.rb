@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   attr_accessible :current_password
   attr_accessible :new_password
   attr_accessible :new_password_confirmation
+  attr_accessible :verification_token
+  attr_accessible :verified_at
 
   accepts_nested_attributes_for :family
 
@@ -29,7 +31,6 @@ class User < ActiveRecord::Base
 
   def setting_password?;  @setting_password;    end
   def changing_password?; @changing_password;   end
-  def verified?;          verified_at.present?; end
 
   def password=(pw)
     @password = pw
@@ -55,12 +56,15 @@ class User < ActiveRecord::Base
     if not /^[0-9a-zA-Z_]+$/ =~ login_name
       # 英数字+_
       errors.add(:login_name, '%s must be number, alphabetic character or "_".' % login_name)
-    elsif (not family.nil?) && already_used_name(login_name, family.id)
+    elsif (not family.nil?) && already_used_name?(login_name, family.id)
       # 同じ家族でかぶっている
       errors.add(:login_name, '%s is already used at families.' % login_name)
-    elsif already_used_name(login_name)
+    elsif already_used_name?(login_name)
       # どこかの家族名とかぶっている
       errors.add(:login_name, '%s is already used at users same family.' % login_name)
+    elsif User.family_users(family_id).count >= 10
+      # 同一家族では10人まで
+      errors.add(:login_name, '%s\'s has already 10 users.' % login_name)
     end
   end
 
@@ -88,15 +92,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  # パスワード認証
   def authenticate(password)
     BCrypt::Password.new(password_digest) == password
   end
 
-  def self.find_by_names(family_name, user_name)
-    family = Family.find_by_login_name(family_name)
-    find_by_login_name_and_family_id(user_name, family.nil? ? nil : family.id)
+  # 家族名、ユーザ名を使った検索
+  def self.user_by_names(family_name, user_name)
+    families = Family.where('login_name = ?', family_name)
+    if families
+      users = User.where('family_id = ? AND login_name = ?', families.first.id, user_name)
+      if users
+        users.first
+      end
+    end
   end
 
+  # 家族を指定して、そのユーザを取り出すメソッド
   def self.family_users(family_id, except_id = nil)
     if except_id.nil?
       User.where('family_id = ?', family_id).order(:created_at)
@@ -105,13 +117,59 @@ class User < ActiveRecord::Base
     end
   end
 
-
-  def already_used_name(name, family_id = nil)
+  # 使用されている名前ならtrue
+  def already_used_name?(name, family_id = nil)
     if family_id
       user = User.find_by_login_name_and_family_id(name, family_id)
       (not user.nil?) && (user.id != self.id)
     else
       not Family.find_by_login_name(name).nil?
+    end
+  end
+
+  # ユーザの作成
+  def self.new_user(attributes)
+    user = User.new
+    user.attributes = {
+        login_name:       attributes[:login_name],
+        display_name:     attributes[:display_name],
+        password:         attributes[:password],
+        setting_password: true,
+        mail_address:     attributes[:mail_address],
+        aruji:            attributes[:aruji],
+        family:           attributes[:family],
+        verification_token: SecureRandom.hex
+    }
+    user
+  end
+
+  # ユーザ登録時の認証
+  # 認証できたらtrue
+  def self.verify(id, token)
+    user = find_by_id(id)
+    if user.try(:verification_token) == token
+      user.update_attributes(verified_at: DateTime.current, verification_token: nil)
+    end
+  end
+
+  # 認証されているかどうか
+  def verified?
+    verification_token.nil?
+  end
+
+  def update_account_info(family_name, display_name, current_password = nil, new_password = nil, new_password_confirmation = nil)
+    family.update_attributes(:display_name => family_name)  unless family_name.nil?
+
+    if new_password.nil? || new_password.empty?
+      update_attributes(:display_name => display_name)
+    else
+      @changing_password = true
+      update_attributes(
+          :display_name => display_name,
+          :current_password => current_password,
+          :new_password => new_password,
+          :new_password_confirmation => new_password_confirmation
+      )
     end
   end
 end

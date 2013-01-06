@@ -28,14 +28,14 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
-    @entry = Entry.new
-    @entry.message = params[:message]
-    @entry.user    = current_user
-    @entry.family  = current_user.family
-    @entry.posted_on = DateTime.now
+    #@entry = Entry.new
+    #@entry.message   = params[:message]
+    #@entry.user      = current_user
+    #@entry.family    = current_user.family
+    #@entry.posted_on = DateTime.now
 
     respond_to do |format|
-      if @entry.save
+      if Entry.post(current_user, params[:message])  #@entry.save
         format.mobile { redirect_to :entries }
         format.html   { redirect_to :entries }
         format.json   { render json: @entry, status: :created, location: @entry }
@@ -50,9 +50,7 @@ class EntriesController < ApplicationController
   # DELETE /entries/1
   # DELETE /entries/1.json
   def destroy
-    @entry = Entry.find(params[:id])
-    @entry.destroy
-
+    Entry.delete(params[:id])
     respond_to do |format|
       format.mobile { redirect_to entries_url }
       format.html   { redirect_to entries_url }

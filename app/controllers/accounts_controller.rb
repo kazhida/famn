@@ -14,10 +14,16 @@ class AccountsController < ApplicationController
 
   # PUT /account
   def update
-    current_user.attributes = params[:user]
-    current_user.changing_password = true   unless current_user.new_password.empty?
+    #current_user.attributes = params[:user]
+    #current_user.changing_password = true   unless current_user.new_password.empty?
 
-    if current_user.save
+    if current_user.update_account_info(
+        params[:family_name],
+        params[:display_name],
+        params[:current_password],
+        params[:new_password],
+        params[:new_password_confirmation]
+    )
       flash.now.notice = 'アカウント情報を変更しました。'
       render :edit
     else

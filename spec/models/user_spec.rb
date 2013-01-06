@@ -195,20 +195,88 @@ describe User, 'ユーザを探すとき' do
   fixtures :families, :users
 
   it '家族名とユーザ名を指定することでレコードをとってくることができる' do
-    User.find_by_names('sakamoto', 'ryoma').should_not be_nil
+    User.user_by_names('sakamoto', 'ryoma').should_not be_nil
   end
 
   it '家族名とユーザ名を指定することでレコードを特定できる' do
-    User.find_by_names('ito', 'hirohumi').login_name.should eql('hirohumi')
+    User.user_by_names('ito', 'hirohumi').login_name.should eql('hirohumi')
   end
 
   it '坂本家は3人' do
-    otome = User.find_by_names('sakamoto', 'otome')
+    otome = User.user_by_names('sakamoto', 'otome')
     User.family_users(otome.family_id).count.should == 3
   end
 
   it '乙女を除くと2人' do
-    otome = User.find_by_names('sakamoto', 'otome')
+    otome = User.user_by_names('sakamoto', 'otome')
     User.family_users(otome.family_id, otome.id).count.should == 2
+  end
+end
+
+describe User, 'ユーザを追加するとき' do
+
+  it 'IDと認証トークンの組み合わせが正しければ認証される' do
+    user = User.new_user(
+        login_name: 'kinpachi',
+        display_name: '金八',
+        password: 'barboo',
+        setting_password: true,
+        family: Family.find_by_login_name('sakamoto'),
+        mail_address: 'foo@example.com',
+        aruji: false
+    )
+    user.save.should be_true
+    User.verify(user.id, user.verification_token).should be_true
+  end
+
+  it '認証トークンが違っていたら認証されない' do
+    user = User.new_user(
+        login_name: 'kinpachi',
+        display_name: '金八',
+        password: 'barboo',
+        setting_password: true,
+        family: Family.find_by_login_name('sakamoto'),
+        mail_address: 'foo@example.com',
+        aruji: false
+    )
+    user.save.should be_true
+    User.verify(user.id, user.verification_token + 's').should be_false
+  end
+
+  it '10人までは追加できる' do
+    user = User.new_user(
+        login_name: 'juro',
+        display_name: '十朗',
+        password: 'barboo',
+        setting_password: true,
+        family: Family.find_by_login_name('ito'),
+        mail_address: 'foo@example.com',
+        aruji: false
+    )
+    user.save.should be_true
+  end
+
+  it '11人目は追加できない' do
+    user = User.new_user(
+        login_name: 'juro',
+        display_name: '十朗',
+        password: 'barboo',
+        setting_password: true,
+        family: Family.find_by_login_name('ito'),
+        mail_address: 'foo@example.com',
+        aruji: false
+    )
+    user.save.should be_true
+    User.family_users(2).count.should == 10
+    user = User.new_user(
+        login_name: 'juichiro',
+        display_name: '十一朗',
+        password: 'barboo',
+        setting_password: true,
+        family: Family.find_by_login_name('ito'),
+        mail_address: 'foo@example.com',
+        aruji: false
+    )
+    user.save.should_not be_true
   end
 end
