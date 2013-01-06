@@ -3,7 +3,8 @@ div data-role="header" data-position="fixed" data-theme="a"
   = link_to '戻る', :root,  :class => 'ui-btn-left'
   = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right'
 
-= form_tag :entries do
-  = label_tag     :message, 'メッセージ'
-  = text_area_tag :message, '', :maxlength => 250
-  = submit_tag '送信'
+div data-role="content"
+  = form_tag :entries do
+    = label_tag     :message, 'メッセージ'
+    = text_area_tag :message, '', :maxlength => 250
+    = submit_tag '送信'

@@ -1,10 +1,12 @@
 div data-role="header" data-theme="a"
   h1 famn
-= form_tag :session do
-  = label_tag      :family_name, '家族名 (例: sakamoto)'
-  = text_field_tag :family_name, params[:family_name]
-  = label_tag      :user_name,   'ユーザ名 (例: ryoma)'
-  = text_field_tag :user_name,   params[:user_name]
-  = label_tag      :password,    'パスワード'
-  = password_field_tag :password
-  = submit_tag 'ログイン', :class => 'buttons'
+
+div data-role="content"
+  = form_tag :session do
+    = label_tag      :family_name, '家族名 (例: sakamoto)'
+    = text_field_tag :family_name, params[:family_name]
+    = label_tag      :user_name,   'ユーザ名 (例: ryoma)'
+    = text_field_tag :user_name,   params[:user_name]
+    = label_tag      :password,    'パスワード'
+    = password_field_tag :password
+    = submit_tag 'ログイン', :class => 'buttons'
