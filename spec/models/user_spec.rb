@@ -214,6 +214,7 @@ describe User, 'ユーザを探すとき' do
 end
 
 describe User, 'ユーザを追加するとき' do
+  fixtures :families, :users
 
   it 'IDと認証トークンの組み合わせが正しければ認証される' do
     user = User.new_user(
@@ -278,5 +279,55 @@ describe User, 'ユーザを追加するとき' do
         aruji: false
     )
     user.save.should_not be_true
+  end
+end
+
+describe User, 'ユーザ情報を更新するとき' do
+  fixtures :families, :users
+
+  before(:each) do
+    @user = User.user_by_names('sakamoto', 'otome')
+    @user.password_digest = BCrypt::Password.create('foobar')
+    @user.save
+  end
+
+  it 'パスワード更新がなければ、名前だけ変わる' do
+    @user.update_account_info('さかもと', 'おとめ').should be_true
+
+    @user = User.user_by_names('sakamoto', 'otome')
+    @user.family_name.should == 'さかもと'
+    @user.display_name.should == 'おとめ'
+  end
+
+  it '家族名がnilなら、家族名は変わらない' do
+    @user.update_account_info(nil, 'おとめ').should be_true
+
+    @user = User.user_by_names('sakamoto', 'otome')
+    @user.family_name.should == '坂本'
+    @user.display_name.should == 'おとめ'
+  end
+
+  it 'パスワードを変えるときは、現在のパスワードも必要' do
+    @user.update_account_info('さかもと', 'おとめ', nil, 'hogehoge').should be_false
+
+    @user = User.user_by_names('sakamoto', 'otome')
+    @user.family_name.should == '坂本'
+    @user.display_name.should == '乙女'
+  end
+
+  it 'パスワードを変えるときは、現在のパスワードとconfirmが必要' do
+    @user.update_account_info('さかもと', 'おとめ', 'foobar', 'hogehoge', 'fugafuga').should be_false
+
+    @user = User.user_by_names('sakamoto', 'otome')
+    @user.family_name.should == '坂本'
+    @user.display_name.should == '乙女'
+  end
+
+  it 'パスワードを更新するときは、現在のパスワードと、confirmationもあれば、OK' do
+    @user.update_account_info('さかもと', 'おとめ', 'foobar', 'hogehoge', 'hogehoge').should be_true
+
+    @user = User.user_by_names('sakamoto', 'otome')
+    @user.family_name.should == 'さかもと'
+    @user.display_name.should == 'おとめ'
   end
 end

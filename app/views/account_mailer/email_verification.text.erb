@@ -2,10 +2,10 @@
 
 famnへようこそ！！
 
-<%= current_user.familu.display_name %> <%= current_user.display_name %> 様によって、ユーザ登録されました。
+<%= @admin.family.display_name %> <%= @admin.display_name %> 様によって、ユーザ登録されました。
 
 次のURLにアクセスして、ユーザー登録を完了してください。
-<%= user_verification_path(id: @user.id, token: @user.verification_token, only_path: false) %>
+<%= users_verification_path(id: @user.id, token: @user.verification_token, only_path: false) %>
 
 ログイン用家族名   : <%= @user.family.login_name %>
 ログイン用ユーザ名 : <%= @user.login_name %>

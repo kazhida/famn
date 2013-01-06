@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   skip_before_filter :authenticate_user, :only => [:verify]
-  skip_before_filter :reject_unverified_user, only => [:verify]
+  skip_before_filter :reject_unverified_user, :only => [:verify]
 
   # GET /account/new
   def new
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       family:       current_user.family
     )
     if @user.save
-      AccountMailer.email_verification(@user).deliver
+      AccountMailer.email_verification(current_user, @user).deliver
       flash.notice = '確認メールを送信しました。'
     else
       flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'

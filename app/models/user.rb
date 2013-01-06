@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   attr_accessible :login_name
   attr_accessible :display_name
   attr_accessible :family
-  attr_accessible :family_name
   attr_accessible :password
   attr_accessible :password_confirmation
   attr_accessible :setting_password
@@ -26,6 +25,7 @@ class User < ActiveRecord::Base
   attr_reader     :password
   attr_accessor   :current_password
   attr_reader     :new_password
+  attr_accessor   :new_password_confirmation
   attr_writer     :setting_password
   attr_writer     :changing_password
 
@@ -44,10 +44,6 @@ class User < ActiveRecord::Base
 
   def family_name
     family.display_name
-  end
-
-  def family_name=(name)
-    family.display_name = name
   end
 
   validates_presence_of :login_name
@@ -69,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   validate do
-    if changing_password? && !authenticate(current_password)
+    if changing_password? && (not authenticate(current_password))
       # パスワード変更時に現在のパスワードが違っている
       errors.add(:current_password, :invalid)
     end
@@ -79,16 +75,20 @@ class User < ActiveRecord::Base
   validates_presence_of     :family
   validates_presence_of     :password_digest
   validates_presence_of     :mail_address
-  validates_length_of       :password, :minimum => 6, :allow_blank =>true
-  validates_confirmation_of :password
-  validates_length_of       :new_password, :minimum => 6, :allow_blank =>true
-  validates_confirmation_of :new_password
+  validates :current_password,
+            :new_password,  :presence => { :if => :changing_password? }
+  validates :password,
+            :new_password,  :length => {:minimum => 6, :allow_blank =>true}, :confirmation => true
 
   before_validation do
+    if setting_password?
+      self.password_digest = BCrypt::Password.create(password)
+    end
+  end
+
+  before_save do
     if changing_password?
       self.password_digest = BCrypt::Password.create(new_password)
-    elsif setting_password?
-      self.password_digest = BCrypt::Password.create(password)
     end
   end
 
@@ -157,19 +157,33 @@ class User < ActiveRecord::Base
     verification_token.nil?
   end
 
-  def update_account_info(family_name, display_name, current_password = nil, new_password = nil, new_password_confirmation = nil)
-    family.update_attributes(:display_name => family_name)  unless family_name.nil?
+  # アカウントの変更
+  def update_account_info(family_name, user_name, current_password = nil, new_password = nil, confirmation = nil)
 
-    if new_password.nil? || new_password.empty?
-      update_attributes(:display_name => display_name)
-    else
-      @changing_password = true
-      update_attributes(
-          :display_name => display_name,
-          :current_password => current_password,
-          :new_password => new_password,
-          :new_password_confirmation => new_password_confirmation
-      )
+    transaction do
+      unless family_name.nil? || family_name.empty?
+        family = Family.find(family_id)
+        family.attributes = {:display_name => family_name}
+        family.save!
+      end
+
+      if new_password.nil? || new_password.empty?
+        self.attributes = {:display_name => user_name}
+      else
+        self.attributes = {
+            :display_name => user_name,
+            :current_password => current_password,
+            :new_password => new_password,
+            :new_password_confirmation => confirmation
+        }
+        @changing_password = true
+      end
+
+      self.save!
     end
+    true
+
+  rescue => e
+    false
   end
 end

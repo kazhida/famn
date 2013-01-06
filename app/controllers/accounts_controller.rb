@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 class AccountsController < ApplicationController
-  skip_before_filter :authenticate_user, :only => [:new, :create]
+  skip_before_filter :authenticate_user
 
   # GET /account/edit
   def edit
@@ -18,17 +18,17 @@ class AccountsController < ApplicationController
     #current_user.changing_password = true   unless current_user.new_password.empty?
 
     if current_user.update_account_info(
-        params[:family_name],
-        params[:display_name],
-        params[:current_password],
-        params[:new_password],
-        params[:new_password_confirmation]
+        params[:user][:family_name],
+        params[:user][:display_name],
+        params[:user][:current_password],
+        params[:user][:new_password],
+        params[:user][:new_password_confirmation]
     )
-      flash.now.notice = 'アカウント情報を変更しました。'
-      render :edit
+      flash.notice = 'アカウント情報を変更しました。'
+      redirect_to [:edit, :account]
     else
-      flash.now.alert = '変更できませんでした。' + "#{current_user.inspect}" + "#{params}"
-      render :edit
+      flash.alert = '変更できませんでした。' + "#{current_user.inspect}" + "#{params} + #{current_user.errors.to_s}"
+      redirect_to [:edit, :account]
     end
   end
 end

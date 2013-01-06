@@ -21,6 +21,7 @@ gem 'unicorn'
 gem 'pg'
 gem 'kaminari'
 gem 'jquery_mobile_rails'
+gem 'mail-iso-2022-jp'
 
 group :development do
   gem 'capistrano'
