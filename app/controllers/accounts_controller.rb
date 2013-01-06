@@ -2,6 +2,7 @@
 
 class AccountsController < ApplicationController
   skip_before_filter :authenticate_user
+  skip_before_filter :reject_unverified_user
 
   # GET /account/edit
   def edit
@@ -29,6 +30,17 @@ class AccountsController < ApplicationController
     else
       flash.alert = '変更できませんでした。' + "#{current_user.inspect}" + "#{params} + #{current_user.errors.to_s}"
       redirect_to [:edit, :account]
+    end
+  end
+
+
+  # GET /account/unverified
+  def unverified
+    @user = current_user
+    respond_to do |format|
+      format.mobile
+      format.html
+      format.json   { head :no_content }
     end
   end
 end

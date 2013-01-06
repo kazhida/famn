@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   clear_helpers
 
   before_filter :set_mobile_format
-  before_filter :reject_unverified_user
   before_filter :authenticate_user
+  before_filter :reject_unverified_user
 
   private
 
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reject_unverified_user
-    redirect_to [:unverified, :user] unless (not current_user.nil?) && current_user.verified?
+    redirect_to [:unverified, :account] unless (not current_user.nil?) && current_user.verified?
   end
 
   def set_mobile_format

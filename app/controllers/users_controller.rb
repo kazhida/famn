@@ -4,11 +4,11 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate_user, :only => [:verify]
   skip_before_filter :reject_unverified_user, :only => [:verify]
 
-  # GET /account/new
+  # GET /users/new
   def new
   end
 
-  # POST /account
+  # POST /users
   def create
     @user = User.new_user(
       login_name:   params[:user_name],
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     redirect_to [:edit, :account]
   end
 
-  # DELETE /account
+  # DELETE /users
   def destroy
     User.delete(params[:id])
     respond_to do |format|
