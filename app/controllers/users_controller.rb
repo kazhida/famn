@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new_user(
       login_name:   params[:user_name],
       display_name: params[:user_name],
-      password:     SecureRandom.hex[0...8],
+      password:     SecureRandom.hex(4),
       setting_password: true,
       mail_address: params[:user_name],
       aruji:        params.has_key?(:aruji),

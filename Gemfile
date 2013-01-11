@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.10'
+ruby '1.9.3'
+gem  'rails', '~> 3.2'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -30,6 +31,7 @@ group :development do
   gem 'better_errors'
   gem 'rspec-rails'
   gem 'rails-footnotes'
+  gem 'thin'
 end
 
 
