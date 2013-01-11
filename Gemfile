@@ -15,6 +15,7 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
+gem 'thin'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
