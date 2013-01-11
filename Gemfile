@@ -31,7 +31,4 @@ group :development do
   gem 'better_errors'
   gem 'rspec-rails'
   gem 'rails-footnotes'
-  gem 'thin'
 end
-
-
