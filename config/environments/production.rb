@@ -69,11 +69,19 @@ end
 
 if ENV.has_key?('FAMN_SMTP_ADDRESS')
   ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-      :address        => ENV['FAMN_SMTP_ADDRESS'],
-      :port           => ENV['FAMN_SMTP_PORT'] || 587,
-      :authentication => :plain,
-      :user_name      => ENV['FAMN_SMTP_USER_NAME'],
-      :password       => ENV['FAMN_SMTP_PASSWORD']
-  }
+
+  if ENV.has_key?('FAMN_SMTP_AUTHENTICATION')
+    ActionMailer::Base.smtp_settings = {
+        :address        => ENV['FAMN_SMTP_ADDRESS'],
+        :port           => ENV['FAMN_SMTP_PORT'] || 587,
+        :authentication => ENV['FAMN_SMTP_AUTHENTICATION'],
+        :user_name      => ENV['FAMN_SMTP_USER_NAME'],
+        :password       => ENV['FAMN_SMTP_PASSWORD']
+    }
+  else
+    ActionMailer::Base.smtp_settings = {
+        :address        => ENV['FAMN_SMTP_ADDRESS'],
+        :port           => ENV['FAMN_SMTP_PORT'] || 25,
+    }
+  end
 end
