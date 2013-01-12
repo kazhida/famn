@@ -20,8 +20,12 @@ class UsersController < ApplicationController
       family:       current_user.family
     )
     if @user.save
-      AccountMailer.email_verification(current_user, @user).deliver
-      flash.notice = '確認メールを送信しました。'
+      begin
+        AccountMailer.email_verification(current_user, @user).deliver
+        flash.notice = '確認メールを送信しました。'
+      rescue
+        flash.alert  = 'メールを送信できませんでした。'
+      end
     else
       flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'
     end
