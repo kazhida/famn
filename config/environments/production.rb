@@ -75,6 +75,7 @@ if ENV.has_key?('FAMN_SMTP_ADDRESS')
         :address        => ENV['FAMN_SMTP_ADDRESS'],
         :port           => ENV['FAMN_SMTP_PORT'] || 587,
         :authentication => ENV['FAMN_SMTP_AUTHENTICATION'],
+        :domain         => ENV['FAMN_SMTP_DOMAIN'],
         :user_name      => ENV['FAMN_SMTP_USER_NAME'],
         :password       => ENV['FAMN_SMTP_PASSWORD']
     }
