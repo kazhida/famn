@@ -72,6 +72,7 @@ if ENV.has_key?('FAMN_SMTP_ADDRESS')
 
   if ENV.has_key?('FAMN_SMTP_AUTHENTICATION')
     ActionMailer::Base.smtp_settings = {
+        :enable_starttls_auto => false,
         :address        => ENV['FAMN_SMTP_ADDRESS'],
         :port           => ENV['FAMN_SMTP_PORT'] || 587,
         :authentication => ENV['FAMN_SMTP_AUTHENTICATION'],
