@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 class AccountMailer < ActionMailer::Base
-  default :from => 'info@abplus.com', :charset => 'iso-2022-jp'
+  default :from => 'famn-info@abplus.com', :charset => 'iso-2022-jp'
 
   def email_verification(admin, user)
     @admin = admin
