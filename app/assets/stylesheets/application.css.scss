@@ -16,8 +16,19 @@ body {
     padding: 0;
 }
 
+//#bg_image {
+//    position: absolute;
+//    width:  100%;
+//    top:    0;
+//    left:   0;
+//    overflow: hidden;
+//    z-index: -1;
+//}
+
 #bg_image {
-    position: absolute;
+    position: fixed;
+    min-height: 100%;
+    min-width: 960px;
     width:  100%;
     top:    0;
     left:   0;
@@ -25,9 +36,14 @@ body {
     z-index: -1;
 }
 
+//#wrapper {
+//    position: absolute;
+//    z-index:  5;
+//}
+
 #wrapper {
-    position: absolute;
-    z-index:  5;
+  position: relative;
+  z-index:  5;
 }
 
 #header {
