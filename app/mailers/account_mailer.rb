@@ -6,6 +6,10 @@ class AccountMailer < ActionMailer::Base
   def email_verification(admin, user)
     @admin = admin
     @user  = user
-    mail(:to => user.mail_address, :subject => '[famn] メールアドレスの確認')
+    mail(
+        :from => 'famn-info@abplus.com',
+        :to => user.mail_address,
+        :subject => '[famn] メールアドレスの確認'
+    )
   end
 end
