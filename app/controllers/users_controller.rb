@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       display_name: params[:user_name],
       password:     SecureRandom.hex(4),
       setting_password: true,
-      mail_address: params[:user_name],
+      mail_address: params[:mail_address],
       aruji:        params.has_key?(:aruji),
       family:       current_user.family
     )
