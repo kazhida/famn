@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 class AccountMailer < ActionMailer::Base
-  default :from => 'famn-info@abplus.com', :charset => 'iso-2022-jp'
+  default :from => 'info@famn.jp'
 
   def email_verification(admin, user)
     @admin = admin
     @user  = user
     mail(
-        :from => 'famn-info@abplus.com',
         :to => user.mail_address,
         :subject => '[famn] メールアドレスの確認'
     )
