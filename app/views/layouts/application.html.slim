@@ -10,7 +10,7 @@ html
       | $(window).bind("resize", function() { $('bg_image').fullbg(); });
   body
     = image_tag('bg_family_0.jpg', :size => '640x480', :alt => '背景', :id => 'bg_image')
-    div id="wrapper" class="span12"
+    div id="wrapper"
       div id="header" class="span12"
         div class="hero-unit"
           = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
