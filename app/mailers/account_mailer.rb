@@ -9,6 +9,9 @@ class AccountMailer < ActionMailer::Base
     mail(
         :to => user.mail_address,
         :subject => '[famn] メールアドレスの確認'
-    )
+    ) do |format|
+      format.html
+      format.text
+    end
   end
 end

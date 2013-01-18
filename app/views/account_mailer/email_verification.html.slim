@@ -1,0 +1,18 @@
+h1 famnへようこそ！！
+
+p = "#{@user.display_name} 様"
+
+p = "#{@admin.family.display_name} #{@admin.display_name} 様によって、ユーザ登録されました。"
+
+p 次のURLにアクセスして、ユーザー登録を完了してください。
+| = users_verification_path(id: @user.id, token: @user.verification_token, only_path: false)
+
+ul
+  li = "ログイン用家族名   : #{@user.family.login_name}"
+  li = "ログイン用ユーザ名 : #{@user.login_name}"
+  li = "初期パスワード     : #{@user.password}"
+
+p 登録完了後、上記の設定でログインした後、「アカウント編集」ページで、
+| 表示用のユーザ名および、パスワードを変更してください。
+
+p famnについては、 http://famn.mobi/infos/about を参照してください。
