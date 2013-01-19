@@ -18,12 +18,11 @@ end
 gem 'thin'
 gem 'slim-rails'
 gem 'jquery-rails'
+gem 'jquery_mobile_rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn'
 gem 'pg'
 gem 'kaminari'
-gem 'jquery_mobile_rails'
-gem 'mail-iso-2022-jp'
 
 group :development do
   gem 'capistrano'
@@ -32,4 +31,5 @@ group :development do
   gem 'better_errors'
   gem 'rspec-rails'
   gem 'rails-footnotes'
+  gem 'binding_of_caller'
 end

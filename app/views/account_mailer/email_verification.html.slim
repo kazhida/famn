@@ -5,7 +5,7 @@ p = "#{@user.display_name} 様"
 p = "#{@admin.family.display_name} #{@admin.display_name} 様によって、ユーザ登録されました。"
 
 p 次のURLにアクセスして、ユーザー登録を完了してください。
-p = users_verification_path(id: @user.id, token: @user.verification_token, only_path: false)
+p = account_verification_path(id: @user.id, token: @user.verification_token, only_path: false)
 
 ul
   li = "ログイン用家族名   : #{@user.family.login_name}"

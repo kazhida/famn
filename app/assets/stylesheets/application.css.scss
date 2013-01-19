@@ -16,18 +16,8 @@ body {
     padding: 0;
 }
 
-//#bg_image {
-//    position: absolute;
-//    width:  100%;
-//    top:    0;
-//    left:   0;
-//    overflow: hidden;
-//    z-index: -1;
-//}
-
 #bg_image {
     position: fixed;
-    min-height: 100%;
     min-width: 960px;
     width:  100%;
     top:    0;
@@ -35,11 +25,6 @@ body {
     overflow: hidden;
     z-index: -1;
 }
-
-//#wrapper {
-//    position: absolute;
-//    z-index:  5;
-//}
 
 #wrapper {
   position: relative;
@@ -49,7 +34,7 @@ body {
 #header {
   .hero-unit {
     background: #f0f7ff;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   image {
@@ -57,29 +42,6 @@ body {
     opacity: 1;
   }
 }
-
-//#content {
-//  .float-pane {
-//    background: #f0f7ff;
-//    opacity: 0.9;
-//
-//    p {
-//      opacity: 1;
-//    }
-//
-//    form {
-//      opacity: 1;
-//    }
-//
-//    tr {
-//      opacity: 1;
-//    }
-//
-//    button {
-//      opacity: 1;
-//    }
-//  }
-//}
 
 .inset {
   padding: 8px;

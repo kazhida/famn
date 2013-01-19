@@ -5,7 +5,7 @@ famn.mobiへようこそ！！
 <%= @admin.family.display_name %> <%= @admin.display_name %> 様によって、ユーザ登録されました。
 
 次のURLにアクセスして、ユーザー登録を完了してください。
-<%= users_verification_path(id: @user.id, token: @user.verification_token, only_path: false) %>
+<%= account_verification_path(id: @user.id, token: @user.verification_token, only_path: false) %>
 
 ログイン用家族名   : <%= @user.family.login_name %>
 ログイン用ユーザ名 : <%= @user.login_name %>
