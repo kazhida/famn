@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def logout
+    session.delete :user_id
+    @current_user = nil
+  end
+
   def authenticate_user
     redirect_to [:new, :session]  unless current_user
   end

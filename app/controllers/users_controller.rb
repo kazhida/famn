@@ -38,7 +38,9 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET v/:id/:token
   def verify
+    logout
     if User.verify(params[:id], params[:token])
       render :verified
     else
