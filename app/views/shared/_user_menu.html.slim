@@ -5,5 +5,5 @@ div id="user_menu" class="span12 btn-group"
     = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'btn'
   - else
     = link_to_unless_current  'ログイン', [:new, :session], :class => 'btn'
-  = link_to 'famnについて', {:controller => :infos, :action => :about}, :class => 'btn'
+  = link_to 'famn.mobiについて', {:controller => :infos, :action => :about}, :class => 'btn'
   = link_to '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}, :class => 'btn'
