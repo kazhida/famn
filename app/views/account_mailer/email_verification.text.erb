@@ -2,7 +2,9 @@
 
 famn.mobiへようこそ！！
 
-<%= @admin.family.display_name %> <%= @admin.display_name %> 様によって、ユーザ登録されました。
+<%  if @admin %>
+<%=     @admin.family.display_name %> <%= @admin.display_name %> 様によって、ユーザ登録されました。
+<%  end %>
 
 次のURLにアクセスして、ユーザー登録を完了してください。
 <%= account_verification_path(id: @user.id, token: @user.verification_token, only_path: false) %>

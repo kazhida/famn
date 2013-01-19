@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 class AccountsController < ApplicationController
-  skip_before_filter :authenticate_user, :only      => [:verify, :unverified]
-  skip_before_filter :reject_unverified_user, :only => [:verify, :unverified]
+  skip_before_filter :authenticate_user, except: [:edit, :update]
+  skip_before_filter :reject_unverified_user, except: [:edit, :update]
 
   def back_to_edit
     redirect_to [:edit, :account]
@@ -42,23 +42,46 @@ class AccountsController < ApplicationController
 
   # POST /account
   def create
-    @user = User.new_user(
-        login_name:   params[:login_name],
-        display_name: params[:display_name],
-        password:     SecureRandom.hex(4),
-        setting_password: true,
-        mail_address: params[:mail_address],
-        aruji:        params.has_key?(:aruji) && params[:aruji],
-        family:       current_user.family
-    )
-    if @user.save
+    family = current_user ? current_user.family : {
+        :login_name => params[:family_login_name],
+        :display_name => params[:family_display_name]
+    }
+    if User.add_new_user(params[:login_name],
+                         params[:display_name],
+                         params[:mail_address],
+                         params[:aruji],
+                         family)
       AccountMailer.email_verification(current_user, @user).deliver
       flash.notice = '確認メールを送信しました。'
     else
       flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'
     end
-    back_to_edit
+    if current_user.nil?
+      redirect_to [:new, :account]
+    else
+      back_to_edit
+    end
+
+    #  @user = User.new_user(
+    #      login_name:   params[:login_name],
+    #      display_name: params[:display_name],
+    #      password:     SecureRandom.hex(4),
+    #      setting_password: true,
+    #      mail_address: params[:mail_address],
+    #      aruji:        params.has_key?(:aruji) && params[:aruji],
+    #      family:       current_user.family
+    #  )
+    #  if @user.save
+    #    AccountMailer.email_verification(current_user, @user).deliver
+    #    flash.notice = '確認メールを送信しました。'
+    #  else
+    #    flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'
+    #  end
+    #  back_to_edit
   end
+
+
+
 
   # DELETE /account
   def destroy

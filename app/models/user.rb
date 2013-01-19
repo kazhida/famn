@@ -143,6 +143,32 @@ class User < ActiveRecord::Base
     user
   end
 
+  # ユーザの作成
+  def self.add_new_user(login_name, display_name, mail_address, aruji, family)
+    unless family.kind_of?(Family)
+      # 家族が登録されていない場合は作る
+      family = Family.new
+      family.attributes = {
+        login_name: family[:login_name],
+        display_name: family[:display_name]
+      }
+      return false  unless family.save
+    end
+
+    user = User.new
+    user.attributes = {
+        login_name:         login_name,
+        display_name:       display_name,
+        password:           SecureRandom.hex(4),
+        setting_password:   true,
+        mail_address:       mail_address,
+        aruji:              aruji,
+        family:             family,
+        verification_token: SecureRandom.hex
+    }
+    user.save
+  end
+
   # ユーザ登録時の認証
   # 認証できたらtrue
   def self.verify(id, token)

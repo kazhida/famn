@@ -4,6 +4,8 @@ div class="span3 float-pane equal-height"
 
 div class="span5 float-pane equal-height"
   div class="inset"
+
+  - if current_user
     h5 ユーザの追加
     = form_tag :account do
       = label_tag      :login_name,   'ログイン名 (例: ryoma)'
@@ -12,11 +14,35 @@ div class="span5 float-pane equal-height"
       = text_field_tag :display_name
       = label_tag      :mail_address, 'メール・アドレス (例: ryoma@example.com)'
       = text_field_tag :mail_address
+      = hidden_field_tag :aruji, false
       p
         | 　上記のユーザを作成し、本人確認のメールを指定したアドレスに送信します。
         | メールを受けとったユーザが本登録を行う必要があります。
       = submit_tag '送信', :class => 'btn btn-info'
       p &nbsp;
+
+  - else
+    h5 新規登録
+    = form_tag :account do
+      = label_tag       :family_login_name,   'ログイン用家族名(例: sakamoto)'
+      = text_field_tag  :family_login_name
+      = label_tag       :family_display_name, '表示用家族名 (例: 坂本)'
+      = text_field_tag  :family_display_name
+      = label_tag       :login_name,          'ログイン用ユーザ名 (例: ryoma)'
+      = text_field_tag  :login_name
+      = label_tag       :display_name,        '表示用ユーザ名 (例: 龍馬)'
+      = text_field_tag  :display_name
+      = label_tag       :mail_address,        'メール・アドレス (例: ryoma@example.com)'
+      = text_field_tag  :mail_address
+      = hidden_field_tag :aruji, true
+      p
+        | 　送信ボタンをクリックすると、
+        | 本人確認のメールを指定したアドレスに送信します。
+        | そのメールに記載されたURLにアクセスすることで、
+        | 本登録されます。
+      = submit_tag '送信', :class => 'btn btn-info'
+      p &nbsp;
+
 
 div class="span4 float-pane equal-height"
 
