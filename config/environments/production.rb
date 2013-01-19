@@ -52,25 +52,6 @@ Famn::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'famn.mobi' }
-  #config.action_mailer.delivery_method = :smtp
-  #if ENV.has_key?('FAMN_SMTP_ADDRESS')
-  #  if ENV.has_key?('FAMN_SMTP_AUTHENTICATION')
-  #    config.action_mailer.smtp_settings = {
-  #        :enable_starttls_auto => false,
-  #        :address        => ENV['FAMN_SMTP_ADDRESS'],
-  #        :port           => ENV['FAMN_SMTP_PORT'] || 587,
-  #        :authentication => ENV['FAMN_SMTP_AUTHENTICATION'],
-  #        :domain         => ENV['FAMN_SMTP_DOMAIN'],
-  #        :user_name      => ENV['FAMN_SMTP_USER_NAME'],
-  #        :password       => ENV['FAMN_SMTP_PASSWORD']
-  #    }
-  #  else
-  #    config.action_mailer.smtp_settings = {
-  #        :address        => ENV['FAMN_SMTP_ADDRESS'],
-  #        :port           => ENV['FAMN_SMTP_PORT'] || 25,
-  #    }
-  #  end
-  #end
 
   # Enable threaded mode
   # config.threadsafe!

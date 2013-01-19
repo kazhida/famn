@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title famn
+    title famn.mobi - Family oriented SNS
     = stylesheet_link_tag    'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
@@ -9,12 +9,12 @@ html
       | $(document).ready(       function() { $('bg_image').fullbg(); });
       | $(window).bind("resize", function() { $('bg_image').fullbg(); });
   body
-    = image_tag('bg_family_0.jpg', :size => '640x480', :alt => '背景', :id => 'bg_image')
+    = image_tag('bg_family_0.jpg', :size => '1280x720', :alt => '背景', :id => 'bg_image')
     div id="wrapper"
       div id="header" class="span12"
         div class="hero-unit"
           = link_to image_tag('famn_logo.png', :size => '228x64', :alt => 'サイトロゴ'), :root
-          p famnは、家族向けSNSです。家族の内輪でメッセージを共有します。
+          p famn.mobiは、家族向けSNSです。家族の内輪でメッセージを共有します。
         = render '/shared/user_menu'
       div id='content'
         = yield
