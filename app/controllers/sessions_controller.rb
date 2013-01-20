@@ -5,6 +5,11 @@ class SessionsController < ApplicationController
   skip_before_filter :reject_unverified_user
 
   def new
+    respond_to do |format|
+      format.mobile
+      format.html
+      format.json { head 200 }
+    end
   end
 
   # POST /sessions
