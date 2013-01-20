@@ -3,7 +3,7 @@ div data-role="header" data-position="fixed" data-theme="a"
   = link_to 'about', {:controller => :infos, :action => :about}, :class => 'ui-btn-right'
 
 div data-role="content"
-  = render 'login_form', {:formats => :html}
+  = render 'login_form', :html
 
 div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
   = link_to '新規登録', {:controller => :accounts, :action => :new}, {'data-inline' => true, 'data-icon' => 'plus'}
