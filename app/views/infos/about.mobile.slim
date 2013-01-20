@@ -3,9 +3,9 @@ div data-role="header" data-position="fixed" data-theme="a"
   = link_to '戻る', :back,  :class => 'ui-btn-left'
 
 div data-role="content"
-  - with_html_format self do
-    = render 'about_famn_mobi'
-    = render 'about_family'
-    = render 'about_register'
-    = render 'about_profit'
-    = render 'about_development'
+  - self.formats = [:mobile, :html]
+  = render 'about_famn_mobi'
+  = render 'about_family'
+  = render 'about_register'
+  = render 'about_profit'
+  = render 'about_development'

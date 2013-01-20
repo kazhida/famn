@@ -3,8 +3,8 @@ div data-role="header" data-position="fixed" data-theme="a"
   = link_to '戻る', :back,  :class => 'ui-btn-left'
 
 div data-role="content"
-  - with_html_format self do
-    - if current_user
-      = render 'shared/register_add'
-    - else
-      = render 'shared/register_new'
+  - self.formats = [:mobile, :html]
+  - if current_user
+    = render 'shared/register_add'
+  - else
+    = render 'shared/register_new'

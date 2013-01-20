@@ -1,7 +1,0 @@
-ul data-role="listview"
-  li data-role="list-divider" ユーザ一覧
-    - User.family_users(current_user.family_id, current_user.id).each do |user|
-      li
-        a href="#"
-          = "#{user.display_name} (@#{user.login_name})"
-        = link_to '削除', user, :confirm => '本当に削除しますか?', :method =>:delete, :'data-icon' => 'delete'
