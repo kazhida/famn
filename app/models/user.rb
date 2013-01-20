@@ -152,7 +152,7 @@ class User < ActiveRecord::Base
         login_name: family[:login_name],
         display_name: family[:display_name]
       }
-      return false  unless family.save
+      return nil    unless family.save
     end
 
     user = User.new
@@ -166,7 +166,7 @@ class User < ActiveRecord::Base
         family:             family,
         verification_token: SecureRandom.hex
     }
-    user.save
+    user.save ? user : nil
   end
 
   # ユーザ登録時の認証

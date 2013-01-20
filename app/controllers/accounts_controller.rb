@@ -31,7 +31,7 @@ class AccountsController < ApplicationController
     )
       flash.notice = 'アカウント情報を変更しました。'
     else
-      flash.alert = '変更できませんでした。' + "#{current_user.inspect}" + "#{params} + #{current_user.errors.to_s}"
+      flash.alert = '変更できませんでした。' + current_user.errors.to_s
     end
     back_to_edit
   end
@@ -46,12 +46,13 @@ class AccountsController < ApplicationController
         :login_name => params[:family_login_name],
         :display_name => params[:family_display_name]
     }
-    if User.add_new_user(params[:login_name],
-                         params[:display_name],
-                         params[:mail_address],
-                         params[:aruji],
-                         family)
-      AccountMailer.email_verification(current_user, @user).deliver
+    user = User.add_new_user(params[:login_name],
+                              params[:display_name],
+                              params[:mail_address],
+                              params[:aruji],
+                              family)
+    if user
+      AccountMailer.email_verification(current_user, user).deliver
       flash.notice = '確認メールを送信しました。'
     else
       flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'
@@ -61,23 +62,6 @@ class AccountsController < ApplicationController
     else
       back_to_edit
     end
-
-    #  @user = User.new_user(
-    #      login_name:   params[:login_name],
-    #      display_name: params[:display_name],
-    #      password:     SecureRandom.hex(4),
-    #      setting_password: true,
-    #      mail_address: params[:mail_address],
-    #      aruji:        params.has_key?(:aruji) && params[:aruji],
-    #      family:       current_user.family
-    #  )
-    #  if @user.save
-    #    AccountMailer.email_verification(current_user, @user).deliver
-    #    flash.notice = '確認メールを送信しました。'
-    #  else
-    #    flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'
-    #  end
-    #  back_to_edit
   end
 
 
