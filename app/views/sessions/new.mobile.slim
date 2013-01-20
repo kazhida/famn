@@ -3,7 +3,7 @@ div data-role="header" data-position="fixed" data-theme="a"
   = link_to 'about', {:controller => :infos, :action => :about}, :class => 'ui-btn-right'
 
 div data-role="content"
-  - with_html_format do
+  - with_html_format self do
     = render 'login_form'
 
 div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"

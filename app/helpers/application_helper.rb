@@ -2,13 +2,13 @@
 
 module ApplicationHelper
 
-  def with_html_format(&block)
-    tmp = formats
+  def with_html_format(view, &block)
+    tmp = view.formats
     begin
-      formats = [:html]
+      view.formats = [:html]
       result = block.call
     ensure
-      formats = tmp
+      view.formats = tmp
     end
     result
   end
