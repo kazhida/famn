@@ -3,4 +3,5 @@ div data-role="header" data-position="fixed" data-theme="a"
   = link_to '戻る', :back,  :class => 'ui-btn-left'
 
 div data-role="content"
-  = render 'policy'
+  - with_html_format self do
+    = render 'policy'

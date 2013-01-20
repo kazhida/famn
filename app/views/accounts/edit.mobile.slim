@@ -3,7 +3,8 @@ div data-role="header" data-position="fixed" data-theme="a"
   = link_to '戻る', :back,  :class => 'ui-btn-left'
 
 div data-role="content"
-  = render 'edit_form'
+  - with_html_format self do
+    = render 'edit_form'
 
 - if current_user && current_user.aruji?
   div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
