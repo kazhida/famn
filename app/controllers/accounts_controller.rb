@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 class AccountsController < ApplicationController
-  skip_before_filter :authenticate_user, except: [:edit, :update]
-  skip_before_filter :reject_unverified_user, except: [:edit, :update]
+  skip_before_filter :authenticate_user,      only: [:new, :create, :verify, :unverified]
+  skip_before_filter :reject_unverified_user, only: [:new, :create, :verify, :unverified]
 
   def back_to_edit
     redirect_to [:edit, :account]
@@ -64,9 +64,6 @@ class AccountsController < ApplicationController
     end
   end
 
-
-
-
   # DELETE /account
   def destroy
     user = User.find(params[:delete_id]).login_name
@@ -90,11 +87,6 @@ class AccountsController < ApplicationController
       format.json   { head :no_content }
     end
   end
-
-  #def link_to_delete(user)
-  #  link_to :account, :confirm => '本当に削除しますか?', :method =>:delete, :delete_id => user.id
-  #end
-  #helper_method :link_to_delete
 
   # GET v/:id/:token
   def verify
