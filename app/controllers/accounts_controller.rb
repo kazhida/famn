@@ -55,7 +55,7 @@ class AccountsController < ApplicationController
       AccountMailer.email_verification(current_user, user).deliver
       flash.notice = '確認メールを送信しました。'
     else
-      flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'
+      flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。' + user.errors.to_s
     end
     if current_user.nil?
       redirect_to [:new, :account]

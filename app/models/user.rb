@@ -128,20 +128,20 @@ class User < ActiveRecord::Base
   end
 
   # ユーザの作成
-  def self.new_user(attributes)
-    user = User.new
-    user.attributes = {
-        login_name:       attributes[:login_name],
-        display_name:     attributes[:display_name],
-        password:         attributes[:password],
-        setting_password: true,
-        mail_address:     attributes[:mail_address],
-        aruji:            attributes[:aruji],
-        family:           attributes[:family],
-        verification_token: SecureRandom.hex
-    }
-    user
-  end
+  #def self.new_user(attributes)
+  #  user = User.new
+  #  user.attributes = {
+  #      login_name:       attributes[:login_name],
+  #      display_name:     attributes[:display_name],
+  #      password:         attributes[:password],
+  #      setting_password: true,
+  #      mail_address:     attributes[:mail_address],
+  #      aruji:            attributes[:aruji],
+  #      family:           attributes[:family],
+  #      verification_token: SecureRandom.hex
+  #  }
+  #  user
+  #end
 
   # ユーザの作成
   def self.add_new_user(login_name, display_name, mail_address, aruji, family)
