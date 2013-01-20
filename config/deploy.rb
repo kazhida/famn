@@ -7,6 +7,7 @@ set :branch, :master
 set :scm_verbose, true
 set :use_sudo, false
 set :rails_env, :production
+set :deploy_via, :remote_cache
 
 role :web, 'famn.kazhida.jp'                    # Your HTTP server, Apache/etc
 role :app, 'famn.kazhida.jp'                    # This may be the same as your `Web` server
