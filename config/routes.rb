@@ -11,12 +11,12 @@ Famn::Application.routes.draw do
     get 'page/:page', :action => :index, :on => :collection
   end
   resource  :session, :only   => [:new, :create, :destroy]
-  resource  :account, :except => [:index, :show] do
+  resource  :account, :except => [:show] do
     get  :unverified
   end
   resources :users,   :only   => [:destroy]
 
-  get 'v/:id/:token' => 'account#verify', id: /\d+/, token: /[0-9a-f]+/, :as => :account_verification
+  get 'v/:id/:token' => 'accounts#verify', id: /\d+/, token: /[0-9a-f]+/
 
   match '*anything' => 'error#not_found'
 end
