@@ -1,0 +1,14 @@
+= form_for current_user, :url => :account do |f|
+  - if current_user.aruji
+    = f.label         :family_name,               '家族名'
+    = f.text_field    :family_name,               {:class => 'span3'}
+  = f.label           :display_name,              'ユーザ名'
+  = f.text_field      :display_name,              {:class => 'span3'}
+  = f.label           :current_password,          '現在のパスワード'
+  = f.password_field  :current_password,          {:class => 'span3'}
+  = f.label           :new_password,              '新しいパスワード'
+  = f.password_field  :new_password,              {:class => 'span3'}
+  = f.label           :new_password_confirmation, '新しいパスワードの確認'
+  = f.password_field  :new_password_confirmation, {:class => 'span3'}
+  br
+  = f.submit '更新', :class => 'btn buttons'

@@ -14,5 +14,6 @@ div data-role="content"
 = paginate @entries
 
 div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
-  = link_to '新規書込', {:controller => 'entries', :action => 'new'}, {'data-inline' => true, 'data-icon' => 'plus'}
+  = link_to '新規書込', {:controller => :entries, :action => :new}, {'data-inline' => true, 'data-icon' => 'plus'}
+  = link_to 'アカウント編集', {:controller => :accounts, :action => :edit}, {'data-inline' => true, 'data-icon' => 'plus'}
 

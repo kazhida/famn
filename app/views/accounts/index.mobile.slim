@@ -1,0 +1,9 @@
+div data-role="header" data-position="fixed" data-theme="a"
+  h1 famn.mobi
+  = link_to '戻る', :back,  :class => 'ui-btn-left'
+
+div data-role="content"
+  = render 'user_list'
+
+div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
+  = link_to 'ユーザ追加', {:controller => :accounts, :action => :new}, {'data-inline' => true, 'data-icon' => 'plus'}

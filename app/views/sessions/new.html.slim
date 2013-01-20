@@ -11,15 +11,7 @@ div class="span3 float-pane equal-height"
 
 div class="span4 float-pane equal-height"
   div class="inset"
-    = form_tag :session do
-      = label_tag      :family_name,  '家族名 (例: sakamoto)'
-      = text_field_tag :family_name,  params[:family_name], :class => 'span3'
-      = label_tag      :user_name,    'ユーザ名 (例: ryoma)'
-      = text_field_tag :user_name,    params[:user_name],   :class => 'span3'
-      = label_tag      :password,     'パスワード'
-      = password_field_tag :password, '',                   :class => 'span3'
-      | &nbsp;&nbsp;
-      = submit_tag 'ログイン', :class => 'btn'
+    = render 'login_form'
 
 div class="span5 float-pane equal-height"
   div class="inset"

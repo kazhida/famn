@@ -1,0 +1,9 @@
+div data-role="header" data-position="fixed" data-theme="a"
+  h1 famn.mobi
+  = link_to '戻る', :back,  :class => 'ui-btn-left'
+
+div data-role="content"
+  - if current_user
+    = render 'shared/register_add'
+  - else
+    = render 'shared/register_new'

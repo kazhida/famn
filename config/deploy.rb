@@ -6,7 +6,7 @@ set :scm, :git
 set :branch, :master
 set :scm_verbose, true
 set :use_sudo, false
-set :rails_env, :production
+set :rails_env, 'production'
 set :deploy_via, :remote_cache
 
 role :web, 'famn.kazhida.jp'                    # Your HTTP server, Apache/etc
@@ -16,10 +16,11 @@ role :db,  'famn.kazhida.jp', :primary => true  # This is where Rails migrations
 require    'bundler/capistrano'
 
 # rbenv configuration
-set :default_environment, {
-    :FAMN_DATABASE_PASSWORD => ENV['FAMN_DATABASE_PASSWORD'],
-    :FAMN_DATABASE_USERNAME => ENV['FAMN_DATABASE_USERNAME'],
-    :RBENV_ROOT => '$HOME/.rbenv',
-    :PATH => '$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH'
-}
+default_environment[:RBENV_ROOT] = '$HOME/.rbenv'
+default_environment[:PATH] = '$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH'
+
 set :bundle_flags, '--deployment --quiet --binstubs --shebang ruby-local-exec'
+
+# DB access
+default_environment[:FAMN_DATABASE_PASSWORD] = ENV['FAMN_DATABASE_PASSWORD']
+default_environment[:FAMN_DATABASE_USERNAME] = ENV['FAMN_DATABASE_USERNAME']
