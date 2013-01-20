@@ -9,6 +9,7 @@ class Family < ActiveRecord::Base
 
   accepts_nested_attributes_for :users
 
+  validates_presence_of :display_name
   validates_presence_of :login_name
   validates_uniqueness_of :login_name
 
@@ -19,6 +20,4 @@ class Family < ActiveRecord::Base
       errors.add(:login_name, '%s is already used at users.' % login_name)
     end
   end
-
-  validates_presence_of :display_name
 end

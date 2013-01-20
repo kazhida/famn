@@ -47,15 +47,15 @@ class AccountsController < ApplicationController
         :display_name => params[:family_display_name]
     }
     user = User.add_new_user(params[:login_name],
-                              params[:display_name],
-                              params[:mail_address],
-                              params[:aruji],
-                              family)
+                             params[:display_name],
+                             params[:mail_address],
+                             params[:aruji],
+                             family)
     if user
       AccountMailer.email_verification(current_user, user).deliver
       flash.notice = '確認メールを送信しました。'
     else
-      flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。' + user.errors.to_s
+      flash.alert  = 'ユーザを作成できませんでした。原因としては、ユーザ名の重複やメールアドレスの間違いなどが考えられます。'
     end
     if current_user.nil?
       redirect_to [:new, :account]

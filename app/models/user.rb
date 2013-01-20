@@ -144,13 +144,14 @@ class User < ActiveRecord::Base
   #end
 
   # ユーザの作成
-  def self.add_new_user(login_name, display_name, mail_address, aruji, family)
+  def self.add_new_user(login_name, display_name, mail_address, aruji, family, password = nil)
     unless family.kind_of?(Family)
       # 家族が登録されていない場合は作る
+      names = family
       family = Family.new
       family.attributes = {
-        login_name: family[:login_name],
-        display_name: family[:display_name]
+        login_name:   names[:login_name],
+        display_name: names[:display_name]
       }
       return nil    unless family.save
     end
@@ -159,7 +160,7 @@ class User < ActiveRecord::Base
     user.attributes = {
         login_name:         login_name,
         display_name:       display_name,
-        password:           SecureRandom.hex(4),
+        password:           password || SecureRandom.hex(4),
         setting_password:   true,
         mail_address:       mail_address,
         aruji:              aruji,

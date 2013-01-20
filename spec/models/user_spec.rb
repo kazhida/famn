@@ -217,68 +217,73 @@ describe User, 'ユーザを追加するとき' do
   fixtures :families, :users
 
   it 'IDと認証トークンの組み合わせが正しければ認証される' do
-    user = User.new_user(
-        login_name: 'kinpachi',
-        display_name: '金八',
-        password: 'barboo',
-        setting_password: true,
-        family: Family.find_by_login_name('sakamoto'),
-        mail_address: 'foo@example.com',
-        aruji: false
+    user = User.add_new_user(
+        'kinpachi',
+        '金八',
+        'foo@example.com',
+        false,
+        Family.find_by_login_name('sakamoto')
     )
-    user.save.should be_true
+    user.should_not be_nil
     User.verify(user.id, user.verification_token).should be_true
   end
 
   it '認証トークンが違っていたら認証されない' do
-    user = User.new_user(
-        login_name: 'kinpachi',
-        display_name: '金八',
-        password: 'barboo',
-        setting_password: true,
-        family: Family.find_by_login_name('sakamoto'),
-        mail_address: 'foo@example.com',
-        aruji: false
+    user = User.add_new_user(
+        'kinpachi',
+        '金八',
+        'foo@example.com',
+        false,
+        Family.find_by_login_name('sakamoto')
     )
-    user.save.should be_true
+    user.should_not be_nil
     User.verify(user.id, user.verification_token + 's').should be_false
   end
 
   it '10人までは追加できる' do
-    user = User.new_user(
-        login_name: 'juro',
-        display_name: '十朗',
-        password: 'barboo',
-        setting_password: true,
-        family: Family.find_by_login_name('ito'),
-        mail_address: 'foo@example.com',
-        aruji: false
-    )
-    user.save.should be_true
+    User.add_new_user(
+        'juro',
+        '十朗',
+        'foo@example.com',
+        false,
+        Family.find_by_login_name('ito'),
+        'barboo'
+    ).should_not be_nil
   end
 
   it '11人目は追加できない' do
-    user = User.new_user(
-        login_name: 'juro',
-        display_name: '十朗',
-        password: 'barboo',
-        setting_password: true,
-        family: Family.find_by_login_name('ito'),
-        mail_address: 'foo@example.com',
-        aruji: false
-    )
-    user.save.should be_true
+    User.add_new_user(
+        'juro',
+        '十朗',
+        'foo@example.com',
+        false,
+        Family.find_by_login_name('ito'),
+        'barboo'
+    ).should_not be_nil
     User.family_users(2).count.should == 10
-    user = User.new_user(
-        login_name: 'juichiro',
-        display_name: '十一朗',
-        password: 'barboo',
-        setting_password: true,
-        family: Family.find_by_login_name('ito'),
-        mail_address: 'foo@example.com',
-        aruji: false
+    User.add_new_user(
+        'juichiro',
+        '十一朗',
+        'foo@example.com',
+        false,
+        Family.find_by_login_name('ito')
+    ).should be_nil
+  end
+
+  it '家族名を指定したときは家族が作られる' do
+    user = User.add_new_user(
+        'kinpachi',
+        '金八',
+        'foo@example.com',
+        false,
+        {
+            login_name: 'hashimoto',
+            display_name: '橋本'
+        }
     )
-    user.save.should_not be_true
+    user.should_not be_nil
+    Family.all.count.should == 3
+    Family.find(user.family_id).should_not be_nil
   end
 end
 
