@@ -8,6 +8,33 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user
   before_filter :reject_unverified_user
 
+  rescue_from ActionController::RoutingError,
+              ActiveRecord::RecordNotFound,
+              :with => :render_404
+  rescue_from Exception,
+              :with => :render_500
+
+  def log_exception(code, exception)
+    logger.info "Rendering #{code} with exception: #{exception.message}"
+  end
+
+  def render_error(code)
+    respond_to do |format|
+      format.mobile { render :template => "errors/#{code}", :layout => 'application', :status => code }
+      format.html   { render :template => "errors/#{code}", :layout => 'application', :status => code }
+    end
+  end
+
+  def render_500(exception = nil)
+    log_exception 500, exception    if exception
+    render_error 500
+  end
+
+  def render_404(exception = nil)
+    log_exception 404, exception    if exception
+    render_error 404
+  end
+
   private
 
   # カレントユーザ
