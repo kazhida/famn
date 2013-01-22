@@ -26,7 +26,7 @@ class Entry < ActiveRecord::Base
     user.family.entries.order('posted_on DESC')
   end
 
-  def post(user, message)
+  def self.post(user, message)
     entry = Entry.new
     entry.message   = message
     entry.user      = user
