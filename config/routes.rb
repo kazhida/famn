@@ -18,5 +18,5 @@ Famn::Application.routes.draw do
 
   get 'v/:id/:token' => 'accounts#verify', id: /\d+/, token: /[0-9a-f]+/, :as => :account_verification
 
-  #match '*anything' => 'error#not_found'
+  match '*anything' => 'errors#404'
 end

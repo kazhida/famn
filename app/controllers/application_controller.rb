@@ -18,21 +18,21 @@ class ApplicationController < ActionController::Base
     logger.info "Rendering #{code} with exception: #{exception.message}"
   end
 
-  def render_error(code)
-    respond_to do |format|
-      format.mobile { render :template => "errors/#{code}", :layout => 'application', :status => code }
-      format.html   { render :template => "errors/#{code}", :layout => 'application', :status => code }
-    end
-  end
+  #def render_error(code)
+  #  respond_to do |format|
+  #    format.mobile { render :template => "errors/#{code}", :layout => 'application', :status => code }
+  #    format.html   { render :template => "errors/#{code}", :layout => 'application', :status => code }
+  #  end
+  #end
 
   def render_500(exception = nil)
     log_exception 500, exception    if exception
-    render_error 500
+    render 'errors/500',  :status => 500
   end
 
   def render_404(exception = nil)
     log_exception 404, exception    if exception
-    render_error 404
+    render 'errors/404', :status => 404
   end
 
   private
