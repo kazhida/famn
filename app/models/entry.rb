@@ -26,8 +26,14 @@ class Entry < ActiveRecord::Base
     self.family_id = user ? user.family.id : nil
   end
 
+  before_save do
+    self.message = CGI.escape_html(self.message)
+  end
+
   def self.by_user(user)
-    user.family.entries.order('posted_on DESC')
+    mention = "%@#{user.family.login_name} %"
+    where('family_id=? OR message LIKE ?', user.family_id, mention).order('posted_on DESC')
+    #user.family.entries.order('posted_on DESC')
   end
 
   def self.post(user, message)

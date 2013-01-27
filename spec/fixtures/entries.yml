@@ -28,4 +28,9 @@ otome_first:
   user_id:    5
   family_id:  1
   posted_on: 2012-03-03
+to_sakamoto:
+  message:  '@sakamoto ぼけ'
+  user_id:    1
+  family_id:  2
+  posted_on: 2012-03-04
 

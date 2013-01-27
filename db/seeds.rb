@@ -141,7 +141,7 @@ end
   },
   {
       message:  '@sakamot0 ぼけ',
-      user: User.user_by_names('it0', 'otome'),
+      user: User.user_by_names('it0', 'ryoma'),
       posted_on: Date::new(2012, 03, 04)
   }
 ].each do |e|

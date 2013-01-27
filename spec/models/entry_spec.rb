@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'spec_helper'
+require 'cgi'
 
 describe Entry, 'エントリを追加するとき' do
   fixtures :families, :users, :entries
@@ -53,6 +54,17 @@ describe Entry, 'エントリを追加するとき' do
       @entry.save
     }.should change(Entry, :count).by(1)
   end
+
+  it 'メッセージは、HTMLエスケープされる' do
+    msg = '<h1>head</h1>'
+    @entry.message = msg
+    @entry.user = User.user_by_names('sakamoto', 'ryoma')
+    @entry.posted_on = Date.today
+    @entry.save.should be_true
+
+    entry = Entry.find(@entry.id)
+    entry.message.should == CGI.escape_html(msg)
+  end
 end
 
 describe Entry, 'エントリを取り出したとき' do
@@ -63,8 +75,8 @@ describe Entry, 'エントリを取り出したとき' do
     @entries = Entry.by_user(user)
   end
 
-  it '坂本家のエントリは4件' do
-    @entries.count.should eql(4)
+  it '坂本家のエントリは5件' do
+    @entries.count.should eql(5)
   end
 
   it 'posted_onの降順になっている' do
