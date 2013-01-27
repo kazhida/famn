@@ -1,6 +1,6 @@
 h1 famn.mobiへようこそ！！
 
-p = "#{@user.display_name} 様"
+p = "#{@user.family.display_name} #{@user.display_name} 様"
 
 - if @admin
   p = "#{@admin.family.display_name} #{@admin.display_name} 様によって、ユーザ登録されました。"
