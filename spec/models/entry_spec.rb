@@ -21,30 +21,34 @@ describe Entry, 'エントリを追加するとき' do
 
   it '家族がnullではないこと' do
     @entry.message = 'dona dona 2'
-    @entry.user = User.find_by_login_name('ryoma')
+    @entry.user = User.user_by_names('sakamoto', 'ryoma')
     @entry.should_not be_valid
   end
 
   it '投稿日がnullではないこと' do
     @entry.message = 'dona dona 3'
-    @entry.user = User.find_by_login_name('ryoma')
-    @entry.family = Family.find_by_login_name('sakamoto')
+    @entry.user = User.user_by_names('sakamoto', 'ryoma')
     @entry.should_not be_valid
   end
 
   it 'メッセージの長さが250文字以内であること' do
     @entry.message = 'a' * 251
-    @entry.user = User.find_by_login_name('ryoma')
-    @entry.family = Family.find_by_login_name('sakamoto')
+    @entry.user = User.user_by_names('sakamoto', 'ryoma')
     @entry.posted_on = Date.today
     @entry.should_not be_valid
+  end
+
+  it '一通りそろっていればOK' do
+    @entry.message = 'dona dona 3'
+    @entry.user = User.user_by_names('sakamoto', 'ryoma')
+    @entry.posted_on = Date.today
+    @entry.save.should be_true
   end
 
   it '追加するとレコードが一つ増えること' do
     lambda {
       @entry.message = 'dona dona 3'
-      @entry.user = User.find_by_login_name('ryoma')
-      @entry.family = Family.find_by_login_name('sakamoto')
+      @entry.user = User.user_by_names('sakamoto', 'ryoma')
       @entry.posted_on = Date.today
       @entry.save
     }.should change(Entry, :count).by(1)

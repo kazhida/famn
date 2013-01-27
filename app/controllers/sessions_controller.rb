@@ -19,6 +19,10 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      if params[:remember_me]
+        cookies.permanent.signed[:user_id] = user.id
+        cookies.permanent.signed[:auto_login_token] = user.auto_login_token
+      end
       flash.notice = 'ログインしました。'
       respond_to do |format|
         format.mobile { redirect_to :root }
@@ -39,6 +43,8 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1.json
   def destroy
     session.delete :user_id
+    cookies.delete :user_id
+    cookies.delete :auto_login_token
     respond_to do |format|
       format.mobile { redirect_to [:new, :session] }
       format.html   { redirect_to [:new, :session] }

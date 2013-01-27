@@ -22,6 +22,10 @@ class Entry < ActiveRecord::Base
     end
   end
 
+  before_validation do
+    self.family_id = user ? user.family.id : nil
+  end
+
   def self.by_user(user)
     user.family.entries.order('posted_on DESC')
   end

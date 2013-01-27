@@ -1,14 +1,15 @@
 = form_for current_user, :url => :account do |f|
   - if current_user.aruji
-    = f.label         :family_name,               '家族名'
-    = f.text_field    :family_name,               {:class => 'input-medium'}
-  = f.label           :display_name,              'ユーザ名'
-  = f.text_field      :display_name,              {:class => 'input-medium'}
-  = f.label           :current_password,          '現在のパスワード'
-  = f.password_field  :current_password,          {:class => 'input-large'}
-  = f.label           :new_password,              '新しいパスワード'
-  = f.password_field  :new_password,              {:class => 'input-large'}
-  = f.label           :new_password_confirmation, '新しいパスワードの確認'
-  = f.password_field  :new_password_confirmation, {:class => 'input-large'}
+    = f.text_field    :family_name,               :class => 'input-medium', :placeholder => '家族名'
+    br
+  = f.text_field      :display_name,              :class => 'input-medium', :placeholder => 'ユーザ名'
+  br
+  = f.text_field      :mail_address,              :class => 'input-medium', :placeholder => 'メールアドレス'
+  br
+  = f.password_field  :current_password,          :class => 'input-large', :placeholder => '現在のパスワード'
+  br
+  = f.password_field  :new_password,              :class => 'input-large', :placeholder => '新しいパスワード'
+  br
+  = f.password_field  :new_password_confirmation, :class => 'input-large', :placeholder => '新しいパスワードの確認'
   br
   = f.submit '更新', :class => 'btn buttons'

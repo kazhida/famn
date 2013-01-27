@@ -25,6 +25,7 @@ class AccountsController < ApplicationController
     if current_user.update_account_info(
         params[:user][:family_name],
         params[:user][:display_name],
+        params[:user][:mail_address],
         params[:user][:current_password],
         params[:user][:new_password],
         params[:user][:new_password_confirmation]

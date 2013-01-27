@@ -157,6 +157,21 @@ describe User, 'ユーザを新規作成するとき' do
       @user.save
     }.should change(User, :count).by(1)
   end
+
+
+  it '保存時にauto_login_tokenが割り当てられていること' do
+    @user.attributes = {
+        login_name: 'kinpachi',
+        display_name: '金八',
+        password: 'barboo',
+        setting_password: true,
+        family: Family.find_by_login_name('sakamoto'),
+        mail_address: 'foo@example.com',
+        aruji: false
+    }
+    @user.save.should be_true
+    @user.auto_login_token.should_not be_nil
+  end
 end
 
 describe User, 'マスアサインについて' do
@@ -297,7 +312,7 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワード更新がなければ、名前だけ変わる' do
-    @user.update_account_info('さかもと', 'おとめ').should be_true
+    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com').should be_true
 
     @user = User.user_by_names('sakamoto', 'otome')
     @user.family_name.should == 'さかもと'
@@ -305,7 +320,7 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it '家族名がnilなら、家族名は変わらない' do
-    @user.update_account_info(nil, 'おとめ').should be_true
+    @user.update_account_info(nil, 'おとめ', 'otome@example.com').should be_true
 
     @user = User.user_by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
@@ -313,7 +328,7 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワードを変えるときは、現在のパスワードも必要' do
-    @user.update_account_info('さかもと', 'おとめ', nil, 'hogehoge').should be_false
+    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', nil, 'hogehoge').should be_false
 
     @user = User.user_by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
@@ -321,7 +336,7 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワードを変えるときは、現在のパスワードとconfirmが必要' do
-    @user.update_account_info('さかもと', 'おとめ', 'foobar', 'hogehoge', 'fugafuga').should be_false
+    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', 'foobar', 'hogehoge', 'fugafuga').should be_false
 
     @user = User.user_by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
@@ -329,7 +344,7 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワードを更新するときは、現在のパスワードと、confirmationもあれば、OK' do
-    @user.update_account_info('さかもと', 'おとめ', 'foobar', 'hogehoge', 'hogehoge').should be_true
+    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', 'foobar', 'hogehoge', 'hogehoge').should be_true
 
     @user = User.user_by_names('sakamoto', 'otome')
     @user.family_name.should == 'さかもと'

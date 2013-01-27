@@ -7,8 +7,8 @@ div class="span3"
     = render 'edit_form'
 
 div class="span3"
-  div class="inset"
-    - if current_user.aruji?
+  - if current_user.aruji?
+    div class="well"
       h4 ユーザの管理
       = render 'user_table'
       = link_to [:new, :account] do

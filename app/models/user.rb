@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  before_create do
+    self.auto_login_token = SecureRandom.hex
+  end
+
   before_save do
     if changing_password?
       self.password_digest = BCrypt::Password.create(new_password)
@@ -169,7 +173,7 @@ class User < ActiveRecord::Base
   end
 
   # アカウントの変更
-  def update_account_info(family_name, user_name, current_password = nil, new_password = nil, confirmation = nil)
+  def update_account_info(family_name, user_name, mail_address, current_password = nil, new_password = nil, confirmation = nil)
 
     transaction do
       unless family_name.nil? || family_name.empty?
@@ -183,6 +187,7 @@ class User < ActiveRecord::Base
       else
         self.attributes = {
             :display_name => user_name,
+            :mail_address => mail_address,
             :current_password => current_password,
             :new_password => new_password,
             :new_password_confirmation => confirmation

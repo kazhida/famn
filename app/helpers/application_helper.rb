@@ -2,14 +2,8 @@
 
 module ApplicationHelper
 
-  def with_html_format(view, &block)
-    tmp = view.formats
-    begin
-      view.formats = [:html]
-      result = block.call
-    ensure
-      view.formats = tmp
-    end
-    result
+  def nav_item(name, options = {}, html_options = {})
+    cls = current_page?(options) ? ' class="active"' : ''
+    "<li#{cls}>" + link_to(name, options, html_options) + '</li>'
   end
 end

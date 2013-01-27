@@ -1,9 +1,12 @@
-div id="user_menu" class="span12 btn-group"
-  - unless current_user.nil?
-    = link_to_unless_current 'メッセージ一覧に戻る', :root, :class => 'btn'
-    = link_to_unless_current  'アカウント編集', [:edit, :account], :class => 'btn'
-    = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'btn'
-  - else
-    = link_to_unless_current  'ログイン', [:new, :session], :class => 'btn'
-  = link_to 'famn.mobiについて', {:controller => :infos, :action => :about}, :class => 'btn'
-  = link_to '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}, :class => 'btn'
+div id="user_menu" class="navbar"
+  div class="navbar-inner"
+    ul class="nav"
+      - if current_user
+        == nav_item 'メッセージ一覧', {:controller => :entries, :action => :index}
+        == nav_item 'アカウント編集', {:controller => :accounts, :action => :edit}
+        li
+          = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？'
+      - else
+        == nav_item 'ログイン', {:controller => :sessions, :action => :new}
+      == nav_item 'famn.mobiについて', {:controller => :infos, :action => :about}
+      == nav_item '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}

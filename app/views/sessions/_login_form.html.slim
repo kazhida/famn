@@ -1,10 +1,12 @@
 = form_tag :session do
-  = label_tag      :family_name,  '家族名 (例: sakamoto)'
-  = text_field_tag :family_name,  params[:family_name], :class => 'span3'
-  = label_tag      :user_name,    'ユーザ名 (例: ryoma)'
-  = text_field_tag :user_name,    params[:user_name],   :class => 'span3'
-  = label_tag      :password,     'パスワード'
-  = password_field_tag :password, '',                   :class => 'span3'
+  = text_field_tag      :family_name, params[:family_name],   :class => 'span3', :placeholder => '家族名 (例: sakamoto)'
   br
+  = text_field_tag      :user_name,   params[:user_name],     :class => 'span3', :placeholder => 'ユーザ名 (例: ryoma)'
+  br
+  = password_field_tag  :password,    '',                     :class => 'span3', :placeholder => 'パスワード'
+  br
+  label class="checkbox"
+    = check_box_tag       :remember_me, true, :checked
+    | ログインを保持
   br
   = submit_tag 'ログイン', :class => 'btn btn-primary buttons'

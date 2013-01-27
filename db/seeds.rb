@@ -2,11 +2,15 @@
 
 [
   {
-    login_name: 'sakamoto',
+      login_name: 'admin',
+      display_name: '管理者'
+  },
+  {
+    login_name: 'sakamot0',
     display_name: '坂本'
   },
   {
-    login_name: 'ito',
+    login_name: 'it0',
     display_name: '伊藤'
   },
   {
@@ -22,11 +26,19 @@ end
 
 [
   {
+      login_name: 'root',
+      display_name: '代表',
+      password: ENV['FAMN_ROOT_PASSWORD'],
+      mail_address: 'hirohumi@example.com',
+      family: Family.find_by_login_name('admin'),
+      aruji:  true
+  },
+  {
     login_name: 'hirohumi',
     display_name: '博文',
     password: 'foobar',
     mail_address: 'hirohumi@example.com',
-    family: Family.find_by_login_name('ito'),
+    family: Family.find_by_login_name('it0'),
     aruji:  true
   },
   {
@@ -34,7 +46,7 @@ end
     display_name: '英明',
     password: 'foobar',
     mail_address: 'hideaki@example.com',
-    family: Family.find_by_login_name('ito'),
+    family: Family.find_by_login_name('it0'),
     aruji:  false
   },
   {
@@ -42,7 +54,7 @@ end
     display_name: '龍一',
     password: 'foobar',
     mail_address: 'ryuichi@example.com',
-    family: Family.find_by_login_name('sakamoto'),
+    family: Family.find_by_login_name('sakamot0'),
     aruji:  false
   },
   {
@@ -50,7 +62,7 @@ end
     display_name: '龍馬',
     password: 'foobar',
     mail_address: 'ryoma@example.com',
-    family: Family.find_by_login_name('sakamoto'),
+    family: Family.find_by_login_name('sakamot0'),
     aruji:  false
   },
   {
@@ -58,7 +70,7 @@ end
     display_name: '乙女',
     password: 'foobar',
     mail_address: 'otome@example.com',
-    family: Family.find_by_login_name('sakamoto'),
+    family: Family.find_by_login_name('sakamot0'),
     aruji:  true
   },
   {
@@ -66,7 +78,7 @@ end
     display_name: '亮馬',
     password: 'foobar',
     mail_address: 'ryoma@example.com',
-    family: Family.find_by_login_name('ito'),
+    family: Family.find_by_login_name('it0'),
     aruji:  false
   },
   {
@@ -74,7 +86,7 @@ end
       display_name: '九',
       password: 'foobar',
       mail_address: 'ryoma@example.com',
-      family: Family.find_by_login_name('sakamoto'),
+      family: Family.find_by_login_name('sakamot0'),
       aruji:  false
   },
   {
@@ -99,39 +111,38 @@ end
 [
   {
     message:  'hi.',
-    user: User.find_by_login_name('hirohumi'),
-    family: Family.find_by_login_name('ito'),
+    user: User.user_by_names('it0', 'hirohumi'),
     posted_on: Date::new(2012, 01, 01)
   },
   {
     message:  'ho.',
-    user: User.find_by_login_name('hirohumi'),
-    family: Family.find_by_login_name('ito'),
+    user: User.user_by_names('it0', 'hirohumi'),
     posted_on: Date::new(2012, 12, 12)
   },
   {
     message:  '仁しぇんしぇい。',
-    user: User.find_by_login_name('ryoma'),
-    family: Family.find_by_login_name('sakamoto'),
+    user: User.user_by_names('sakamot0', 'ryoma'),
     posted_on: Date::new(2012, 01, 01)
   },
   {
     message:  '大変がぜよ。',
-    user: User.find_by_login_name('ryoma'),
-    family: Family.find_by_login_name('sakamoto'),
+    user: User.user_by_names('sakamot0', 'ryoma'),
     posted_on: Date::new(2012, 02, 02)
   },
   {
     message:  '日本の夜明けぜよ。',
-    user: User.find_by_login_name('ryoma'),
-    family: Family.find_by_login_name('sakamoto'),
+    user: User.user_by_names('sakamot0', 'ryoma'),
     posted_on: Date::new(2012, 11, 11)
   },
   {
     message:  'ぼけ',
-    user: User.find_by_login_name('otome'),
-    family: Family.find_by_login_name('sakamoto'),
+    user: User.user_by_names('sakamot0', 'otome'),
     posted_on: Date::new(2012, 03, 03)
+  },
+  {
+      message:  '@sakamot0 ぼけ',
+      user: User.user_by_names('it0', 'otome'),
+      posted_on: Date::new(2012, 03, 04)
   }
 ].each do |e|
   Entry.create(
@@ -145,8 +156,7 @@ end
 (1..31).each do |i|
   Entry.create(
       message:  "#{i}日ぜよ。",
-      user:     User.find_by_login_name('ryoma'),
-      family:   Family.find_by_login_name('sakamoto'),
+      user:     User.user_by_names('sakamot0', 'ryoma'),
       posted_on: Date::new(2012, 12, i)
   )
 end
@@ -154,8 +164,7 @@ end
 (1..12).each do |i|
   Entry.create(
       message:  "#{i}月9日です。",
-      user:     User.find_by_login_name('kyu'),
-      family:   Family.find_by_login_name('sakamoto'),
+      user:     User.user_by_names('sakamot0', 'kyu'),
       posted_on: Date::new(2012, i, 9)
   )
 end
