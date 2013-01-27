@@ -1,11 +1,4 @@
-div data-role="header" data-position="fixed" data-theme="a"
-  h1 famn.mobi
-  = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right'
-  div data-role="navbar"
-    ul
-      == nav_item '新規書込',       {:controller => :entries,  :action => :new},  {'data-icon' => 'plus'}
-      == nav_item 'アカウント編集', {:controller => :accounts, :action => :edit}, {'data-icon' => 'plus'}
-      == nav_item 'about',          {:controller => :infos,    :action => :about}
+= render 'shared/header'
 
 div data-role="content"
   = form_tag :entries do

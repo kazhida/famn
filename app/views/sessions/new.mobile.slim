@@ -1,10 +1,4 @@
-div data-role="header" data-position="fixed" data-theme="a"
-  h1 famn.mobi
-  div data-role="navbar"
-    ul
-      == nav_item 'ログイン',   {:controller => :session,  :action => :new}, {'data-icon' => 'plus'}
-      == nav_item 'ユーザ追加', {:controller => :accounts, :action => :new}, {'data-icon' => 'plus'}
-      == nav_item 'about', {:controller => :infos, :action => :about}
+= render 'shared/header'
 
 div data-role="content"
   - self.formats = [:mobile, :html]

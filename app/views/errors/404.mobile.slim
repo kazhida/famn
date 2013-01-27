@@ -1,10 +1,4 @@
-div data-role="header" data-position="fixed" data-theme="a"
-  h1 famn.mobi
-  div data-role="navbar"
-    ul
-      li
-      li
-      == nav_item 'about', {:controller => :infos, :action => :about}
+= render 'shared/header'
 
 div data-role="content"
   h3 File not found - 404
