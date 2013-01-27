@@ -17,6 +17,7 @@ class EntriesController < ApplicationController
   # GET /entries/new.json
   def new
     @entry = Entry.new
+    @send_to = params[:send_to] ? "@#{params[:send_to]} " : ''
 
     respond_to do |format|
       format.mobile

@@ -4,6 +4,7 @@
     | &nbsp;
     = current_user.display_name
   h5
+    | @
     = current_user.login_name
     | &nbsp;(@
     = current_user.family.login_name
@@ -11,3 +12,11 @@
 
 p
   = render 'shared/flash_message'
+
+- unless current_user.nil?
+  div class="well"
+    h5 家族一覧
+    ul class="unstyled"
+    - User.family_users(current_user.family_id, current_user).each do |user|
+      li
+        == send_to user
