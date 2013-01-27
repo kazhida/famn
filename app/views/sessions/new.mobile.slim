@@ -1,6 +1,10 @@
 div data-role="header" data-position="fixed" data-theme="a"
   h1 famn.mobi
-  = link_to 'about', {:controller => :infos, :action => :about}, :class => 'ui-btn-right'
+  div data-role="navbar"
+    ul
+      == nav_item 'ログイン', {:controller => :sessions, :action => :new}
+      == nav_item 'famn.mobiについて', {:controller => :infos, :action => :about}
+      == nav_item '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}
 
 div data-role="content"
   - self.formats = [:mobile, :html]
