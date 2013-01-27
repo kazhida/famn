@@ -1,5 +1,10 @@
 div data-role="header" data-theme="a"
   h1 famn.mobi
+  div data-role="navbar"
+    ul
+      == nav_item 'ログイン',   {:controller => :session,  :action => :new}, {'data-icon' => 'plus'}
+      == nav_item 'ユーザ追加', {:controller => :accounts, :action => :new}, {'data-icon' => 'plus'}
+      == nav_item 'about',      {:controller => :infos,    :action => :about}
 
 div data-role="content"
   h5 メールアドレスの確認URLが正しくありません。

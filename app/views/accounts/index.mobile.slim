@@ -2,10 +2,9 @@ div data-role="header" data-position="fixed" data-theme="a"
   h1 famn.mobi
   div data-role="navbar"
     ul
-      li
-        = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？'
-      == nav_item 'famn.mobiについて', {:controller => :infos, :action => :about}
-      == nav_item '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}
+      == nav_item '新規書込',       {:controller => :entries,  :action => :new}, {'data-icon' => 'plus'}
+      == nav_item 'アカウント編集', {:controller => :accounts, :action => :edit}, {'data-icon' => 'plus'}
+      == nav_item 'about', {:controller => :infos, :action => :about}
 
 div data-role="content"
   ul data-role="listview"
