@@ -3,4 +3,6 @@
 div data-role="content"
   - self.formats = [:mobile, :html]
   = render 'edit_form'
-
+  hr
+  button class="buttons"
+    = link_to 'ユーザ管理', {:controller => :accounts, :action => :index}

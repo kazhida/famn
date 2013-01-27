@@ -10,5 +10,5 @@ div data-role="header" data-position="fixed" data-theme="a"
         == nav_item 'アカウント', {:controller => :accounts, :action => :edit},  {'data-icon' => 'plus'}
       - else
         == nav_item 'ログイン',   {:controller => :sessions, :action => :new}, {'data-icon' => 'plus'}
-        == nav_item 'ユーザ追加', {:controller => :accounts, :action => :new}, {'data-icon' => 'plus'}
+        == nav_item '新規登録', {:controller => :accounts, :action => :new}, {'data-icon' => 'plus'}
       == nav_item 'about', {:controller => :infos, :action => :about}
