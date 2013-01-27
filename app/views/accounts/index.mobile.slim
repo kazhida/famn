@@ -15,5 +15,3 @@ div data-role="content"
             = "#{user.display_name} (@#{user.login_name})"
           = link_to '削除', user, :confirm => '本当に削除しますか?', :method =>:delete, :'data-icon' => 'delete'
 
-div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
-  = link_to 'ユーザ追加', {:controller => :accounts, :action => :new}, {'data-inline' => true, 'data-icon' => 'plus'}

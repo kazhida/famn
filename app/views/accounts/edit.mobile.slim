@@ -12,6 +12,3 @@ div data-role="content"
   - self.formats = [:mobile, :html]
   = render 'edit_form'
 
-- if current_user && current_user.aruji?
-  div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
-    = link_to 'ユーザ管理', {:controller => :accounts, :action => :index}, {'data-inline' => true, 'data-icon' => 'plus'}

@@ -2,13 +2,11 @@ div data-role="header" data-position="fixed" data-theme="a"
   h1 famn.mobi
   div data-role="navbar"
     ul
-      == nav_item 'ログイン', {:controller => :sessions, :action => :new}
-      == nav_item 'famn.mobiについて', {:controller => :infos, :action => :about}
-      == nav_item '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}
+      == nav_item 'ログイン',   {:controller => :session,  :action => :new}, {'data-icon' => 'plus'}
+      == nav_item 'ユーザ追加', {:controller => :accounts, :action => :new}, {'data-icon' => 'plus'}
+      == nav_item 'about', {:controller => :infos, :action => :about}
 
 div data-role="content"
   - self.formats = [:mobile, :html]
   = render 'login_form'
 
-div data-role="footer" data-position="fixed" data-theme="e" class="ui-bar"
-  = link_to '新規登録', {:controller => :accounts, :action => :new}, {'data-inline' => true, 'data-icon' => 'plus'}
