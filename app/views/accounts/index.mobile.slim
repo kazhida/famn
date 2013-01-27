@@ -9,6 +9,5 @@ div data-role="content"
             = "#{user.display_name} (@#{user.login_name})"
           = link_to '削除', user, :confirm => '本当に削除しますか?', :method =>:delete, :'data-icon' => 'delete'
   hr
-  button class="buttons"
-    = link_to 'ユーザ追加', {:controller => :accounts, :action => :new}
+  = link_to 'ユーザ追加', {:controller => :accounts, :action => :new}
 
