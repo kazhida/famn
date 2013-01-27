@@ -11,7 +11,7 @@ div class="span3"
     div class="well"
       h4 ユーザの管理
       = render 'user_table'
-      = link_to [:new, :account] do
+      = link_to :controller => :accounts, :action => :new do
         button class="btn btn-info"
           i class="icon-plus"
           | ユーザの追加
