@@ -21,11 +21,11 @@ div class="span6"
             td = entry.posted_on_as_string
             - if entry.user == current_user
               td = link_to entry, :confirm => '本当に削除しますか?', :method => :delete do
-                button class="btn"
+                button class="btn btn-mini"
                   i class="icon-trash icon-white" style="margin-top: 1px;"
             - elsif current_user.aruji
               td = link_to entry, :confirm => '自分のエントリではありません。本当に削除しますか?', :method => :delete do
-                button class="btn btn-warning btn-small"
+                button class="btn btn-warning btn-mini"
                   i class="icon-trash icon-white" style="margin-top: 1px;"
             - else
               td

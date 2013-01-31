@@ -9,6 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap_and_overrides
+ * require variables
+ * require bootswatch
  *= require_self
  */
 body {
@@ -35,7 +37,7 @@ body {
 
 #header {
   .hero-unit {
-    background: #ff9;
+    background: #fbd;
     opacity: 0.5;
   }
 
@@ -53,7 +55,7 @@ body {
   padding: 8px;
 
   .well {
-    background: #fce;
+    background: #ffccee;
   }
 }
 
