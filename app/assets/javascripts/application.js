@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.grrrid-1.0.0
 //= require twitter/bootstrap
 
 (function($){
@@ -32,6 +31,3 @@
     };
 })(jQuery);
 
-$(document).ready(function() {
-    $("div.equal-height").grrrid("equalize");
-});

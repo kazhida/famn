@@ -6,10 +6,10 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
     script type="text/javascript"
-      | $(document).ready(       function() { $('bg_image').fullbg(); });
-      | $(window).bind("resize", function() { $('bg_image').fullbg(); });
+      | $(document).ready(       function() { $('bg_image').fullbg(1280, 720); });
+      | $(window).bind("resize", function() { $('bg_image').fullbg(1280, 720); });
   body
-    = image_tag('bg_family_1.jpg', :size => '1280x720', :alt => '背景', :id => 'bg_image')
+    = image_tag('bg_family_0.jpg', :size => '1280x720', :alt => '背景', :id => 'bg_image')
     div id="wrapper" class="container"
       div id="header" class="row"
         div class="semi-hero-unit"
