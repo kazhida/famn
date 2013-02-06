@@ -36,9 +36,15 @@ body {
 }
 
 #header {
-  .hero-unit {
+  .semi-hero-unit {
+    border-radius: 6px;
     background: rgba(255, 187, 221, 0.5);
-    //opacity: 0.5;
+    padding-top: 24px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
 
   image {
