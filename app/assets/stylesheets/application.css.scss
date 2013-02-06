@@ -37,13 +37,12 @@ body {
 
 #header {
   .hero-unit {
-    background: #fbd;
-    opacity: 0.5;
+    background: rgba(255, 187, 221, 0.5);
+    //opacity: 0.5;
   }
 
   image {
     background: #fff;
-    opacity: 1;
   }
 }
 

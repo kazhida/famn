@@ -2,7 +2,7 @@ div class="span3" id="left-pane"
   div class="inset"
     = render '/shared/info_pane'
 
-div class="span5"
+div class="span6"
   div class="inset"
     - if current_user.aruji?
       h4 ユーザの管理
@@ -12,6 +12,7 @@ div class="span5"
           i class="icon-plus"
           | ユーザの追加
 
-div class="span4"
+div class="span3"
+  = render 'shared/ads'
 
 div id="footnotes_holder" class="span12"

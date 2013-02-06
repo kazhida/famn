@@ -1,0 +1,15 @@
+<% if Rails.env.production? %>
+    <script type="text/javascript"><!--
+    google_ad_client = "<%= ENV[:FAMN_AD_CLIENT] %>";
+    /* スクエア */
+    google_ad_slot = "<%= ENV[:FAMN_AD_SLOT] %>";
+    google_ad_width = 250;
+    google_ad_height = 250;
+    //-->
+    </script>
+    <script type="text/javascript" src="<%= ENV[:FAMN_AD_SCRIPT] %>">
+    </script>
+<% else %>
+    <h3>広告エリア</h3>
+<% end %>
+

@@ -6,6 +6,10 @@
       display_name: '管理者'
   },
   {
+      login_name: 'visitor',
+      display_name: '['
+  },
+  {
     login_name: 'sakamot0',
     display_name: '坂本'
   },
@@ -31,6 +35,46 @@ end
       password: ENV['FAMN_ROOT_PASSWORD'],
       mail_address: 'hirohumi@example.com',
       family: Family.find_by_login_name('admin'),
+      aruji:  true
+  },
+  {
+      login_name: 'guest',
+      display_name: 'ゲスト]',
+      password: 'have_fun',
+      mail_address: 'hirohumi@example.com',
+      family: Family.find_by_login_name('visitor'),
+      aruji:  true
+  },
+  {
+      login_name: 'guest1',
+      display_name: 'ゲスト] (1)',
+      password: 'have_fun',
+      mail_address: 'hirohumi@example.com',
+      family: Family.find_by_login_name('visitor'),
+      aruji:  true
+  },
+  {
+      login_name: 'guest2',
+      display_name: 'ゲスト] (2)',
+      password: 'have_fun',
+      mail_address: 'hirohumi@example.com',
+      family: Family.find_by_login_name('visitor'),
+      aruji:  true
+  },
+  {
+      login_name: 'guest3',
+      display_name: 'ゲスト] (3)',
+      password: 'have_fun',
+      mail_address: 'hirohumi@example.com',
+      family: Family.find_by_login_name('visitor'),
+      aruji:  true
+  },
+  {
+      login_name: 'guest4',
+      display_name: 'ゲスト] (4)',
+      password: 'have_fun',
+      mail_address: 'hirohumi@example.com',
+      family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
   {

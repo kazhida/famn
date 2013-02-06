@@ -19,9 +19,11 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      if params[:remember_me]
-        cookies.permanent.signed[:user_id] = user.id
-        cookies.permanent.signed[:auto_login_token] = user.auto_login_token
+      unless params[:family_name] == 'visitor'
+        if params[:remember_me]
+          cookies.permanent.signed[:user_id] = user.id
+          cookies.permanent.signed[:auto_login_token] = user.auto_login_token
+        end
       end
       flash.notice = 'ログインしました。'
       respond_to do |format|

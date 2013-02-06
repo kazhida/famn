@@ -2,8 +2,10 @@ div class="span3" id="left-pane"
   div class="inset"
     = render 'shared/info_pane'
 
-div class="span4"
+div class="span6"
   div class="inset"
     h5 メールアドレスの確認が完了しました。
     p = link_to 'ログイン・ページへ', [:new, :session]
 
+div class="span3"
+  = render 'shared/ads'

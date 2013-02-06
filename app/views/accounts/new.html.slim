@@ -17,12 +17,13 @@ div class="span3" id="left-pane"
         | そのメールのURLをクリックすると本登録され、
         | 当サイトのサービスを利用することができるようになります。
 
-div class="span5"
+div class="span6"
   div class="inset"
     - if current_user
       = render 'shared/register_add'
     - else
       = render 'shared/register_new'
 
-div class="span4"
+div class="span3"
+  = render 'shared/ads'
 

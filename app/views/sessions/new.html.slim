@@ -9,23 +9,24 @@ div class="span3" id="left-pane"
       = link_to(:controller => :accounts, :action => :new) do
         button class="btn btn-primary" 新規登録
 
-div class="span4"
+div class="span3"
   div class="inset"
     div class="well"
       = render 'login_form'
 
-div class="span5"
-  div class="inset"
-    h5 famn.mobi とは？
+div class="span3"
     p
       | 　famn.mobiは、Family指向な Social Networking Serviceです。
       | 「ふぁんもび」と読みます。
     p
-      | 　詳細は、
-      = link_to 'こちらのページ', {:controller => :infos, :action => :about}
-      | を参照してください。
+      | 　雰囲気を知りたいかたは、下記のゲストアカウントでログインすることができます。
+    ul
+      li 家族名：visitor
+      li ユーザ名：guest
+      li パスワード：have_fun
     p
-      | 　まだ、開発中であるため、データをリセットすることがあります。
-      | その場合、アカウント情報も失われるため、
-      | アカウントの新規作成からやり直さなければならなくなります。
-      | あらかじめ、ご了承ください。
+      | 　ただし、このゲストアカウントで投稿したメッセージは、
+      | 不定期にリセットされますので、あらかじめご了承ください。
+
+div class="span3"
+  = render 'shared/ads'

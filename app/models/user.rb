@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
   # 家族名、ユーザ名を使った検索
   def self.user_by_names(family_name, user_name)
     families = Family.where('login_name = ?', family_name)
-    if families
+    if families && families.first
       users = User.where('family_id = ? AND login_name = ?', families.first.id, user_name)
       if users
         users.first
