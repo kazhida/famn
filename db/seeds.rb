@@ -47,32 +47,32 @@ end
   },
   {
       login_name: 'guest1',
-      display_name: 'ゲスト] (1)',
-      password: 'have_fun',
+      display_name: 'ゲスト (1)',
+      password: 'have_to_fun',
       mail_address: 'hirohumi@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
   {
       login_name: 'guest2',
-      display_name: 'ゲスト] (2)',
-      password: 'have_fun',
+      display_name: 'ゲスト (2)',
+      password: 'have_to_fun',
       mail_address: 'hirohumi@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
   {
       login_name: 'guest3',
-      display_name: 'ゲスト] (3)',
-      password: 'have_fun',
+      display_name: 'ゲスト (3)',
+      password: 'have_to_fun',
       mail_address: 'hirohumi@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
   {
       login_name: 'guest4',
-      display_name: 'ゲスト] (4)',
-      password: 'have_fun',
+      display_name: 'ゲスト (4)',
+      password: 'have_to_fun',
       mail_address: 'hirohumi@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
