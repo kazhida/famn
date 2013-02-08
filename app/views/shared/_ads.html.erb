@@ -1,4 +1,17 @@
 <% if Rails.env.production? %>
+    <% if ENV['FAMN_GOOGLE_AD_SLOT'] %>
+        <div class="ad_gadget">
+          <script type="text/javascript"><!--
+          google_ad_client = "<%= ENV['FAMN_GOOGLE_AD_CLIENT'] %>";
+          google_ad_slot   = "<%= ENV['FAMN_GOOGLE_AD_SLOT'] %>";
+          google_ad_width  = <%= ENV['FAMN_GOOGLE_AD_WIDTH'] %>;
+          google_ad_height = <%= ENV['FAMN_GOOGLE_AD_HEIGHT'] %>;
+          //-->
+          </script>
+          <script type="text/javascript" src="<%= ENV['FAMN_AD_SCRIPT'] %>">
+          </script>
+        </div>
+    <% end %>
     <% if ENV['FAMN_VALUE_COMMERCE_GADGET'] %>
         <div class="ad_gadget">
           <script src="http://ad.jp.ap.valuecommerce.com/servlet/jsgadget?<%= ENV['FAMN_VALUE_COMMERCE_GADGET'].html_safe %>">
@@ -32,19 +45,6 @@
                 </div>
             <% end %>
         <% end %>
-    <% end %>
-    <% if ENV['FAMN_GOOGLE_AD_SLOT'] %>
-        <div class="ad_gadget">
-          <script type="text/javascript"><!--
-          google_ad_client = "<%= ENV['FAMN_GOOGLE_AD_CLIENT'] %>";
-          google_ad_slot   = "<%= ENV['FAMN_GOOGLE_AD_SLOT'] %>";
-          google_ad_width  = <%= ENV['FAMN_GOOGLE_AD_WIDTH'] %>;
-          google_ad_height = <%= ENV['FAMN_GOOGLE_AD_HEIGHT'] %>;
-          //-->
-          </script>
-          <script type="text/javascript" src="<%= ENV['FAMN_AD_SCRIPT'] %>">
-          </script>
-        </div>
     <% end %>
 <% else %>
     <h3>広告エリア</h3>
