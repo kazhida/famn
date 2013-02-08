@@ -1,7 +1,7 @@
 = form_tag :session do
-  = text_field_tag      :family_name, params[:family_name],   :class => 'input-large', :placeholder => '家族名 (例: sakamoto)'
-  = text_field_tag      :user_name,   params[:user_name],     :class => 'input-large', :placeholder => 'ユーザ名 (例: ryoma)'
-  = password_field_tag  :password,    '',                     :class => 'input-large', :placeholder => 'パスワード'
+  = text_field_tag      :family_name, params[:family_name],   :class => 'input-medium', :placeholder => '家族名 (例: sakamoto)'
+  = text_field_tag      :user_name,   params[:user_name],     :class => 'input-medium', :placeholder => 'ユーザ名 (例: ryoma)'
+  = password_field_tag  :password,    '',                     :class => 'input-medium', :placeholder => 'パスワード'
   label class="checkbox"
     = check_box_tag       :remember_me, true, :checked
     | ログインを保持
