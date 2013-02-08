@@ -1,32 +1,30 @@
 div class="span3" id="left-pane"
-  div class="inset"
-    = render 'shared/info_pane'
-    p
-      | 初めてのかたは、
-      = link_to '詳細を確認', {:controller => :infos, :action => :about}
-      | の上、こちらから新規登録してください。
-    p
-      = link_to(:controller => :accounts, :action => :new) do
-        button class="btn btn-primary" 新規登録
+  = render 'shared/info_pane'
+  p
+    | 初めてのかたは、
+    = link_to '詳細を確認', {:controller => :infos, :action => :about}
+    | の上、こちらから新規登録してください。
+  p
+    = link_to(:controller => :accounts, :action => :new) do
+      button class="btn btn-primary" 新規登録
 
 div class="span3"
-  div class="inset"
-    div class="well"
-      = render 'login_form'
+  div class="well"
+    = render 'login_form'
 
 div class="span3"
-    p
-      | 　famn.mobiは、Family指向な Social Networking Serviceです。
-      | 「ふぁんもび」と読みます。
-    p
-      | 　雰囲気を知りたいかたは、下記のゲストアカウントでログインすることができます。
-    ul
-      li 家族名：visitor
-      li ユーザ名：guest
-      li パスワード：have_fun
-    p
-      | 　ただし、このゲストアカウントで投稿したメッセージは、
-      | 不定期にリセットされますので、あらかじめご了承ください。
+  p
+    | 　famn.mobiは、Family指向な Social Networking Serviceです。
+    | 「ふぁんもび」と読みます。
+  p
+    | 　雰囲気を知りたいかたは、下記のゲストアカウントでログインすることができます。
+  ul
+    li 家族名：visitor
+    li ユーザ名：guest
+    li パスワード：have_fun
+  p
+    | 　ただし、このゲストアカウントで投稿したメッセージは、
+    | 不定期にリセットされますので、あらかじめご了承ください。
 
 div class="span3 ads"
   = render 'shared/ads'

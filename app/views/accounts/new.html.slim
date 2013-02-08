@@ -1,28 +1,26 @@
 div class="span3" id="left-pane"
-  div class="inset"
-    = render '/shared/info_pane'
-    -if current_user.nil?
-      h3 登録方法
-      p
-        | 　家族名とユーザ名について、
-        | ログイン用(英数字)のものと
-        | 表示用(日本語可)の
-        | それぞれの名称を決めます。
-      p
-        | 　本人確認用のメールアドレスを
-        | 指定します。
-      p
-        | 　送信ボタンをクリックすると、
-        | 本登録に必要なURLと初期パスワードなどのアカウント情報を含んだメールが送信されます。
-        | そのメールのURLをクリックすると本登録され、
-        | 当サイトのサービスを利用することができるようになります。
+  = render '/shared/info_pane'
+  -if current_user.nil?
+    h3 登録方法
+    p
+      | 　家族名とユーザ名について、
+      | ログイン用(英数字)のものと
+      | 表示用(日本語可)の
+      | それぞれの名称を決めます。
+    p
+      | 　本人確認用のメールアドレスを
+      | 指定します。
+    p
+      | 　送信ボタンをクリックすると、
+      | 本登録に必要なURLと初期パスワードなどのアカウント情報を含んだメールが送信されます。
+      | そのメールのURLをクリックすると本登録され、
+      | 当サイトのサービスを利用することができるようになります。
 
 div class="span6"
-  div class="inset"
-    - if current_user
-      = render 'shared/register_add'
-    - else
-      = render 'shared/register_new'
+  - if current_user
+    = render 'shared/register_add'
+  - else
+    = render 'shared/register_new'
 
 div class="span3 ads"
   = render 'shared/ads'

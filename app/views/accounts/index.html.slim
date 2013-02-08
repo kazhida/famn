@@ -1,16 +1,14 @@
 div class="span3" id="left-pane"
-  div class="inset"
-    = render '/shared/info_pane'
+  = render '/shared/info_pane'
 
 div class="span6"
-  div class="inset"
-    - if current_user.aruji?
-      h4 ユーザの管理
-      = render 'user_table'
-      = link_to [:new, :account] do
-        button class="btn btn-info"
-          i class="icon-plus"
-          | ユーザの追加
+  - if current_user.aruji?
+    h4 ユーザの管理
+    = render 'user_table'
+    = link_to [:new, :account] do
+      button class="btn btn-info"
+        i class="icon-plus"
+        | ユーザの追加
 
 div class="span3 ads"
   = render 'shared/ads'

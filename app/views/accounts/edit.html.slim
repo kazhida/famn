@@ -1,10 +1,8 @@
 div class="span3" id="left-pane"
-  div class="inset"
-    = render '/shared/info_pane'
+  = render '/shared/info_pane'
 
 div class="span3"
-  div class="inset"
-    = render 'edit_form'
+  = render 'edit_form'
 
 div class="span3"
   - if current_user.aruji?

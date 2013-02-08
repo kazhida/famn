@@ -1,35 +1,33 @@
 div class="span3" id="left-pane"
-  div class="inset"
-    = render '/shared/info_pane'
-    div class="well"
-      = render 'entry_form'
+  = render '/shared/info_pane'
+  div class="well"
+    = render 'entry_form'
 
 div class="span6"
-  div class="inset"
-    table class="table" width="100%"
-      thead
+  table class="table" width="100%"
+    thead
+      tr
+        th メッセージ
+        th 名前
+        th 日時
+        th 削除
+    tbody
+      - @entries.each do |entry|
         tr
-          th メッセージ
-          th 名前
-          th 日時
-          th 削除
-      tbody
-        - @entries.each do |entry|
-          tr
-            td = entry.message
-            td = entry.user.display_name
-            td = entry.posted_on_as_string
-            - if entry.user == current_user
-              td = link_to entry, :confirm => '本当に削除しますか?', :method => :delete do
-                button class="btn btn-mini"
-                  i class="icon-trash icon-white" style="margin-top: 1px;"
-            - elsif current_user.aruji
-              td = link_to entry, :confirm => '自分のエントリではありません。本当に削除しますか?', :method => :delete do
-                button class="btn btn-warning btn-mini"
-                  i class="icon-trash icon-white" style="margin-top: 1px;"
-            - else
-              td
-    = paginate @entries, :window => 2, :outer_window => 2
+          td = entry.message
+          td = entry.user.display_name
+          td = entry.posted_on_as_string
+          - if entry.user == current_user
+            td = link_to entry, :confirm => '本当に削除しますか?', :method => :delete do
+              button class="btn btn-mini"
+                i class="icon-trash icon-white" style="margin-top: 1px;"
+          - elsif current_user.aruji
+            td = link_to entry, :confirm => '自分のエントリではありません。本当に削除しますか?', :method => :delete do
+              button class="btn btn-warning btn-mini"
+                i class="icon-trash icon-white" style="margin-top: 1px;"
+          - else
+            td
+  = paginate @entries, :window => 2, :outer_window => 2
 
 div class="span3 ads"
   = render 'shared/ads'
