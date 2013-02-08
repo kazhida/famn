@@ -1,6 +1,6 @@
 <% if Rails.env.production? %>
     <% if ENV['FAMN_GOOGLE_AD_SLOT'] %>
-        <div class="ad_gadget">
+        <div class="ad_gadget_<%= ENV['FAMN_GOOGLE_AD_WIDTH'] %>">
           <script type="text/javascript"><!--
           google_ad_client = "<%= ENV['FAMN_GOOGLE_AD_CLIENT'] %>";
           google_ad_slot   = "<%= ENV['FAMN_GOOGLE_AD_SLOT'] %>";
@@ -20,7 +20,7 @@
     <% else %>
         <% (0..5).each do |i| %>
             <% if ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>
-                <div class="ad_gadget">
+                <div class="ad_gadget_234">
                   <iframe frameborder="0"
                           allowtransparency="true"
                           height="60"
