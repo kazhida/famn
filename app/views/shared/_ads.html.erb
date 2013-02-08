@@ -1,13 +1,46 @@
 <% if Rails.env.production? %>
-    <script type="text/javascript"><!--
-    google_ad_client = "<%= ENV['FAMN_AD_CLIENT'] %>";
-    google_ad_slot = "<%= ENV['FAMN_AD_SLOT'] %>";
-    google_ad_width = <%= ENV['FAMN_AD_WIDTH'] %>;
-    google_ad_height = <%= ENV['FAMN_AD_HEIGHT'] %>;
-    //-->
-    </script>
-    <script type="text/javascript" src="<%= ENV['FAMN_AD_SCRIPT'] %>">
-    </script>
+    <% if ENV['FAMN_VALUE_COMMERCE_GADGET'] %>
+        <script src="http://ad.jp.ap.valuecommerce.com/servlet/jsgadget?<%= ENV['FAMN_VALUE_COMMERCE_GADGET'] %>>">
+        </script>
+    <% else %>
+        <% (0..5).each do |i| %>
+            <% if ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>
+                <iframe frameborder="0"
+                        allowtransparency="true"
+                        height="60"
+                        width="234"
+                        scrolling="no"
+                        src="http://ad.jp.ap.valuecommerce.com/servlet/htmlbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>"
+                        marginheight="0"
+                        marginwidth="0">
+                    <script language="javascript"
+                            src="http://ad.jp.ap.valuecommerce.com/servlet/jsbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>">
+                    </script>
+                    <noscript>
+                        <a href="http://ck.jp.ap.valuecommerce.com/servlet/referral?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>"
+                           target="_blank" >
+                            <img src="http://ad.jp.ap.valuecommerce.com/servlet/gifbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>"
+                                 height="60"
+                                 width="234"
+                                 border="0">
+                        </a>
+                    </noscript>
+                </iframe>
+                <br/>
+            <% end %>
+        <% end %>
+    <% end %>
+    <% if ENV['FAMN_GOOGLE_AD_SLOT'] %>
+        <script type="text/javascript"><!--
+        google_ad_client = "<%= ENV['FAMN_GOOGLE_AD_CLIENT'] %>";
+        google_ad_slot   = "<%= ENV['FAMN_GOOGLE_AD_SLOT'] %>";
+        google_ad_width  = <%= ENV['FAMN_GOOGLE_AD_WIDTH'] %>;
+        google_ad_height = <%= ENV['FAMN_GOOGLE_AD_HEIGHT'] %>;
+        //-->
+        </script>
+        <script type="text/javascript" src="<%= ENV['FAMN_AD_SCRIPT'] %>">
+        </script>
+    <% end %> %>
 <% else %>
     <h3>広告エリア</h3>
 <% end %>
