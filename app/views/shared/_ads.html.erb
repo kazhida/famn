@@ -1,6 +1,6 @@
 <% if Rails.env.production? %>
     <% if ENV['FAMN_VALUE_COMMERCE_GADGET'] %>
-        <script src="http://ad.jp.ap.valuecommerce.com/servlet/jsgadget?<%= ENV['FAMN_VALUE_COMMERCE_GADGET'].html_safe %>>">
+        <script src="http://ad.jp.ap.valuecommerce.com/servlet/jsgadget?<%= ENV['FAMN_VALUE_COMMERCE_GADGET'].html_safe %>">
         </script>
     <% else %>
         <% (0..5).each do |i| %>
