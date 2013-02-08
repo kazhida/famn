@@ -1,6 +1,6 @@
 <% if Rails.env.production? %>
     <% if ENV['FAMN_VALUE_COMMERCE_GADGET'] %>
-        <script src="http://ad.jp.ap.valuecommerce.com/servlet/jsgadget?<%= ENV['FAMN_VALUE_COMMERCE_GADGET'] %>>">
+        <script src="http://ad.jp.ap.valuecommerce.com/servlet/jsgadget?<%= ENV['FAMN_VALUE_COMMERCE_GADGET'].html_safe %>>">
         </script>
     <% else %>
         <% (0..5).each do |i| %>
@@ -10,16 +10,16 @@
                         height="60"
                         width="234"
                         scrolling="no"
-                        src="http://ad.jp.ap.valuecommerce.com/servlet/htmlbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>"
+                        src="http://ad.jp.ap.valuecommerce.com/servlet/htmlbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"].html_safe %>"
                         marginheight="0"
                         marginwidth="0">
                     <script language="javascript"
-                            src="http://ad.jp.ap.valuecommerce.com/servlet/jsbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>">
+                            src="http://ad.jp.ap.valuecommerce.com/servlet/jsbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"].html_safe %>">
                     </script>
                     <noscript>
-                        <a href="http://ck.jp.ap.valuecommerce.com/servlet/referral?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>"
+                        <a href="http://ck.jp.ap.valuecommerce.com/servlet/referral?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"].html_safe %>"
                            target="_blank" >
-                            <img src="http://ad.jp.ap.valuecommerce.com/servlet/gifbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"] %>"
+                            <img src="http://ad.jp.ap.valuecommerce.com/servlet/gifbanner?<%= ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{i}"].html_safe %>"
                                  height="60"
                                  width="234"
                                  border="0">
@@ -40,7 +40,7 @@
         </script>
         <script type="text/javascript" src="<%= ENV['FAMN_AD_SCRIPT'] %>">
         </script>
-    <% end %> %>
+    <% end %>
 <% else %>
     <h3>広告エリア</h3>
 <% end %>
