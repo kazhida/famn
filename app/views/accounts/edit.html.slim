@@ -2,12 +2,12 @@ div class="span3" id="left-pane"
   = render '/shared/info_pane'
 
 div class="span3"
-  = render 'edit_form'
+  div class="well"
+    = render 'edit_form'
 
 div class="span3"
   - if current_user.aruji?
     div class="well"
-      h4 ユーザの管理
       = render 'user_table'
       = link_to :controller => :accounts, :action => :new do
         button class="btn btn-info"

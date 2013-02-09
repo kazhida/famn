@@ -1,15 +1,15 @@
 h5 新規登録
 = form_tag :account do
-  = label_tag         :family_display_name, '表示用家族名 (例: 坂本)'
-  = text_field_tag    :family_display_name
-  = label_tag         :display_name,        '表示用ユーザ名 (例: 龍馬)'
-  = text_field_tag    :display_name
-  = label_tag         :family_login_name,   'ログイン用家族名(例: sakamoto)'
-  = text_field_tag    :family_login_name
-  = label_tag         :login_name,          'ログイン用ユーザ名 (例: ryoma)'
-  = text_field_tag    :login_name
-  = label_tag         :mail_address,        'メール・アドレス (例: ryoma@example.com)'
-  = email_field_tag   :mail_address
+  = label_tag         :family_display_name, '表示用家族名'
+  = text_field_tag    :family_display_name, '', :class => 'input-medium', :placeholder => '(例: 坂本)'
+  = label_tag         :display_name,        '表示用ユーザ名'
+  = text_field_tag    :display_name,        '', :class => 'input-medium', :placeholder => '(例: 龍馬)'
+  = label_tag         :family_login_name,   'ログイン用家族名'
+  = text_field_tag    :family_login_name,   '', :class => 'input-medium', :placeholder => '(例: sakamoto)'
+  = label_tag         :login_name,          'ログイン用ユーザ名'
+  = text_field_tag    :login_name,          '', :class => 'input-medium', :placeholder => '(例: ryoma)'
+  = label_tag         :mail_address,        'メール・アドレス'
+  = email_field_tag   :mail_address,        '', :class => 'input-large',  :placeholder => '(例: ryoma@example.com)'
   = hidden_field_tag  :aruji, true
   p
     | 　送信ボタンをクリックすると、
