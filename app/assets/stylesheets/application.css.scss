@@ -140,8 +140,9 @@ table.entries {
     td.name {
       text-align: center;
     }
-    td.date {
+    td p.date {
       font-size: 80%;
+      text-align: right;
     }
   }
 }
