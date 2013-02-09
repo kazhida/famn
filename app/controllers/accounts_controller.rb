@@ -26,6 +26,7 @@ class AccountsController < ApplicationController
         params[:user][:family_name],
         params[:user][:display_name],
         params[:user][:mail_address],
+        params[:user][:face],
         params[:user][:current_password],
         params[:user][:new_password],
         params[:user][:new_password_confirmation]

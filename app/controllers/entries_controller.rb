@@ -29,14 +29,8 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
-    #@entry = Entry.new
-    #@entry.message   = params[:message]
-    #@entry.user      = current_user
-    #@entry.family    = current_user.family
-    #@entry.posted_on = DateTime.now
-
     respond_to do |format|
-      if Entry.post(current_user, params[:message])  #@entry.save
+      if Entry.post(current_user, params[:message], params[:face])
         format.mobile { redirect_to :entries }
         format.html   { redirect_to :entries }
         format.json   { render json: @entry, status: :created, location: @entry }

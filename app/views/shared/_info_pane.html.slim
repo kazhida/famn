@@ -1,5 +1,7 @@
 - unless current_user.nil?
   h3
+    = image_tag current_user.icon
+    | &nbsp;
     = current_user.family.display_name
     | &nbsp;
     = current_user.display_name

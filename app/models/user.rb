@@ -174,7 +174,7 @@ class User < ActiveRecord::Base
   end
 
   # アカウントの変更
-  def update_account_info(family_name, user_name, mail_address, current_password = nil, new_password = nil, confirmation = nil)
+  def update_account_info(family_name, user_name, mail_address, face, current_password = nil, new_password = nil, confirmation = nil)
 
     transaction do
       unless family_name.nil? || family_name.empty?
@@ -184,11 +184,16 @@ class User < ActiveRecord::Base
       end
 
       if new_password.nil? || new_password.empty?
-        self.attributes = {:display_name => user_name}
+        self.attributes = {
+            :display_name => user_name,
+            :mail_address => mail_address,
+            :face         => face
+        }
       else
         self.attributes = {
             :display_name => user_name,
             :mail_address => mail_address,
+            :face         => face,
             :current_password => current_password,
             :new_password => new_password,
             :new_password_confirmation => confirmation
@@ -202,5 +207,13 @@ class User < ActiveRecord::Base
 
   rescue => e
     false
+  end
+
+  def icon(look = nil)
+    if look.nil?
+      "face_#{face}.png"
+    else
+      "face_#{face}_#{look}.png"
+    end
   end
 end

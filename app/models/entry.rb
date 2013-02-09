@@ -33,12 +33,13 @@ class Entry < ActiveRecord::Base
     #user.family.entries.order('posted_on DESC')
   end
 
-  def self.post(user, message)
+  def self.post(user, message, face)
     entry = Entry.new
     entry.message   = message
     entry.user      = user
     entry.family    = user.family
     entry.posted_on = DateTime.current
+    entry.face      = face
     entry.save
   end
 
