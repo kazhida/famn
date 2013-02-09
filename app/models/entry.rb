@@ -10,6 +10,7 @@ class Entry < ActiveRecord::Base
   attr_accessible :user
   attr_accessible :family
   attr_accessible :posted_on
+  attr_accessible :face
 
   validates_presence_of :message
   validates_presence_of :user
@@ -39,6 +40,10 @@ class Entry < ActiveRecord::Base
     entry.family    = user.family
     entry.posted_on = DateTime.current
     entry.save
+  end
+
+  def icon
+    "face_#{user.face}_#{face}.png"
   end
 
   def posted_on_as_string

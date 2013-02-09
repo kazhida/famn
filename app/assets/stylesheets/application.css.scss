@@ -129,3 +129,20 @@ div.ads {
     background-color: #ddf0f8;
   }
 }
+
+table.entries {
+
+  th.name {
+    text-align: center;
+  }
+
+  tr.entry {
+    td.name {
+      text-align: center;
+    }
+    td.date {
+      font-size: 80%;
+    }
+  }
+}
+

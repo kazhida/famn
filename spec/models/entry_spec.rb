@@ -54,6 +54,14 @@ describe Entry, 'エントリを追加するとき' do
       @entry.save
     }.should change(Entry, :count).by(1)
   end
+
+  it 'アイコンは、face_gray_0.png' do
+    @entry.message = 'dona dona 3'
+    @entry.user = User.user_by_names('sakamoto', 'ryoma')
+    @entry.posted_on = Date.today
+    @entry.save.should be_true
+    @entry.icon.should == 'face_gray_0.png'
+  end
 end
 
 describe Entry, 'エントリを取り出したとき' do

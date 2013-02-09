@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   attr_accessible :new_password_confirmation
   attr_accessible :verification_token
   attr_accessible :verified_at
+  attr_accessible :face
 
   accepts_nested_attributes_for :family
 
