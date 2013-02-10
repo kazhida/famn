@@ -101,7 +101,7 @@
 }
 
 .ui-btn-up-a {
-	border: 1px solid #cccccc /*{a-bup-border}*/;
+	border: 1px solid #99ccff /*{a-bup-border}*/;
 	background: #6699ff /*{a-bup-background-color}*/;
 	font-weight: bold;
 	color: #2f3e46 /*{a-bup-color}*/;
@@ -251,7 +251,7 @@
 }
 
 .ui-btn-up-b {
-	border: 1px solid #cccccc /*{b-bup-border}*/;
+	border: 1px solid #ffaadd /*{b-bup-border}*/;
 	background: #ff99cc /*{b-bup-background-color}*/;
 	font-weight: bold;
 	color: #ffff66 /*{b-bup-color}*/;

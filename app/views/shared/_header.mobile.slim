@@ -1,7 +1,7 @@
 div data-role="header" data-position="fixed"
   h1 famn.mobi
   - if current_user
-    = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right'
+    = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right', 'data-theme' => 'c'
 div data-role="navbar"
   ul
     - if current_user
