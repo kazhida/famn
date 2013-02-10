@@ -52,4 +52,17 @@ module ApplicationHelper
     ENV["FAMN_VALUE_COMMERCE_FRAGMENT_#{idx}"].html_safe
   end
 
+  def icon_faces
+    [
+        :gray,
+        :blue,
+        :brown,
+        :green,
+        :orange,
+        :purple,
+        :red,
+        :pink,
+        :black
+    ]
+  end
 end

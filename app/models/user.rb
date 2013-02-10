@@ -221,7 +221,7 @@ class User < ActiveRecord::Base
 
   def icon(look = nil)
     if look.nil?
-      "face_#{face}.png"
+      "face_#{face}_0.png"
     else
       "face_#{face}_#{look}.png"
     end
