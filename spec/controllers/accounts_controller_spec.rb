@@ -5,17 +5,23 @@ require 'spec_helper'
 describe AccountsController do
   fixtures :families, :users
 
-  def valid_user_id
-    User.user_by_names('sakamoto', 'ryoma').id
-  end
-
   describe 'アカウント情報を変更するとき' do
+
+    def valid_user_id
+      User.user_by_names('sakamoto', 'ryoma').id
+    end
+
+    before(:each) do
+      session[:user_id] = valid_user_id
+    end
 
     it '名前が変わる' do
       put :update, {
-          :user_id => valid_user_id,
           :user => {
-              :display_name => 'りょうま'
+              :family_name => nil,
+              :display_name => 'りょうま',
+              :mail_address => 'ryoma@example.com',
+              :face => 'gray'
           }
       }
       User.user_by_names('sakamoto', 'ryoma').display_name.should == 'りょうま'
@@ -30,6 +36,29 @@ describe AccountsController do
           }
       }
       flash.alert.present?.should be_true
+    end
+  end
+
+  describe '本人確認メールの認証を行うとき' do
+
+    before(:each) do
+      # 未認証状態にする
+      @user = User.user_by_names('sakamoto', 'ryoma')
+      @user.verification_token = '01234567abcdef'
+      @user.save!
+    end
+
+    it '正しいURLなら完了ページが表示される' do
+      get :verify, id: @user.id, token: @user.verification_token
+      response.should render_template('accounts/verified')
+    end
+
+    it '間違ったURLの場合、それを示すページが表示される' do
+      get :verify, {
+          id: @user.id,
+          token: 'f00ba2ba2227d9021f46a7d8fa79b6ed'
+      }
+      response.should render_template('accounts/not_verified')
     end
   end
 end

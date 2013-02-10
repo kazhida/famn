@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reject_unverified_user
-    redirect_to [:unverified, :account] unless (not current_user.nil?) && current_user.verified?
+    redirect_to [:unverified, :account]  if current_user && (not current_user.verified?)
   end
 
   def set_mobile_format

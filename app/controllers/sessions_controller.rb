@@ -15,9 +15,9 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-    user = User.user_by_names(params[:family_name], params[:user_name])
+    user = User.authenticated_user(params[:family_name], params[:user_name], params[:password])
 
-    if user && user.authenticate(params[:password])
+    if user
       session[:user_id] = user.id
       unless params[:family_name] == 'visitor'
         if params[:remember_me]

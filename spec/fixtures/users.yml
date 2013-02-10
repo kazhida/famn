@@ -10,7 +10,7 @@ ryoma:
   id: 2
   login_name: ryoma
   display_name: 龍馬
-  password_digest: foobar
+  password_digest: BCrypt::Password.create('foobar')
   mail_address: ryoma@example.com
   family_id: 1
   aruji:  false

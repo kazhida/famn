@@ -19,9 +19,6 @@ class AccountsController < ApplicationController
 
   # PUT /account
   def update
-    #current_user.attributes = params[:user]
-    #current_user.changing_password = true   unless current_user.new_password.empty?
-
     if current_user.update_account_info(
         params[:user][:family_name],
         params[:user][:display_name],

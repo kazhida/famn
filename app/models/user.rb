@@ -102,6 +102,16 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(password_digest) == password
   end
 
+  def self.authenticated_user(family_name, user_name, password)
+    user = user_by_names(family_name, user_name)
+
+    if user && user.authenticate(password)
+      user
+    else
+      nil
+    end
+  end
+
   # 家族名、ユーザ名を使った検索
   def self.user_by_names(family_name, user_name)
     families = Family.where('login_name = ?', family_name)
