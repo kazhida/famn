@@ -2,13 +2,13 @@ div data-role="header" data-position="fixed"
   h1 famn.mobi
   - if current_user
     = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right'
-  div data-role="navbar"
-    ul
-      - if current_user
-        == nav_item '書込一覧',   {:controller => :entries,  :action => :index}, {'data-icon' => 'home'}
-        == nav_item '新規書込',   {:controller => :entries,  :action => :new},   {'data-icon' => 'plus'}
-        == nav_item 'アカウント', {:controller => :accounts, :action => :edit},  {'data-icon' => 'gear'}
-      - else
-        == nav_item 'ログイン',   {:controller => :sessions, :action => :new},   {'data-icon' => 'home'}
-        == nav_item '新規登録',   {:controller => :accounts, :action => :new},   {'data-icon' => 'plus'}
-      == nav_item 'about',        {:controller => :infos,    :action => :about}, {'data-icon' => 'info'}
+div data-role="navbar" data-theme="c"
+  ul
+    - if current_user
+      == nav_item '書込一覧',   {:controller => :entries,  :action => :index}, {'data-icon' => 'home'}
+      == nav_item '新規書込',   {:controller => :entries,  :action => :new},   {'data-icon' => 'plus'}
+      == nav_item 'アカウント', {:controller => :accounts, :action => :edit},  {'data-icon' => 'gear'}
+    - else
+      == nav_item 'ログイン',   {:controller => :sessions, :action => :new},   {'data-icon' => 'home'}
+      == nav_item '新規登録',   {:controller => :accounts, :action => :new},   {'data-icon' => 'plus'}
+    == nav_item '説明',         {:controller => :infos,    :action => :about}, {'data-icon' => 'info'}
