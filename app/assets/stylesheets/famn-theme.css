@@ -15,7 +15,7 @@
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-bar-a {
-	border: 1px solid #b3b3b3 /*{a-bar-border}*/;
+	border: 1px solid #ffaadd /*{a-bar-border}*/;
 	background: #ff99cc /*{a-bar-background-color}*/;
 	color: #ffff66 /*{a-bar-color}*/;
 	font-weight: bold;
@@ -165,7 +165,7 @@
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-bar-b {
-	border: 1px solid #b3b3b3 /*{b-bar-border}*/;
+	border: 1px solid #ffaadd /*{b-bar-border}*/;
 	background: #ff99cc /*{b-bar-background-color}*/;
 	color: #ffff66 /*{b-bar-color}*/;
 	font-weight: bold;
@@ -317,7 +317,7 @@
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-bar-c {
-	border: 1px solid #b3b3b3 /*{c-bar-border}*/;
+	border: 1px solid #ffaadd /*{c-bar-border}*/;
 	background: #ff99cc /*{c-bar-background-color}*/;
 	color: #ffff66 /*{c-bar-color}*/;
 	font-weight: bold;
@@ -469,7 +469,7 @@
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-bar-d {
-	border: 1px solid #b3b3b3 /*{d-bar-border}*/;
+	border: 1px solid #ffaadd /*{d-bar-border}*/;
 	background: #ff99cc /*{d-bar-background-color}*/;
 	color: #ffff66 /*{d-bar-color}*/;
 	font-weight: bold;
@@ -621,7 +621,7 @@
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-bar-e {
-	border: 1px solid #b3b3b3 /*{e-bar-border}*/;
+	border: 1px solid #ffaadd /*{e-bar-border}*/;
 	background: #ff99cc /*{e-bar-background-color}*/;
 	color: #ffff66 /*{e-bar-color}*/;
 	font-weight: bold;
@@ -707,7 +707,7 @@
 }
 
 .ui-btn-up-e {
-	border: 1px solid #cccccc /*{e-bup-border}*/;
+	border: 1px solid #ff9999 /*{e-bup-border}*/;
 	background: #ff3333 /*{e-bup-background-color}*/;
 	font-weight: bold;
 	color: #2f3e46 /*{e-bup-color}*/;
