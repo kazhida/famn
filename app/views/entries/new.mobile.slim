@@ -4,4 +4,4 @@ div data-role="page" data-theme="b"
     = form_tag :entries do
       = label_tag     :message, 'メッセージ'
       = text_area_tag :message, '', :maxlength => 250
-      = submit_tag '送信'
+      = submit_tag '送信', 'data-theme' => 'a'

@@ -14,7 +14,7 @@ Famn::Application.routes.draw do
   resource  :account, :only   => [:edit, :update] do
     get  :unverified
   end
-  resources :users,   :except => [:show, :edit, :update]
+  resources :users,   :except => [:edit, :update]
 
   get 'v/:id/:token' => 'accounts#verify', id: /\d+/, token: /[0-9a-f]+/, :as => :account_verification
 

@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 class UsersController < ApplicationController
-  skip_before_filter :authenticate_user,      only: [:new, :create]
-  skip_before_filter :reject_unverified_user, only: [:new, :create]
+  skip_before_filter :authenticate_user,      only: [:index, :show, :new, :create]
+  skip_before_filter :reject_unverified_user, only: [:index, :show, :new, :create]
 
   # GET /users
   def index
@@ -11,6 +11,16 @@ class UsersController < ApplicationController
       format.mobile
       format.html
       format.json   { render json: @users}
+    end
+  end
+
+  # GET /users/:id
+  def show
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.mobile
+      format.html
+      format.json   { render json: @user}
     end
   end
 

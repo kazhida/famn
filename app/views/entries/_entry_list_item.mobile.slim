@@ -1,0 +1,8 @@
+div class="message"
+  div class="message-icon"
+    = image_tag entry.icon
+    = "#{entry.user.display_name}"
+  p class="message-text"
+    = h(entry.message)
+p class="ui-li-aside clear-left"
+  = entry.posted_on_as_string

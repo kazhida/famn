@@ -96,6 +96,27 @@ body {
   clear: right;
 }
 
+.clear-left {
+  clear: left;
+}
+
+.message {
+  float: left;
+
+  .message-icon {
+    width: 48px;
+    //font-weight: bold;
+  }
+
+  .message-text {
+    font-weight: normal;
+    white-space: normal;
+  }
+}
+
+
+
+
 div.ads {
   margin: 0;
   padding: 0;

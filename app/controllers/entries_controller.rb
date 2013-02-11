@@ -56,7 +56,7 @@ class EntriesController < ApplicationController
   private
 
   def list_item(entry)
-    render_to_string :partial => 'shared/entry_list_item', :locals => {entry: entry}
+    render_to_string :partial => 'entries/entry_list_item', :locals => {entry: entry}
   end
   helper_method :list_item
 end
