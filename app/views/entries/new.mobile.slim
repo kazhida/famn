@@ -4,4 +4,10 @@ div data-role="page" data-theme="b"
     = form_tag :entries do
       = label_tag     :message, 'メッセージ'
       = text_area_tag :message, '', :maxlength => 250
+      fieldset data-role="controlgroup"
+        - (1..4).each do |look|
+          span class="icon"
+            = radio_button_tag :face, look, look == 1
+            = image_tag current_user.icon(look), :size => '32x32'
+          | &nbsp;&nbsp;
       = submit_tag '送信', 'data-theme' => 'a'

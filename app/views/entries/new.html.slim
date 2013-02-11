@@ -3,7 +3,18 @@ div class="span3" id="left-pane"
 
 div class="span6"
   div class="well"
-    = render 'entry_form'
+    = form_tag :entries do
+      = label_tag :message do
+        p
+          span class="label label-info" 新規メッセージ(250文字以内)
+      = text_area_tag :message, @send_to, :maxlength => 250, :class => 'width90'
+      - (1..4).each do |look|
+        span class="icon"
+          = radio_button_tag :face, look, look == 1
+          = image_tag current_user.icon(look), :size => '32x32'
+        | &nbsp;&nbsp;
+      p
+        = submit_tag '送信', :class => 'btn btn-primary buttons'
 
 div class="span3 ads"
   = render 'shared/ads'
