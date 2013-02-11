@@ -1,5 +1,5 @@
 div data-role="page" data-theme="b" id="edit-account"
-  = render 'accounts/header'
+  = render 'shared/header'
   div data-role="content"
     = form_for current_user, :url => :account do |f|
       - if current_user.aruji
@@ -19,7 +19,7 @@ div data-role="page" data-theme="b" id="edit-account"
       = f.submit '更新', :class => 'btn btn-primary buttons'
 
 div data-role="page" data-theme="b" id="index-users"
-  = render 'accounts/header'
+  = render 'shared/header'
   div data-role="content"
     ul data-role="listview"
       li data-role="list-divider" ユーザ一覧
@@ -31,7 +31,7 @@ div data-role="page" data-theme="b" id="index-users"
     = link_to 'ユーザ追加', {:controller => :users, :action => :new}
 
 div data-role="page" data-theme="b" id="add-user"
-  = render 'accounts/header'
+  = render 'shared/header'
   div data-role="content"
     h5 ユーザの追加
     = form_tag :account do
