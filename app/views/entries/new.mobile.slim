@@ -1,7 +1,7 @@
-= render 'shared/header'
-
-div data-role="content"
-  = form_tag :entries do
-    = label_tag     :message, 'メッセージ'
-    = text_area_tag :message, '', :maxlength => 250
-    = submit_tag '送信'
+div data-role="page" data-theme="b"
+  = render 'accounts/header'
+  div data-role="content"
+    = form_tag :entries do
+      = label_tag     :message, 'メッセージ'
+      = text_area_tag :message, '', :maxlength => 250
+      = submit_tag '送信'

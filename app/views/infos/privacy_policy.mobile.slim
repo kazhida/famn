@@ -1,5 +1,5 @@
-= render 'shared/header'
-
-div data-role="content"
-  - self.formats = [:mobile, :html]
-  = render 'policy'
+div data-role="page" data-theme="b"
+  = render 'accounts/header'
+  div data-role="content"
+    - self.formats = [:mobile, :html]
+    = render 'policy'

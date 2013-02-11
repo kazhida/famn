@@ -1,6 +1,6 @@
-= render 'shared/header'
-
-div data-role="content" data-theme="c"
-  - self.formats = [:mobile, :html]
-  = render 'login_form'
+div data-role="page" data-theme="b"
+  = render 'accounts/header'
+  div data-role="content"
+    - self.formats = [:mobile, :html]
+    = render 'login_form'
 

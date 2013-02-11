@@ -1,10 +1,10 @@
-= render 'shared/header'
-
-div data-role="content"
-  - self.formats = [:mobile, :html]
-  = render 'about_famn_mobi'
-  = render 'about_family'
-  = render 'about_register'
-  = render 'about_profit'
-  = render 'about_development'
-  = render 'about_privacy'
+div data-role="page" data-theme="b"
+  = render 'accounts/header'
+  div data-role="content"
+    - self.formats = [:mobile, :html]
+    = render 'about_famn_mobi'
+    = render 'about_family'
+    = render 'about_register'
+    = render 'about_profit'
+    = render 'about_development'
+    = render 'about_privacy'
