@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe SessionsController do
+  fixtures :families, :users
 
   describe 'ログインするとき' do
 

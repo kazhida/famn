@@ -26,9 +26,9 @@ gem 'kaminari'
 
 group :development, :test do
   gem 'capistrano'
-  gem 'debugger'
+  #gem 'debugger'
   gem 'sqlite3'
-  gem 'better_errors'
+  #gem 'better_errors'
   gem 'rspec-rails'
   gem 'rails-footnotes'
   #gem 'factory_girl_rails'

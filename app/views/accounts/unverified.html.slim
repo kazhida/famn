@@ -6,13 +6,6 @@ div class="span6"
   p  まだ、メースアドレスの確認が完了していません。
   p  既にお送りした確認メールの本文に記載されたURLにアクセスしてください。
 
-  /p  あるいは、次のフォームから、確認メールを再送信してください
-  /= form_for @user
-  /  = label_tag      :mail_address, 'メール・アドレス (例: ryoma@example.com)'
-  /  = text_field_tag :mail_address
-  /  = submit_tag '送信', :class => 'btn btn-info'
-  /  p &nbsp;
-
 div class="span3 ads"
   = render 'shared/ads'
 

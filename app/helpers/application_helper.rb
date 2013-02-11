@@ -12,6 +12,10 @@ module ApplicationHelper
     link_to caption, {:controller => :entries, :action => :new, :send_to => user.login_name}
   end
 
+  def mobile_ad?
+    ENV['FAMN_GOOGLE_MOBILE_AD_SLOT'] && ENV['FAMN_GOOGLE_AD_CLIENT'] && ENV['FAMN_GOOGLE_AD_SCRIPT']
+  end
+
   def google_ad?
     ENV['FAMN_GOOGLE_AD_SLOT'] && ENV['FAMN_GOOGLE_AD_CLIENT'] && ENV['FAMN_GOOGLE_AD_SCRIPT']
   end
@@ -22,6 +26,10 @@ module ApplicationHelper
 
   def google_ad_slot
     ENV['FAMN_GOOGLE_AD_SLOT']
+  end
+
+  def mobile_ad_slot
+    ENV['FAMN_GOOGLE_MOBILE_AD_SLOT']
   end
 
   def google_ad_script

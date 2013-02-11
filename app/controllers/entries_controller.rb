@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       format.mobile
-      format.html # index.html.slim
+      format.html
       format.json { render json: @entries }
     end
   end

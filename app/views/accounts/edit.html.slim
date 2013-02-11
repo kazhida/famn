@@ -1,22 +1,55 @@
 div class="span3" id="left-pane"
   = render '/shared/info_pane'
 
-div class="span3"
+div class="span3" id="edit-account"
   div class="well"
-    = render 'edit_form'
+    = form_for current_user, :url => :account do |f|
+      - if current_user.aruji
+        = f.text_field    :family_name,               :class => 'input-medium', :placeholder => '家族名'
+      = f.text_field      :display_name,              :class => 'input-medium', :placeholder => 'ユーザ名'
+      = f.text_field      :mail_address,              :class => 'input-medium', :placeholder => 'メールアドレス'
+      = f.password_field  :current_password,          :class => 'input-medium',  :placeholder => '現在のパスワード'
+      = f.password_field  :new_password,              :class => 'input-medium',  :placeholder => '新しいパスワード'
+      = f.password_field  :new_password_confirmation, :class => 'input-medium',  :placeholder => '新しいパスワードの確認'
+      div
+        - icon_faces.each do |face|
+          span class="icon"
+            = f.radio_button :face, face, :id => "icon_#{face}", :checked => current_user.face == face.to_s ? 'checked' : ''
+            = image_tag "face_#{face}_0.png", :size => '24x24'
+          | &nbsp;
+      br
+      = f.submit '更新', :class => 'btn btn-primary buttons'
 
-div class="span3"
+div class="span3" id="index-users"
   - if current_user.aruji?
     div class="well"
-      = render 'user_table'
-      = link_to :controller => :accounts, :action => :new do
+      table class="table" width="100%" id="user-table"
+        thead
+          tr
+            th ユーザ
+            th 登録
+            th 削除
+        tbody
+          - User.family_users(current_user.family_id).each do |user|
+            tr
+              td = "#{user.display_name} (@#{user.login_name})"
+              td
+                - if user.verified?
+                  span class="label" 済
+                - else
+                  span class="label label-info" 仮
+              - if user.id == current_user.id
+                td
+              - else
+                td = link_to user, :confirm => '本当に削除しますか?', :method =>:delete do
+                  button class="btn btn-danger btn-mini"
+                    i class="icon-trash" style="margin-top: 1px;"
+
+      = link_to :controller => :users, :action => :new do
         button class="btn btn-info"
           i class="icon-plus"
           | ユーザの追加
 
+
 div class="span3 ads"
   = render 'shared/ads'
-
-/div id="footnotes_holder" class="span12"
-
-

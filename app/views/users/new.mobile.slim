@@ -1,0 +1,8 @@
+div data-role="page" data-theme="b" id="edit-account"
+  = render 'accounts/header'
+  div data-role="content"
+    - self.formats = [:mobile, :html]
+    - if current_user
+      = render 'shared/register_add'
+    - else
+      = render 'shared/register_new'
