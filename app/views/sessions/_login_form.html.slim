@@ -3,6 +3,6 @@
   = text_field_tag      :user_name,   params[:user_name],     :class => 'input-medium', :placeholder => 'ユーザ名 (例: ryoma)'
   = password_field_tag  :password,    '',                     :class => 'input-medium', :placeholder => 'パスワード'
   label class="checkbox"
-    = check_box_tag       :remember_me, true, :checked
+    = check_box_tag       :remember_me, true, :checked, 'data-theme' => 'c'
     | ログインを保持
   = submit_tag 'ログイン', :class => 'btn btn-primary buttons', 'data-theme' => 'a'

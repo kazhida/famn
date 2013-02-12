@@ -13,7 +13,7 @@ div data-role="page" data-theme="b" id="edit-account"
         - icon_faces.each do |face|
           = f.radio_button :face, face, :checked => current_user.face == face.to_s ? 'checked' : '', 'data-theme' => 'c'
           = f.label "face_#{face}" do
-            = image_tag "face_#{face}_0.png", :size => '24x24'
+            = image_tag "face_#{face}_0.png", :size => '16x16'
       br
       = f.submit '更新', :class => 'btn btn-primary buttons', 'data-theme' => 'a'
   = render 'shared/footer'
