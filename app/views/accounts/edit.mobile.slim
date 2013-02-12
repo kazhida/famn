@@ -16,6 +16,7 @@ div data-role="page" data-theme="b" id="edit-account"
             = image_tag "face_#{face}_0.png", :size => '24x24'
       br
       = f.submit '更新', :class => 'btn btn-primary buttons', 'data-theme' => 'a'
+  = render 'shared/footer'
 
 div data-role="page" data-theme="b" id="index-users"
   = render 'shared/header'
@@ -28,6 +29,7 @@ div data-role="page" data-theme="b" id="index-users"
             = "#{user.display_name} (@#{user.login_name})"
           = link_to '削除', user, :confirm => '本当に削除しますか?', :method =>:delete, :'data-icon' => 'delete'
     = link_to 'ユーザ追加', {:controller => :users, :action => :new}
+  = render 'shared/footer'
 
 div data-role="page" data-theme="b" id="add-user"
   = render 'shared/header'
@@ -45,3 +47,4 @@ div data-role="page" data-theme="b" id="add-user"
         | 　上記のユーザを作成し、本人確認のメールを指定したアドレスに送信します。
         | メールを受けとったユーザが本登録を行う必要があります。
       = submit_tag '送信', :class => 'btn btn-info'
+  = render 'shared/footer'

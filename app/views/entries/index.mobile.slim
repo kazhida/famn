@@ -8,6 +8,7 @@ div data-role="page" data-theme="b"
             == list_item(entry)
         - else
           li == list_item(entry)
-  = paginate @entries
+    = paginate @entries
+  = render 'shared/footer'
 
 
