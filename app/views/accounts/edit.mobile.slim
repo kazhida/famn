@@ -9,7 +9,7 @@ div data-role="page" data-theme="b" id="edit-account"
       = f.password_field  :current_password,          :class => 'input-medium', :placeholder => '現在のパスワード'
       = f.password_field  :new_password,              :class => 'input-medium', :placeholder => '新しいパスワード'
       = f.password_field  :new_password_confirmation, :class => 'input-medium', :placeholder => '新しいパスワードの確認'
-      fieldset data-role="controlgroup"
+      fieldset data-role="controlgroup" data-type="horizontal"
         - icon_faces.each do |face|
           = f.radio_button :face, face, :checked => current_user.face == face.to_s ? 'checked' : '', 'data-theme' => 'c'
           = f.label "face_#{face}" do
