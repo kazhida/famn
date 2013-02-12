@@ -9,7 +9,7 @@ div data-role="page" data-theme="b"
           span class="icon"
             = radio_button_tag :face, look, look == 1, 'data-theme' => 'c'
             = label_tag "face_#{look}" do
-              = image_tag current_user.icon(look), :size => '32x32'
+              = image_tag current_user.icon(look), :size => '24x24'
           | &nbsp;&nbsp;
       = submit_tag '送信', 'data-theme' => 'a'
   = render 'shared/footer'
