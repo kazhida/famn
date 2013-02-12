@@ -6,10 +6,8 @@ div data-role="page" data-theme="b"
       = text_area_tag :message, '', :maxlength => 250
       fieldset data-role="controlgroup" data-type="horizontal"
         - (1..4).each do |look|
-          span class="icon"
-            = radio_button_tag :face, look, look == 1, 'data-theme' => 'c'
-            = label_tag "face_#{look}" do
-              = image_tag current_user.icon(look), :size => '28x28'
-          | &nbsp;&nbsp;
+          = radio_button_tag :face, look, look == 1, 'data-theme' => 'c'
+          = label_tag "face_#{look}" do
+            = image_tag current_user.icon(look), :size => '28x28'
       = submit_tag '送信', 'data-theme' => 'a'
   = render 'shared/footer'
