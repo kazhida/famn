@@ -6,12 +6,12 @@ div data-role="header" data-position="fixed"
 div data-role="navbar"
   ul
     - if current_user.nil?
-      == nav_item 'ログイン',   {:controller => :sessions, :action => :new},   {'data-icon' => 'home'}
-      == nav_item '新規登録',   {:controller => :users,    :action => :new},   {'data-icon' => 'plus'}
-      == nav_item '説明',       {:controller => :infos,    :action => :about}, {'data-icon' => 'info'}
+      == nav_item 'ログイン',   {:controller => :sessions, :action => :new},   {'data-icon' => 'famn-home'}
+      == nav_item '新規登録',   {:controller => :users,    :action => :new},   {'data-icon' => 'famn-add'}
+      == nav_item '説明',       {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info'}
     - else
-      == nav_item 'ホーム',     {:controller => :entries,  :action => :index}, {'data-icon' => 'home'}
-      == nav_item '書込',       {:controller => :entries,  :action => :new},   {'data-icon' => 'plus'}
-      == nav_item 'アカウント', {:controller => :accounts, :action => :edit},  {'data-icon' => 'gear'}
-      == nav_item '説明',       {:controller => :infos,    :action => :about}, {'data-icon' => 'info'}
+      == nav_item 'ホーム',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home'}
+      == nav_item '書込',       {:controller => :entries,  :action => :new},   {'data-icon' => 'famn-compose'}
+      == nav_item 'アカウント', {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear'}
+      == nav_item '説明',       {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info'}
 
