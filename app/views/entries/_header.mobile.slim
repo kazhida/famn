@@ -15,3 +15,4 @@ div data-role="navbar"
       == nav_item 'アカウント', {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear'}
       == nav_item '説明',       {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info'}
 
+= render 'shared/flash_message'

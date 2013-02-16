@@ -1,0 +1,10 @@
+- if flash.notice.present?
+  ul data-role="listview" data-inset="true" data-theme="c"
+    li = flash.notice
+- if flash.alert.present?
+  ul data-role="listview" data-inset="true" data-theme="b"
+    li = flash.alert
+- if !current_user.nil? && current_user.errors.any?
+  ul data-role="listview" data-inset="true" data-theme="b"
+    - current_user.errors.full_messages.each do |msg|
+      li = msg
