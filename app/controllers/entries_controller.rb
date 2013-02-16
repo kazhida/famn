@@ -52,11 +52,4 @@ class EntriesController < ApplicationController
       format.json   { head :no_content }
     end
   end
-
-  private
-
-  def list_item(entry)
-    render_to_string :partial => 'entries/entry_list_item', :locals => {entry: entry}
-  end
-  helper_method :list_item
 end

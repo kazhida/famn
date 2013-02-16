@@ -137,6 +137,7 @@ table.entries {
 
   th.name {
     text-align: center;
+    min-width: 8em;
   }
 
   tr.entry {
@@ -152,4 +153,8 @@ table.entries {
 
 span.icon {
   white-space: nowrap;
+}
+
+.message {
+  font-size: 120%;
 }
