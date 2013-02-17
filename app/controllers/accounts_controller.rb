@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
     user = User.find(params[:id])
     if user && user.verified?
       redirect_to [:new, :session]
-    elsif User.verify(params[:id], params[:token])
+    elsif User.verify?(params[:id], params[:token])
       render :verified
     else
       render :not_verified

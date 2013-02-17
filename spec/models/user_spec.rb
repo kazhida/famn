@@ -14,19 +14,28 @@ describe User, 'ユーザを新規作成するとき' do
     @user.should_not be_valid
   end
 
-  it 'display_nameがなければいけない' do
+  it 'family_idがなければいけない' do
     @user.login_name = 'foo'
     @user.should_not be_valid
   end
 
+  it 'display_nameがなければいけない' do
+    @user.login_name = 'foo'
+    @user.family     = Family.find_by_login_name('ito')
+    @user.should_not be_valid
+  end
+
+
   it 'password_digestがなければいけない' do
     @user.login_name = 'foo'
+    @user.family     = Family.find_by_login_name('ito')
     @user.display_name = 'Foo'
     @user.should_not be_valid
   end
 
   it 'mail_addressがなければいけない' do
     @user.login_name = 'foo'
+    @user.family     = Family.find_by_login_name('ito')
     @user.display_name = 'Foo'
     @user.password_digest = 'foobar'
     @user.setting_password = true
@@ -35,32 +44,24 @@ describe User, 'ユーザを新規作成するとき' do
 
   it 'arujiがなければいけない' do
     @user.login_name = 'foo'
+    @user.family     = Family.find_by_login_name('ito')
     @user.display_name = 'Foo'
     @user.password_digest = 'foobar'
     @user.setting_password = true
     @user.mail_address = 'foo@example.com'
-    @user.should_not be_valid
-  end
-
-  it 'family_idがなければいけない' do
-    @user.login_name = 'foo'
-    @user.display_name = 'Foo'
-    @user.password_digest = 'bar'
-    @user.setting_password = true
-    @user.mail_address = 'foo@example.com'
-    @user.aruji = false
+    @user.aruji = nil
     @user.should_not be_valid
   end
 
   it 'passwordは6文字未満ではいけない' do
     @user.attributes = {
         login_name: 'foo2',
+        family:      Family.find_by_login_name('ito'),
         display_name: 'Foo',
         password: 'barbe',
         setting_password: true,
         mail_address: 'foo@example.com',
-        aruji: true,
-        family: Family.find_by_login_name('ito')
+        aruji: true
     }
     @user.should_not be_valid
   end
@@ -68,12 +69,12 @@ describe User, 'ユーザを新規作成するとき' do
   it 'passwordは6文字以上のはず' do
     @user.attributes = {
         login_name: 'foo3',
+        family:      Family.find_by_login_name('ito'),
         display_name: 'Foo',
         password: 'barboo',
         setting_password: true,
         mail_address: 'foo@example.com',
-        aruji: true,
-        family: Family.find_by_login_name('ito')
+        aruji: true
     }
     @user.should be_valid
   end
@@ -81,12 +82,12 @@ describe User, 'ユーザを新規作成するとき' do
   it 'login_nameは英数字およびアンダースコア(_)のみ' do
     @user.attributes = {
         login_name: 'foo-bar2',
+        family:      Family.find_by_login_name('ito'),
         display_name: 'Foo',
         password: 'barboo',
         setting_password: true,
         mail_address: 'foo@example.com',
-        aruji: true,
-        family: Family.find_by_login_name('ito')
+        aruji: true
     }
     @user.should_not be_valid
   end
@@ -94,11 +95,11 @@ describe User, 'ユーザを新規作成するとき' do
   it 'login_nameは家族内でユニークでなければいけない' do
     @user.attributes = {
         login_name: 'hirohumi',
+        family: Family.find_by_login_name('ito'),
         display_name: 'Foo2',
         password: 'barboo',
         setting_password: true,
         mail_address: 'foo@example.com',
-        family: Family.find_by_login_name('ito'),
         aruji: true
     }
     @user.should_not be_valid
@@ -107,11 +108,11 @@ describe User, 'ユーザを新規作成するとき' do
   it 'login_nameは家族が異なれば、かぶってもOK' do
     @user.attributes = {
         login_name: 'hirohumi',
+        family: Family.find_by_login_name('sakamoto'),
         display_name: 'Foo2',
         password: 'barboo',
         setting_password: true,
         mail_address: 'foo@example.com',
-        family: Family.find_by_login_name('sakamoto'),
         aruji: true
     }
     @user.should be_valid
@@ -120,11 +121,11 @@ describe User, 'ユーザを新規作成するとき' do
   it 'passwordを設定するとpassword_digestも設定されるはず' do
     @user.attributes = {
         login_name: 'foo3',
+        family: Family.find_by_login_name('ito'),
         display_name: 'Foo3',
         password: 'barboo',
         setting_password: true,
         mail_address: 'foo@example.com',
-        family: Family.find_by_login_name('ito'),
         aruji: true
     }
     @user.should be_valid
@@ -133,11 +134,11 @@ describe User, 'ユーザを新規作成するとき' do
   it '家族名で使われているlogin_nameは使えない' do
     @user.attributes = {
         login_name: 'sakamoto',
+        family: Family.find_by_login_name('ito'),
         display_name: 'さかもと',
         password: 'barboo',
         setting_password: true,
         mail_address: 'foo@example.com',
-        family: Family.find_by_login_name('ito'),
         aruji: true
     }
     @user.should_not be_valid
@@ -147,10 +148,10 @@ describe User, 'ユーザを新規作成するとき' do
     lambda {
       @user.attributes = {
           login_name: 'kinpachi',
+          family: Family.find_by_login_name('sakamoto'),
           display_name: '金八',
           password: 'barboo',
           setting_password: true,
-          family: Family.find_by_login_name('sakamoto'),
           mail_address: 'foo@example.com',
           aruji: false
       }
@@ -162,10 +163,10 @@ describe User, 'ユーザを新規作成するとき' do
   it '保存時にauto_login_tokenが割り当てられていること' do
     @user.attributes = {
         login_name: 'kinpachi',
+        family: Family.find_by_login_name('sakamoto'),
         display_name: '金八',
         password: 'barboo',
         setting_password: true,
-        family: Family.find_by_login_name('sakamoto'),
         mail_address: 'foo@example.com',
         aruji: false
     }
@@ -240,7 +241,7 @@ describe User, 'ユーザを追加するとき' do
         Family.find_by_login_name('sakamoto')
     )
     user.should_not be_nil
-    User.verify(user.id, user.verification_token).should be_true
+    User.verify?(user.id, user.verification_token).should be_true
   end
 
   it '認証トークンが違っていたら認証されない' do
@@ -252,7 +253,11 @@ describe User, 'ユーザを追加するとき' do
         Family.find_by_login_name('sakamoto')
     )
     user.should_not be_nil
-    User.verify(user.id, user.verification_token + 's').should be_false
+    User.verify?(user.id, user.verification_token + 's').should be_false
+  end
+
+  it 'テスト開始時の伊藤家は9人' do
+    User.where('family_id = 2').count.should == 9
   end
 
   it '10人までは追加できる' do

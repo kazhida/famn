@@ -11,13 +11,15 @@ describe UsersController do
 
       before(:each) do
         # カレントユーザを設定
-        session[:user_id] = User.user_by_names('sakamoto', 'otome')
+        @user = User.user_by_names('sakamoto', 'otome')
+        session[:user_id] = @user.id
       end
 
       it '家族を増やすとユーザが1増える' do
         expect {
           post :create, {
               login_name:   'taro',
+              family_id:    @user.family_id,
               display_name: '太郎',
               mail_address: 'taro@example.com',
               aruji:        false
@@ -28,8 +30,9 @@ describe UsersController do
       it '名前が重複しているときは増えない' do
         expect {
           post :create, {
-              login_name:   'otome',
-              display_name: '乙女',
+              login_name:   'ryoma',
+              family_id:    @user.family_id,
+              display_name: '龍馬',
               mail_address: 'otome@example.com',
               aruji:        false
           }

@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     if not /^[0-9a-zA-Z_]+$/ =~ login_name
       # 英数字+_
       errors.add(:login_name, '%s must be number, alphabetic character or "_".' % login_name)
-    elsif (not family.nil?) && already_used_name?(login_name, family.id)
+    elsif family && already_used_name?(login_name, family.id)
       # 同じ家族でかぶっている
       errors.add(:login_name, '%s is already used at families.' % login_name)
     elsif already_used_name?(login_name)
@@ -81,6 +81,13 @@ class User < ActiveRecord::Base
   validates :password,
             :new_password,  :length => {:minimum => 6, :allow_blank =>true}, :confirmation => true
 
+  validate do
+    if aruji.nil?
+      errors.add(:login_name, 'need aruji-flag.')
+    end
+  end
+
+
   before_validation do
     if setting_password?
       self.password_digest = BCrypt::Password.create(password)
@@ -102,9 +109,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(password_digest) == password
   end
 
+  # 認証ずみならそのユーザ
+  # でなければnil
   def self.authenticated_user(family_name, user_name, password)
     user = user_by_names(family_name, user_name)
-
     if user && user.authenticate(password)
       user
     else
@@ -112,7 +120,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # 家族名、ユーザ名を使った検索
   def self.user_by_names(family_name, user_name)
     families = Family.where('login_name = ?', family_name)
     if families && families.first
@@ -123,7 +130,22 @@ class User < ActiveRecord::Base
     end
   end
 
-  # 家族を指定して、そのユーザを取り出すメソッド
+  ## 家族名(または家族ID)、ユーザ名を使った検索
+  #def self.user_by_names(family, name)
+  #  if family.kind_of?(Fixnum)
+  #    users = where('login_name = ? AND family_id = ?', name, family)
+  #    #users = where(arel_table[:login_name].eq(name)).where(arel_table[:family_id].eq(family))
+  #  else
+  #    family_id = Family.find_by_login_name(family.to_s).id
+  #    users = where('login_name = ? AND family_id = ?', name, family_id)
+  #    #families = Arel::Table.new :families
+  #    #family_id = families.project('id').where(families[:login_name].eq(family.to_s))
+  #    #users = where(arel_table[:login_name].eq(name)).where(arel_table[:family_id].in(family_id))
+  #  end
+  #  users && users.first
+  #end
+
+  # 家族を指定して、そのユーザを取り出す
   def self.family_users(family_id, except_id = nil)
     if except_id.nil?
       User.where('family_id = ?', family_id).order(:created_at)
@@ -132,7 +154,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # 使用されている名前ならtrue
   def already_used_name?(name, family_id = nil)
     if family_id
       user = User.find_by_login_name_and_family_id(name, family_id)
@@ -141,6 +162,20 @@ class User < ActiveRecord::Base
       not Family.find_by_login_name(name).nil?
     end
   end
+
+  ## 使用されている名前ならtrue
+  #def self.already_used_name?(user)
+  #  if user.kind_of?(User)
+  #    if user.family.nil?
+  #      true
+  #    else
+  #      other = user_by_names(user.family_id, user.login_name)
+  #      (not other.nil?) && (other.id == user.id)
+  #    end
+  #  else
+  #    not Family.find_by_login_name(user.to_s).nil?
+  #  end
+  #end
 
   # ユーザの作成
   def self.add_new_user(login_name, display_name, mail_address, aruji, family, password = nil)
@@ -171,8 +206,8 @@ class User < ActiveRecord::Base
 
   # ユーザ登録時の認証
   # 認証できたらtrue
-  def self.verify(id, token)
-    user = find_by_id(id)
+  def self.verify?(id, token)
+    user = find(id)
     if user.try(:verification_token) == token
       user.update_attributes(verified_at: DateTime.current, verification_token: nil)
     end
