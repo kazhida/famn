@@ -53,10 +53,11 @@ class User < ActiveRecord::Base
     if not /^[0-9a-zA-Z_]+$/ =~ login_name
       # 英数字+_
       errors.add(:login_name, '%s must be number, alphabetic character or "_".' % login_name)
-    elsif family && already_used_name?(login_name, family.id)
+    #elsif family && already_used_name?(login_name, family.login_name)
+    elsif family && User.already_used_name?(self)
       # 同じ家族でかぶっている
       errors.add(:login_name, '%s is already used at families.' % login_name)
-    elsif already_used_name?(login_name)
+    elsif User.already_used_name?(login_name)
       # どこかの家族名とかぶっている
       errors.add(:login_name, '%s is already used at users same family.' % login_name)
     elsif User.family_users(family_id).count >= 10
@@ -120,30 +121,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.user_by_names(family_name, user_name)
-    families = Family.where('login_name = ?', family_name)
-    if families && families.first
-      users = User.where('family_id = ? AND login_name = ?', families.first.id, user_name)
-      if users
-        users.first
-      end
+  # 家族名(または家族ID)、ユーザ名を使った検索
+  def self.user_by_names(family, name)
+    if family.kind_of?(Fixnum)
+      users = where(arel_table[:login_name].eq(name)).where(arel_table[:family_id].eq(family))
+    else
+      families = Arel::Table.new :families
+      family_id = families.project('id').where(families[:login_name].eq(family.to_s))
+      users = where(arel_table[:login_name].eq(name)).where(arel_table[:family_id].in(family_id))
     end
+    users && users.first
   end
-
-  ## 家族名(または家族ID)、ユーザ名を使った検索
-  #def self.user_by_names(family, name)
-  #  if family.kind_of?(Fixnum)
-  #    users = where('login_name = ? AND family_id = ?', name, family)
-  #    #users = where(arel_table[:login_name].eq(name)).where(arel_table[:family_id].eq(family))
-  #  else
-  #    family_id = Family.find_by_login_name(family.to_s).id
-  #    users = where('login_name = ? AND family_id = ?', name, family_id)
-  #    #families = Arel::Table.new :families
-  #    #family_id = families.project('id').where(families[:login_name].eq(family.to_s))
-  #    #users = where(arel_table[:login_name].eq(name)).where(arel_table[:family_id].in(family_id))
-  #  end
-  #  users && users.first
-  #end
 
   # 家族を指定して、そのユーザを取り出す
   def self.family_users(family_id, except_id = nil)
@@ -154,28 +142,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def already_used_name?(name, family_id = nil)
-    if family_id
-      user = User.find_by_login_name_and_family_id(name, family_id)
-      (not user.nil?) && (user.id != self.id)
+  # 使用されている名前ならtrue
+  def self.already_used_name?(user)
+    if user.kind_of?(User)
+      other = user_by_names(user.family.login_name, user.login_name)
+      not (other.nil? || other.id == user.id)
     else
-      not Family.find_by_login_name(name).nil?
+      not Family.find_by_login_name(user.to_s).nil?
     end
   end
-
-  ## 使用されている名前ならtrue
-  #def self.already_used_name?(user)
-  #  if user.kind_of?(User)
-  #    if user.family.nil?
-  #      true
-  #    else
-  #      other = user_by_names(user.family_id, user.login_name)
-  #      (not other.nil?) && (other.id == user.id)
-  #    end
-  #  else
-  #    not Family.find_by_login_name(user.to_s).nil?
-  #  end
-  #end
 
   # ユーザの作成
   def self.add_new_user(login_name, display_name, mail_address, aruji, family, password = nil)
