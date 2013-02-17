@@ -7,13 +7,14 @@ div data-role="page" data-theme="b"
           = image_tag entry.icon, :class => 'message-icon'
           p class="message-text"
             = h(entry.message)
-          br class="clear-left"
+          span class="clear-left"
           p class="ui-li-aside"
             span class="message-name"
               = "#{entry.user.display_name}"
             | &nbsp;(at&nbsp;
             = entry.posted_on_as_string
             | )
+    p
     = paginate @entries
   = render 'shared/footer'
 

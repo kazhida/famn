@@ -59,16 +59,8 @@ body {
   }
 }
 
-#left-pane {
-  margin-left: 0;
-}
-
 .inset {
   padding: 8px;
-
-  .well {
-    background: #ffccee;
-  }
 }
 
 .full-width {
@@ -109,7 +101,6 @@ body {
   clear: left;
 }
 
-
 div.ads {
   margin: 0;
   padding: 0;
@@ -146,7 +137,8 @@ table.entries {
 
   th.name {
     text-align: center;
-    min-width: 8em;
+    min-width:  6em;
+    max-width: 12em;
   }
 
   tr.entry {
