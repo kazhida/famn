@@ -26,6 +26,15 @@ body {
     z-index: -1;
 }
 
+#left-pane {
+  background: url(bg_side_0.jpg) transparent;
+  background-size: cover;
+  background-origin: border-box;
+  min-height: 640px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 #wrapper {
   position: relative;
   margin-left: auto;
