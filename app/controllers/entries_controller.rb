@@ -30,7 +30,14 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     respond_to do |format|
-      if Entry.post(current_user, params[:message], params[:face])
+      success = Entry.post(current_user, params[:message], params[:face]) do |entry|
+        @entry = entry
+        entry.destinations.each do |dest|
+
+        end
+      end
+
+      if success
         format.mobile { redirect_to :entries }
         format.html   { redirect_to :entries }
         format.json   { render json: @entry, status: :created, location: @entry }
