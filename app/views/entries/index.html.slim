@@ -18,10 +18,10 @@ div class="span6"
             br
             = entry.user.display_name
           td
-            p class="message"
-              = entry.message
             p class="date"
               = entry.posted_on_as_string
+            p class="message"
+              = entry.message
   = paginate @entries, :window => 2, :outer_window => 2
 
 div class="span3 ads"
