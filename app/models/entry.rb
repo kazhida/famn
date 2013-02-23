@@ -3,6 +3,7 @@
 class Entry < ActiveRecord::Base
   belongs_to :family
   belongs_to :user
+  has_many   :destination, :dependent => :destroy
 
   attr_accessible :message
   attr_accessible :user
@@ -26,10 +27,20 @@ class Entry < ActiveRecord::Base
     self.family_id = user ? user.family.id : nil
   end
 
-  # todo:scope化
   def self.by_user(user)
+    # todo:Arelムツカシネ
+    #dests = Arel::Table.new :destinations
+    #tbl = arel_table.join(dests).on(arel_table[:id].eq(dests[:entry_id]))
+    #cond = tbl[:family_id].eq(user.family_id)
+    #cond = cond.or(tbl[:name].eq(user.family.login_name))
+    #Entry.includes(:destination).where(cond).order('posted_on DESC')
+
     mention = "%@#{user.family.login_name} %"
     where('family_id=? OR message LIKE ?', user.family_id, mention).order('posted_on DESC')
+  end
+
+  def receivers
+
   end
 
   def set_destination(message)
@@ -37,7 +48,7 @@ class Entry < ActiveRecord::Base
 
     message.gsub(/(@\w+)\s|$/) do
       @destinations.push "#{$1}"  unless $1.nil? or $1.empty?
-      '(dest)'
+      ''
     end
   end
 
@@ -50,9 +61,16 @@ class Entry < ActiveRecord::Base
     entry.face      = face
     entry.set_destination message
 
-    proc.call entry
-
-    entry.save
+    transaction do
+      entry.save!
+      entry.destinations.each do |destination|
+        Destination.create!(entry_id: entry.id, name: destination)
+      end
+      proc.call entry
+    end
+    true
+    rescue => e
+    false
   end
 
   def icon

@@ -26,6 +26,15 @@ describe EntriesController do
         }.to change(Entry, :count).by(1)
       end
 
+      it '宛先付きでポストすると1増える' do
+        expect {
+          post :create, {
+              :message   => '@hida @ryoma @kyu いくよ。',
+              :face      => 1,
+          }
+        }.to change(Entry, :count).by(1)
+      end
+
       it '宛先を指定すると、それを切り出してくれる' do
         post :create, {
             :message   => '@hida @ryoma @kyu いくよ。',
@@ -39,6 +48,15 @@ describe EntriesController do
         dests[1].should == '@ryoma'
         dests[2].should == '@kyu'
         dests[3].should be_nil
+      end
+
+      it '宛先を指定すると、宛先レコードが増える' do
+        expect {
+          post :create, {
+              :message   => '@hida @ryoma @kyu いくよ。',
+              :face      => 1,
+          }
+        }.to change(Destination, :count).by(3)
       end
 
       it 'ポストした後、一覧画面に戻る' do

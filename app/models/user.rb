@@ -223,10 +223,9 @@ class User < ActiveRecord::Base
 
       self.save!
     end
-    true
-
-  rescue => e
-    false
+      true
+    rescue => e
+      false
   end
 
   def icon(look = nil)
