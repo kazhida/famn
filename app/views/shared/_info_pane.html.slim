@@ -12,7 +12,7 @@
       | &nbsp;(@
       = current_user.family.login_name
       | )
-    = render 'shared/flash_message'
+= render 'shared/flash_message'
 p
 - unless current_user.nil?
   div class="inset"
