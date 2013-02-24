@@ -8,7 +8,7 @@ describe AccountsController do
   describe 'アカウント情報を変更するとき' do
 
     def valid_user_id
-      User.user_by_names('sakamoto', 'ryoma').id
+      User.by_names('sakamoto', 'ryoma').id
     end
 
     before(:each) do
@@ -24,7 +24,7 @@ describe AccountsController do
               :face => 'gray'
           }
       }
-      User.user_by_names('sakamoto', 'ryoma').display_name.should == 'りょうま'
+      User.by_names('sakamoto', 'ryoma').display_name.should == 'りょうま'
     end
 
     it 'パスワードを変更する場合は、現在のパスワードも入力する必要がある' do
@@ -43,7 +43,7 @@ describe AccountsController do
 
     before(:each) do
       # 未認証状態にする
-      @user = User.user_by_names('sakamoto', 'ryoma')
+      @user = User.by_names('sakamoto', 'ryoma')
       @user.verification_token = '01234567abcdef'
       @user.save!
     end

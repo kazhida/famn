@@ -211,20 +211,20 @@ describe User, 'ユーザを探すとき' do
   fixtures :families, :users
 
   it '家族名とユーザ名を指定することでレコードをとってくることができる' do
-    User.user_by_names('sakamoto', 'ryoma').should_not be_nil
+    User.by_names('sakamoto', 'ryoma').should_not be_nil
   end
 
   it '家族名とユーザ名を指定することでレコードを特定できる' do
-    User.user_by_names('ito', 'hirohumi').login_name.should eql('hirohumi')
+    User.by_names('ito', 'hirohumi').login_name.should eql('hirohumi')
   end
 
   it '坂本家は3人' do
-    otome = User.user_by_names('sakamoto', 'otome')
+    otome = User.by_names('sakamoto', 'otome')
     User.family_users(otome.family_id).count.should == 3
   end
 
   it '乙女を除くと2人' do
-    otome = User.user_by_names('sakamoto', 'otome')
+    otome = User.by_names('sakamoto', 'otome')
     User.family_users(otome.family_id, otome.id).count.should == 2
   end
 end
@@ -311,7 +311,7 @@ describe User, 'ユーザ情報を更新するとき' do
   fixtures :families, :users
 
   before(:each) do
-    @user = User.user_by_names('sakamoto', 'otome')
+    @user = User.by_names('sakamoto', 'otome')
     @user.password_digest = BCrypt::Password.create('foobar')
     @user.save
   end
@@ -319,7 +319,7 @@ describe User, 'ユーザ情報を更新するとき' do
   it 'パスワード更新がなければ、名前だけ変わる' do
     @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red).should be_true
 
-    @user = User.user_by_names('sakamoto', 'otome')
+    @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == 'さかもと'
     @user.display_name.should == 'おとめ'
   end
@@ -327,7 +327,7 @@ describe User, 'ユーザ情報を更新するとき' do
   it '家族名がnilなら、家族名は変わらない' do
     @user.update_account_info(nil, 'おとめ', 'otome@example.com', :red).should be_true
 
-    @user = User.user_by_names('sakamoto', 'otome')
+    @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
     @user.display_name.should == 'おとめ'
   end
@@ -335,7 +335,7 @@ describe User, 'ユーザ情報を更新するとき' do
   it 'パスワードを変えるときは、現在のパスワードも必要' do
     @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, nil, 'hogehoge').should be_false
 
-    @user = User.user_by_names('sakamoto', 'otome')
+    @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
     @user.display_name.should == '乙女'
   end
@@ -343,7 +343,7 @@ describe User, 'ユーザ情報を更新するとき' do
   it 'パスワードを変えるときは、現在のパスワードとconfirmが必要' do
     @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, 'foobar', 'hogehoge', 'fugafuga').should be_false
 
-    @user = User.user_by_names('sakamoto', 'otome')
+    @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
     @user.display_name.should == '乙女'
   end
@@ -351,7 +351,7 @@ describe User, 'ユーザ情報を更新するとき' do
   it 'パスワードを更新するときは、現在のパスワードと、confirmationもあれば、OK' do
     @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, 'foobar', 'hogehoge', 'hogehoge').should be_true
 
-    @user = User.user_by_names('sakamoto', 'otome')
+    @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == 'さかもと'
     @user.display_name.should == 'おとめ'
   end

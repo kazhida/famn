@@ -8,7 +8,7 @@ describe EntriesController do
   describe 'ポストするとき' do
 
     def valid_user_id
-      User.user_by_names('sakamoto', 'ryoma').id
+      User.by_names('sakamoto', 'ryoma').id
     end
 
     before(:each) do

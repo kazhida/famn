@@ -8,7 +8,7 @@ describe SessionsController do
   describe 'ログインするとき' do
 
     before(:each) do
-      user = User.user_by_names('sakamoto', 'ryoma')
+      user = User.by_names('sakamoto', 'ryoma')
       user.password = 'foobar'
       user.save!
     end

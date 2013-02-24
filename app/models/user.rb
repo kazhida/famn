@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   # 認証ずみならそのユーザ
   # でなければnil
   def self.authenticated_user(family_name, user_name, password)
-    user = user_by_names(family_name, user_name)
+    user = by_names(family_name, user_name)
     if user && user.authenticate(password)
       user
     else
@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
   end
 
   # 家族名(または家族ID)、ユーザ名を使った検索
-  def self.user_by_names(family, name)
+  def self.by_names(family, name)
     if family.kind_of?(Fixnum)
       users = where(arel_table[:login_name].eq(name)).where(arel_table[:family_id].eq(family))
     else
@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
   # 使用されている名前ならtrue
   def self.already_used_name?(user)
     if user.kind_of?(User)
-      other = user_by_names(user.family.login_name, user.login_name)
+      other = by_names(user.family.login_name, user.login_name)
       not (other.nil? || other.id == user.id)
     else
       not Family.find_by_login_name(user.to_s).nil?

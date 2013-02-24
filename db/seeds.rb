@@ -155,37 +155,37 @@ end
 [
   {
     message:  'hi.',
-    user: User.user_by_names('it0', 'hirohumi'),
+    user: User.by_names('it0', 'hirohumi'),
     posted_on: Date::new(2012, 01, 01)
   },
   {
     message:  'ho.',
-    user: User.user_by_names('it0', 'hirohumi'),
+    user: User.by_names('it0', 'hirohumi'),
     posted_on: Date::new(2012, 12, 12)
   },
   {
     message:  '仁しぇんしぇい。',
-    user: User.user_by_names('sakamot0', 'ryoma'),
+    user: User.by_names('sakamot0', 'ryoma'),
     posted_on: Date::new(2012, 01, 01)
   },
   {
     message:  '大変がぜよ。',
-    user: User.user_by_names('sakamot0', 'ryoma'),
+    user: User.by_names('sakamot0', 'ryoma'),
     posted_on: Date::new(2012, 02, 02)
   },
   {
     message:  '日本の夜明けぜよ。',
-    user: User.user_by_names('sakamot0', 'ryoma'),
+    user: User.by_names('sakamot0', 'ryoma'),
     posted_on: Date::new(2012, 11, 11)
   },
   {
     message:  'ぼけ',
-    user: User.user_by_names('sakamot0', 'otome'),
+    user: User.by_names('sakamot0', 'otome'),
     posted_on: Date::new(2012, 03, 03)
   },
   {
       message:  '@sakamot0 ぼけ',
-      user: User.user_by_names('it0', 'ryoma'),
+      user: User.by_names('it0', 'ryoma'),
       posted_on: Date::new(2012, 03, 04)
   }
 ].each do |e|
@@ -200,7 +200,7 @@ end
 (1..31).each do |i|
   Entry.create(
       message:  "#{i}日ぜよ。",
-      user:     User.user_by_names('sakamot0', 'ryoma'),
+      user:     User.by_names('sakamot0', 'ryoma'),
       posted_on: Date::new(2012, 12, i)
   )
 end
@@ -208,7 +208,7 @@ end
 (1..12).each do |i|
   Entry.create(
       message:  "#{i}月9日です。",
-      user:     User.user_by_names('sakamot0', 'kyu'),
+      user:     User.by_names('sakamot0', 'kyu'),
       posted_on: Date::new(2012, i, 9)
   )
 end

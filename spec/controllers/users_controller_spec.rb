@@ -11,7 +11,7 @@ describe UsersController do
 
       before(:each) do
         # カレントユーザを設定
-        @user = User.user_by_names('sakamoto', 'otome')
+        @user = User.by_names('sakamoto', 'otome')
         session[:user_id] = @user.id
       end
 
@@ -76,17 +76,17 @@ describe UsersController do
 
     before(:each) do
       # カレントユーザを設定
-      session[:user_id] = User.user_by_names('sakamoto', 'otome')
+      session[:user_id] = User.by_names('sakamoto', 'otome')
     end
 
     it '正しいIDを指定すればユーザが1減る' do
-      User.user_by_names('sakamoto', 'ryoma').should_not be_nil
+      User.by_names('sakamoto', 'ryoma').should_not be_nil
       expect {
         delete :destroy, {
-          id: User.user_by_names('sakamoto', 'ryoma').id
+          id: User.by_names('sakamoto', 'ryoma').id
         }
       }.to change(User, :count).by(-1)
-      User.user_by_names('sakamoto', 'ryoma').should be_nil
+      User.by_names('sakamoto', 'ryoma').should be_nil
     end
   end
 end
