@@ -12,6 +12,14 @@ module ApplicationHelper
     link_to caption, {:controller => :entries, :action => :new, :send_to => user.login_name}
   end
 
+  def tagged(message)
+    message.gsub(/@(\w+)(\s|$)/) do
+      link_to "@#{$1}#{$2}", {:controller => :entries, :action => :new, :send_to => "#{$1}"}  unless $1.nil?
+    end.gsub(/(#\S+)(\s|$)/) do
+      %!<span class="hash-tag">#{$1}</span>#{$2}!  unless $1.nil?
+    end
+  end
+
   def mobile_ad?
     ENV['FAMN_GOOGLE_MOBILE_AD_SLOT'] && ENV['FAMN_GOOGLE_AD_CLIENT'] && ENV['FAMN_GOOGLE_AD_SCRIPT']
   end

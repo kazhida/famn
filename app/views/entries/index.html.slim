@@ -21,7 +21,7 @@ div class="span6"
             p class="date"
               = entry.posted_on_as_string
             p class="message"
-              = entry.message
+              == tagged(entry.message)
   = paginate @entries, :window => 2, :outer_window => 2
 
 div class="span3 ads"

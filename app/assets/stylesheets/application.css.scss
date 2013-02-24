@@ -33,6 +33,7 @@ body {
   min-height: 640px;
   margin-left: 0px;
   margin-right: 0px;
+  padding: 8px;
 }
 
 #wrapper {
@@ -149,6 +150,10 @@ table.entries {
       font-size: 80%;
       text-align: right;
     }
+  }
+
+  span.hash-tag {
+    color: #c33;
   }
 }
 

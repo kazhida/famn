@@ -28,21 +28,12 @@ class Entry < ActiveRecord::Base
   end
 
   def self.by_user(user)
-    # todo:Arelムツカシネ
-    destinations =Destination.arel_table
-    to_user = destinations.project(destinations[:entry_id]).where(destinations[:name].eq(user.login_name))
+    destinations = Destination.arel_table
+    to_user = destinations.project(destinations[:entry_id]).where(destinations[:name].eq('@' + user.family.login_name))
     entries = Entry.arel_table
     cond = entries[:family_id].eq(user.family_id).or entries[:id].in(to_user)
-    @sql = arel_table.where(cond).order('posted_on DESC').order('posted_on DESC')
+    @sql = arel_table.where(cond).order('posted_on DESC').to_sql
     where(cond).order('posted_on DESC')
-
-
-    #db = ActiveRecord::Base.connection
-    #db.execute(entries.project(Arel.star).where(cond).order('posted_on DESC').to_sql)
-
-
-    #mention = "%@#{user.family.login_name} %"
-    #where('family_id=? OR message LIKE ?', user.family_id, mention).order('posted_on DESC')
   end
 
   def receivers
@@ -89,7 +80,7 @@ class Entry < ActiveRecord::Base
     if posted_on.today?
       posted_on.strftime('%H:%M:%S')
     else
-      posted_on.strftime('%y/%m/%d')
+      posted_on.strftime('%m/%d %H:%M')
     end
   end
 end

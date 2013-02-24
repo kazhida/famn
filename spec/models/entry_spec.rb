@@ -68,22 +68,19 @@ describe Entry, 'エントリを取り出したとき' do
   fixtures :families, :users, :entries
 
   before(:each) do
-    user = User.user_by_names('sakamoto', 'ryoma')
-    @entries = Entry.by_user(user)
+    @user = User.user_by_names('sakamoto', 'ryoma')
+    @entries = Entry.by_user(@user)
   end
 
   it '坂本家のエントリは4件' do
-    @entries.count.should eql(4)
+    @entries.count.should == 4
   end
 
   it '宛先付きでポストすると1件増える' do
-    expect {
-      ito = User.user_by_names('ito', 'hideaki')
-      Entry.post(ito, ' @sakamoto またあそぼ', 4)
-    }.to change(Entry, :count).by(1)
-    user = User.user_by_names('sakamoto', 'ryoma')
-    @entries = Entry.by_user(user)
-    @entries.count.should eql(5)
+    ito = User.user_by_names('ito', 'hideaki')
+    Entry.post(ito, '@sakamoto またあそぼ', 1).should be_true
+    @entries = Entry.by_user(@user)
+    @entries.count.should == 5
   end
 
   it 'posted_onの降順になっている' do
