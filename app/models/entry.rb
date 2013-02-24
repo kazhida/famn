@@ -29,14 +29,20 @@ class Entry < ActiveRecord::Base
 
   def self.by_user(user)
     # todo:Arelムツカシネ
-    #dests = Arel::Table.new :destinations
-    #tbl = arel_table.join(dests).on(arel_table[:id].eq(dests[:entry_id]))
-    #cond = tbl[:family_id].eq(user.family_id)
-    #cond = cond.or(tbl[:name].eq(user.family.login_name))
-    #Entry.includes(:destination).where(cond).order('posted_on DESC')
+    destinations =Destination.arel_table
+    to_user = destinations.project(destinations[:entry_id]).where(destinations[:name].eq(user.login_name))
+    entries = Entry.arel_table
+    cond = entries[:family_id].eq(user.family_id).or entries[:id].in(to_user)
+    @sql = arel_table.where(cond).order('posted_on DESC').order('posted_on DESC')
+    where(cond).order('posted_on DESC')
 
-    mention = "%@#{user.family.login_name} %"
-    where('family_id=? OR message LIKE ?', user.family_id, mention).order('posted_on DESC')
+
+    #db = ActiveRecord::Base.connection
+    #db.execute(entries.project(Arel.star).where(cond).order('posted_on DESC').to_sql)
+
+
+    #mention = "%@#{user.family.login_name} %"
+    #where('family_id=? OR message LIKE ?', user.family_id, mention).order('posted_on DESC')
   end
 
   def receivers
@@ -48,7 +54,7 @@ class Entry < ActiveRecord::Base
 
     message.gsub(/(@\w+)\s|$/) do
       @destinations.push "#{$1}"  unless $1.nil? or $1.empty?
-      ''
+      "#{$1}"
     end
   end
 
@@ -66,7 +72,9 @@ class Entry < ActiveRecord::Base
       entry.destinations.each do |destination|
         Destination.create!(entry_id: entry.id, name: destination)
       end
-      proc.call entry
+      unless proc.nil?
+        proc.call entry
+      end
     end
     true
     rescue => e

@@ -72,12 +72,22 @@ describe Entry, 'エントリを取り出したとき' do
     @entries = Entry.by_user(user)
   end
 
-  it '坂本家のエントリは5件' do
+  it '坂本家のエントリは4件' do
+    @entries.count.should eql(4)
+  end
+
+  it '宛先付きでポストすると1件増える' do
+    expect {
+      ito = User.user_by_names('ito', 'hideaki')
+      Entry.post(ito, ' @sakamoto またあそぼ', 4)
+    }.to change(Entry, :count).by(1)
+    user = User.user_by_names('sakamoto', 'ryoma')
+    @entries = Entry.by_user(user)
     @entries.count.should eql(5)
   end
 
   it 'posted_onの降順になっている' do
-    posted_ons = @entries.map {|e| e.posted_on}
-    posted_ons.should eql(posted_ons.sort.reverse)
+    posted = @entries.map {|e| e.posted_on}
+    posted.should eql(posted.sort.reverse)
   end
 end
