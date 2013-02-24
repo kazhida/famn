@@ -36,10 +36,6 @@ class Entry < ActiveRecord::Base
     where(cond).order('posted_on DESC')
   end
 
-  def receivers
-
-  end
-
   def set_destination(message)
     @destinations = Array.new
 
