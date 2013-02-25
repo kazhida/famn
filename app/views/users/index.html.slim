@@ -12,7 +12,7 @@ div class="span6"
             th 登録
             th 削除
         tbody
-          - User.family_users(current_user.family_id).each do |user|
+          - User.by_family_id(current_user.family_id).each do |user|
             tr
               td = "#{user.display_name} (@#{user.login_name})"
               td

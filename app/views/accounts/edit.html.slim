@@ -18,6 +18,13 @@ div class="span3" id="edit-account"
             = image_tag "face_#{face}_0.png", :size => '24x24'
           | &nbsp;
       br
+      label class="checkbox"
+        = f.check_box     :notice
+        | メッセージが投稿されたときにメールで通知を受けとる
+      label class="checkbox"
+        = f.check_box     :notice_only_replied
+        | 自分宛のメッセージのときだけ受けとる
+      br
       = f.submit '更新', :class => 'btn btn-primary buttons'
 
 div class="span3" id="index-users"
@@ -30,7 +37,7 @@ div class="span3" id="index-users"
             th 登録
             th 削除
         tbody
-          - User.family_users(current_user.family_id).each do |user|
+          - User.by_family_id(current_user.family_id).each do |user|
             tr
               td = "#{user.display_name} (@#{user.login_name})"
               td

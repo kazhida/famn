@@ -20,6 +20,8 @@ class AccountsController < ApplicationController
         params[:user][:display_name],
         params[:user][:mail_address],
         params[:user][:face],
+        params[:user][:notice],
+        params[:user][:notice_only_replied],
         params[:user][:current_password],
         params[:user][:new_password],
         params[:user][:new_password_confirmation]

@@ -32,9 +32,7 @@ class EntriesController < ApplicationController
     respond_to do |format|
       success = Entry.post(current_user, params[:message], params[:face]) do |entry|
         @entry = entry
-        entry.destinations.each do |dest|
 
-        end
       end
 
       if success

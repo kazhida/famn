@@ -21,7 +21,9 @@ describe AccountsController do
               :family_name => nil,
               :display_name => 'りょうま',
               :mail_address => 'ryoma@example.com',
-              :face => 'gray'
+              :face => 'gray',
+              :notice => true,
+              :notice_only_replied => false
           }
       }
       User.by_names('sakamoto', 'ryoma').display_name.should == 'りょうま'

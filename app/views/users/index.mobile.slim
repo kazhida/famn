@@ -3,7 +3,7 @@ div data-role="page" data-theme="b"
   div data-role="content" data-theme="c"
     div
       ul data-role="listview"
-        - User.family_users(current_user.family_id).each do |user|
+        - User.by_family_id(current_user.family_id).each do |user|
           li
             = link_to "#{user.display_name} (@#{user.login_name})", user
         li data-icon="plus"

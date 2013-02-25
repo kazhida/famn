@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   attr_accessible :verification_token
   attr_accessible :verified_at
   attr_accessible :face
+  attr_accessible :notice
+  attr_accessible :notice_only_replied
 
   accepts_nested_attributes_for :family
 
@@ -60,7 +62,7 @@ class User < ActiveRecord::Base
     elsif User.already_used_name?(login_name)
       # どこかの家族名とかぶっている
       errors.add(:login_name, '%s is already used at users same family.' % login_name)
-    elsif User.family_users(family_id).count >= 10
+    elsif User.by_family_id(family_id).count >= 10
       # 同一家族では10人まで
       errors.add(:login_name, '%s\'s has already 10 users.' % login_name)
     end
@@ -134,7 +136,7 @@ class User < ActiveRecord::Base
   end
 
   # 家族を指定して、そのユーザを取り出す
-  def self.family_users(family_id, except_id = nil)
+  def self.by_family_id(family_id, except_id = nil)
     if except_id.nil?
       User.where('family_id = ?', family_id).order(:created_at)
     else
@@ -194,7 +196,16 @@ class User < ActiveRecord::Base
   end
 
   # アカウントの変更
-  def update_account_info(family_name, user_name, mail_address, face, current_password = nil, new_password = nil, confirmation = nil)
+  def update_account_info(
+      family_name,
+      user_name,
+      mail_address,
+      face,
+      notice,
+      notice_only_replied,
+      current_password = nil,
+      new_password = nil,
+      confirmation = nil)
 
     transaction do
       unless family_name.nil? || family_name.empty?
@@ -207,13 +218,17 @@ class User < ActiveRecord::Base
         self.attributes = {
             :display_name => user_name,
             :mail_address => mail_address,
-            :face         => face
+            :face         => face,
+            :notice       => notice,
+            :notice_only_replied => notice_only_replied
         }
       else
         self.attributes = {
             :display_name => user_name,
             :mail_address => mail_address,
             :face         => face,
+            :notice       => notice,
+            :notice_only_replied => notice_only_replied,
             :current_password => current_password,
             :new_password => new_password,
             :new_password_confirmation => confirmation
@@ -226,6 +241,10 @@ class User < ActiveRecord::Base
       true
     rescue => e
       false
+  end
+
+  def notice?(destinations = [])
+    notice && (!notice_only_replied || destinations.include?("@#{login_name}"))
   end
 
   def icon(look = nil)

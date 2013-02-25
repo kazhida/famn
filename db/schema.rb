@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223035246) do
+ActiveRecord::Schema.define(:version => 20130225095024) do
 
   create_table "destinations", :force => true do |t|
     t.integer  "entry_id"
@@ -40,18 +40,20 @@ ActiveRecord::Schema.define(:version => 20130223035246) do
   add_index "families", ["login_name"], :name => "index_families_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "login_name",         :limit => 64,                      :null => false
-    t.string   "display_name",       :limit => 250,                     :null => false
-    t.string   "password_digest",                                       :null => false
-    t.string   "mail_address",       :limit => 250,                     :null => false
-    t.boolean  "aruji",                             :default => false,  :null => false
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
-    t.integer  "family_id",                                             :null => false
+    t.string   "login_name",          :limit => 64,                      :null => false
+    t.string   "display_name",        :limit => 250,                     :null => false
+    t.string   "password_digest",                                        :null => false
+    t.string   "mail_address",        :limit => 250,                     :null => false
+    t.boolean  "aruji",                              :default => false,  :null => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
+    t.integer  "family_id",                                              :null => false
     t.datetime "verified_at"
     t.string   "auto_login_token"
     t.string   "verification_token"
-    t.string   "face",                              :default => "gray", :null => false
+    t.string   "face",                               :default => "gray", :null => false
+    t.boolean  "notice",                             :default => true,   :null => false
+    t.boolean  "notice_only_replied",                :default => false,  :null => false
   end
 
   add_index "users", ["login_name"], :name => "index_users_on_login_name"

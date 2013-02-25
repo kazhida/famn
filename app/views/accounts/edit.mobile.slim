@@ -15,6 +15,13 @@ div data-role="page" data-theme="b" id="edit-account"
           = f.label "face_#{face}" do
             = image_tag "face_#{face}_0.png", :size => '24x24'
       br
+      label class="checkbox" data-theme="c"
+        = f.check_box     :notice
+        | メッセージが投稿されたときにメールで通知を受けとる
+      label class="checkbox" data-theme="c"
+        = f.check_box     :notice_only_replied
+        | 自分宛のメッセージのときだけ受けとる
+      br
       = f.submit '更新', :class => 'btn btn-primary buttons', 'data-theme' => 'a'
   = render 'shared/footer'
 
@@ -23,7 +30,7 @@ div data-role="page" data-theme="b" id="index-users"
   div data-role="content"
     ul data-role="listview"
       li data-role="list-divider" ユーザ一覧
-      - User.family_users(current_user.family_id).each do |user|
+      - User.by_family_id(current_user.family_id).each do |user|
         li
           a href="#"
             = "#{user.display_name} (@#{user.login_name})"

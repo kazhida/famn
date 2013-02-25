@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.family_users(current_user.family_id)
+    @users = User.by_family_id(current_user.family_id)
     respond_to do |format|
       format.mobile
       format.html
