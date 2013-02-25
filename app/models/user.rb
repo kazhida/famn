@@ -56,10 +56,10 @@ class User < ActiveRecord::Base
       # 英数字+_
       errors.add(:login_name, '%s must be number, alphabetic character or "_".' % login_name)
     #elsif family && already_used_name?(login_name, family.login_name)
-    elsif family && User.already_used_name?(self)
+    elsif family && User.used_name?(self)
       # 同じ家族でかぶっている
       errors.add(:login_name, '%s is already used at families.' % login_name)
-    elsif User.already_used_name?(login_name)
+    elsif User.used_name?(login_name)
       # どこかの家族名とかぶっている
       errors.add(:login_name, '%s is already used at users same family.' % login_name)
     elsif User.by_family_id(family_id).count >= 10
@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
   end
 
   # 使用されている名前ならtrue
-  def self.already_used_name?(user)
+  def self.used_name?(user)
     if user.kind_of?(User)
       other = by_names(user.family.login_name, user.login_name)
       not (other.nil? || other.id == user.id)
