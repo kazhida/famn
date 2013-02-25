@@ -45,7 +45,7 @@ class Entry < ActiveRecord::Base
     end
   end
 
-  def self.post(user, message, face, &proc)
+  def self.post!(user, message, face, &proc)
     entry = Entry.new
     entry.message   = message
     entry.user      = user
@@ -63,9 +63,6 @@ class Entry < ActiveRecord::Base
         proc.call entry
       end
     end
-    true
-    rescue => e
-    false
   end
 
   def icon

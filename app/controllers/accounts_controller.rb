@@ -15,19 +15,20 @@ class AccountsController < ApplicationController
 
   # PUT /account
   def update
-    if current_user.update_account_info(
-        params[:user][:family_name],
-        params[:user][:display_name],
-        params[:user][:mail_address],
-        params[:user][:face],
-        params[:user][:notice],
-        params[:user][:notice_only_replied],
-        params[:user][:current_password],
-        params[:user][:new_password],
-        params[:user][:new_password_confirmation]
-    )
+    begin
+      current_user.update_account_info!(
+          params[:user][:family_name],
+          params[:user][:display_name],
+          params[:user][:mail_address],
+          params[:user][:face],
+          params[:user][:notice],
+          params[:user][:notice_only_replied],
+          params[:user][:current_password],
+          params[:user][:new_password],
+          params[:user][:new_password_confirmation]
+      )
       flash.notice = 'アカウント情報を変更しました。'
-    else
+    rescue
       flash.alert = '変更できませんでした。' + current_user.errors.to_s
     end
     redirect_to [:edit, :account]

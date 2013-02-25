@@ -196,7 +196,7 @@ class User < ActiveRecord::Base
   end
 
   # アカウントの変更
-  def update_account_info(
+  def update_account_info!(
       family_name,
       user_name,
       mail_address,
@@ -238,9 +238,6 @@ class User < ActiveRecord::Base
 
       self.save!
     end
-      true
-    rescue => e
-      false
   end
 
   def notice?(destinations = [])

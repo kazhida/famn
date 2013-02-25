@@ -30,16 +30,15 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     respond_to do |format|
-      success = Entry.post(current_user, params[:message], params[:face]) do |entry|
-        @entry = entry
+      begin
+        Entry.post!(current_user, params[:message], params[:face]) do |entry|
+          @entry = entry
 
-      end
-
-      if success
+        end
         format.mobile { redirect_to :entries }
         format.html   { redirect_to :entries }
         format.json   { render json: @entry, status: :created, location: @entry }
-      else
+      rescue
         format.mobile { render action: 'new', alert: '書き込めませんでした。' }
         format.html   { render action: 'new', alert: '書き込めませんでした。' }
         format.json   { render json: @entry.errors, status: :unprocessable_entity }

@@ -78,7 +78,9 @@ describe Entry, 'エントリを取り出したとき' do
 
   it '宛先付きでポストすると1件増える' do
     ito = User.by_names('ito', 'hideaki')
-    Entry.post(ito, '@sakamoto またあそぼ', 1).should be_true
+    proc {
+      Entry.post!(ito, '@sakamoto またあそぼ', 1)
+    }.should_not raise_error
     @entries = Entry.by_user(@user)
     @entries.count.should == 5
   end

@@ -317,7 +317,9 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワード更新がなければ、名前だけ変わる' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, true, false).should be_true
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, true, false)
+    }.should_not raise_error
 
     @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == 'さかもと'
@@ -325,7 +327,9 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it '家族名がnilなら、家族名は変わらない' do
-    @user.update_account_info(nil, 'おとめ', 'otome@example.com', :red, true, false).should be_true
+    proc {
+      @user.update_account_info!(nil, 'おとめ', 'otome@example.com', :red, true, false)
+    }.should_not raise_error
 
     @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
@@ -333,7 +337,9 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワードを変えるときは、現在のパスワードも必要' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, true, false, nil, 'hogehoge').should be_false
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, true, false, nil, 'hogehoge')
+    }.should raise_error
 
     @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
@@ -341,7 +347,9 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワードを変えるときは、現在のパスワードとconfirmが必要' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, true, false, 'foobar', 'hogehoge', 'fugafuga').should be_false
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, true, false, 'foobar', 'hogehoge', 'fugafuga')
+    }.should raise_error
 
     @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == '坂本'
@@ -349,7 +357,9 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it 'パスワードを更新するときは、現在のパスワードと、confirmationもあれば、OK' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, true, false, 'foobar', 'hogehoge', 'hogehoge').should be_true
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, true, false, 'foobar', 'hogehoge', 'hogehoge')
+    }.should_not raise_error
 
     @user = User.by_names('sakamoto', 'otome')
     @user.family_name.should == 'さかもと'
@@ -357,22 +367,30 @@ describe User, 'ユーザ情報を更新するとき' do
   end
 
   it '通知を受けとるようになる' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, true, false).should be_true
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, true, false)
+    }.should_not raise_error
     @user.notice?.should be_true
   end
 
   it '通知を受けとらないようになる' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, false, false).should be_true
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, false, false)
+    }.should_not raise_error
     @user.notice?.should be_false
   end
 
   it '自分宛の場合は通知を受けとるようになる' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, true, true).should be_true
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, true, true)
+    }.should_not raise_error
     @user.notice?(%w(@otome @ryoma)).should be_true
   end
 
   it '自分宛でなければ通知を受けとらないようになる' do
-    @user.update_account_info('さかもと', 'おとめ', 'otome@example.com', :red, true, true).should be_true
+    proc {
+      @user.update_account_info!('さかもと', 'おとめ', 'otome@example.com', :red, true, true)
+    }.should_not raise_error
     @user.notice?(%w(@kyu @ryoma)).should be_false
   end
 end
