@@ -8,7 +8,7 @@ class NoticeMailer < ActionMailer::Base
     bcc = []
     User.by_family_id(entry.family.id).each do |user|
       if user.notice?(entry.destinations) && user != entry.user
-        bcc.push %!"#{user.mail_address}"!
+        bcc.push %!#{user.mail_address}!
       end
     end
     mail(
