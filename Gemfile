@@ -30,7 +30,7 @@ group :development, :test do
   gem 'sqlite3'
   #gem 'better_errors'
   gem 'rspec-rails'
-  gem 'rails-footnotes'
+  #gem 'rails-footnotes'
   #gem 'factory_girl_rails'
-  gem 'binding_of_caller'
+  #gem 'binding_of_caller'
 end

@@ -12,12 +12,15 @@ module ApplicationHelper
     link_to caption, {:controller => :entries, :action => :new, :send_to => user.login_name}
   end
 
-  def tagged(message)
-    message.gsub(/@(\w+)(\s|$)/) do
-      link_to "@#{$1}#{$2}", {:controller => :entries, :action => :new, :send_to => "#{$1}"}  unless $1.nil?
+  def message_format(message)
+    s = message.gsub(/@(\w+)(\s|$)/) do
+      trg = $1.to_s
+      spc = $2.to_s
+      link_to("@#{trg}", {:controller => :entries, :action => :new, :send_to => "#{trg}"}) + spc
     end.gsub(/(#\S+)(\s|$)/) do
-      %!<span class="hash-tag">#{$1}</span>#{$2}!  unless $1.nil?
+      %!<span class="hash-tag">#{$1}</span>#{$2}!
     end
+    sanitize(s).to_s
   end
 
   def mobile_ad?
