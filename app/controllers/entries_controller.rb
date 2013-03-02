@@ -33,7 +33,7 @@ class EntriesController < ApplicationController
       begin
         Entry.post!(current_user, params[:message], params[:face]) do |entry|
           @entry = entry
-
+          NoticeMailer.notify(entry)
         end
         format.mobile { redirect_to :entries }
         format.html   { redirect_to :entries }

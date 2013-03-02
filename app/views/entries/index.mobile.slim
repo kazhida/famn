@@ -6,7 +6,7 @@ div data-role="page" data-theme="b"
         li
           = image_tag entry.icon, :class => 'message-icon'
           p class="message-text"
-            = h(entry.message)
+            = message_format(entry.message)
           span class="clear-left"
           p class="ui-li-aside"
             span class="message-name"

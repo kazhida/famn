@@ -3,7 +3,7 @@ div data-role="page" data-theme="b"
   div data-role="content"
     = form_tag :entries do
       = label_tag     :message, 'メッセージ'
-      = text_area_tag :message, '', :maxlength => 250
+      = text_area_tag :message, @send_to, :maxlength => 250
       fieldset data-role="controlgroup" data-type="horizontal"
         - (1..4).each do |look|
           = radio_button_tag :face, look, look == 1, 'data-theme' => 'c'
