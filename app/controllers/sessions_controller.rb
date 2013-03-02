@@ -34,8 +34,8 @@ class SessionsController < ApplicationController
     else
       flash.alert = 'ログイン名またはパスワードが正しくありません。'
       respond_to do |format|
-        format.mobile { redirect_to [:new, :session] }
-        format.html   { redirect_to [:new, :session] }
+        format.mobile { redirect_to :root }
+        format.html   { redirect_to :root }
         format.json   { head 401 }
       end
     end

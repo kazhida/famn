@@ -35,8 +35,8 @@ class EntriesController < ApplicationController
           @entry = entry
           NoticeMailer.notify(entry)
         end
-        format.mobile { redirect_to :entries }
-        format.html   { redirect_to :entries }
+        format.mobile { redirect_to :root }
+        format.html   { redirect_to :root }
         format.json   { render json: @entry, status: :created, location: @entry }
       rescue
         format.mobile { render action: 'new', alert: '書き込めませんでした。' }
