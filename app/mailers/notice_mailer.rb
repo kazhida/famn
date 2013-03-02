@@ -5,19 +5,19 @@ class NoticeMailer < ActionMailer::Base
 
   def notify(entry)
     @entry = entry
+    bcc = []
     User.by_family_id(entry.family.id).each do |user|
-      if user.notice?(entry.destinations)
-        m = mail(
-            :to => user.mail_address,
-            :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
-        ) do |format|
-          format.html
-          format.text
-        end
-        Thread.new(m) do |mail|
-          mail.deliver
-        end
+      if user.notice?(entry.destinations) && user != entry.user
+        bcc.push %!"#{user.mail_address}"!
       end
     end
+    mail(
+        :to => entry.user.mail_address,
+        :bcc => bcc,
+        :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
+    ) do |format|
+      format.html
+      format.text
+    end.deliver
   end
 end
