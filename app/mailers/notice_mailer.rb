@@ -14,7 +14,7 @@ class NoticeMailer < ActionMailer::Base
           format.html
           format.text
         end
-        Thread.new(mail) do |mail|
+        Thread.new(m) do |mail|
           mail.deliver
         end
       end
