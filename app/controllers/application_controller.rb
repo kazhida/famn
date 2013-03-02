@@ -60,6 +60,6 @@ class ApplicationController < ActionController::Base
   end
 
   def mobile_request?
-    request.user_agent =~ /(WebKit)|(Mozilla).+Mobile/
+    request.user_agent =~ /((WebKit)|(Mozilla)).+Mobile/ && !(request.user_agent =~ /iPad/)
   end
 end

@@ -67,22 +67,5 @@ describe EntriesController do
         response.should redirect_to(entries_path)
       end
     end
-
-    #describe 'with invalid params' do
-    #
-    #  it 'assigns a newly created but unsaved entry as @entry' do
-    #    # Trigger the behavior that occurs when invalid params are submitted
-    #    Entry.any_instance.stub(:save).and_return(false)
-    #    post :create, {:entry => { :message => 'invalid value'}}, valid_session
-    #    assigns(:entry).should be_a_new(Entry)
-    #  end
-    #
-    #  it 're-renders the \'new\' template' do
-    #    # Trigger the behavior that occurs when invalid params are submitted
-    #    Entry.any_instance.stub(:save).and_return(false)
-    #    post :create, {:entry => { :message => 'invalid value'}}, valid_session
-    #    response.should render_template('new')
-    #  end
-    #end
   end
 end
