@@ -6,6 +6,10 @@
  *= require_self
  */
 
+.message-back {
+  color: #fff;
+}
+
 .message-icon {
   float: left;
   width: 48px;
@@ -13,21 +17,89 @@
   margin: 4px;
 }
 
-.message-text {
-  padding-top: 32px;
-  padding-left: 0;
-  //margin: 0;
-  font-size: 100%;
-  white-space: normal;
-}
-
-.message-name {
-  font-size: 120%;
-}
-
 .clear-left {
   clear: left;
   height: 0;
+}
+
+.message-text {
+  font-size: 100%;
+  white-space: normal;
+  padding-top: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+
+  span.hash-tag {
+    color: #c33;
+  }
+}
+
+.message-name {
+  font-size: 80%;
+  text-align: right;
+  padding-right: 8px;
+}
+
+$balloon_color0: rgba(255, 255, 255, 0);
+$balloon_border0: rgba(255, 153, 204, 0);
+$balloon_color1: rgba(255, 255, 255, 1);
+$balloon_border1: rgba(255, 153, 204, 1);
+
+@mixin balloon($right)  {
+  position: relative;
+  background: $balloon_color1;
+  border: 3px solid $balloon_border1;
+  padding: 0px;
+  border-radius: 6px;
+
+  :after {
+    @if $right {
+      left: 100%;
+
+    } @else {
+      right: 100%;
+    }
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: $balloon_color0;
+    border-right-color: $balloon_color1;
+    border-width: 8px;
+    top: 18px;
+    margin-top: -8px;
+  }
+
+  :before {
+    @if $right {
+      left: 100%;
+
+    } @else {
+      right: 100%;
+    }
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: $balloon_border0;
+    border-right-color: $balloon_border1;
+    border-width: 12px;
+    top: 18px;
+    margin-top: -12px;
+  }
+}
+
+.arrow_left {
+  @include balloon(false);
+}
+
+.arrow_right {
+  @include balloon(true);
 }
 
 .ui-icon-famn-add {
@@ -71,3 +143,4 @@
   border-radius: 0px;
   box-shadow: 0px 0px 0px #000;
 }
+

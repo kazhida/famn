@@ -1,19 +1,19 @@
 div data-role="page" data-theme="b"
   = render 'entries/header'
-  div data-role="content" data-theme="c"
-    ul data-role="listview"
+  div data-role="content"
+    ul data-role="listview" data-theme="d"
       - @entries.each do |entry|
         li
           = image_tag entry.icon, :class => 'message-icon'
-          p class="message-text"
-            = message_format(entry.message)
-          span class="clear-left"
-          p class="ui-li-aside"
-            span class="message-name"
+          div class="arrow_left"
+            p class="message-text"
+              = message_format(entry.message)
+            p class="message-name"
               = "#{entry.user.display_name}"
-            | &nbsp;(at&nbsp;
-            = entry.posted_on_as_string
-            | )
+              | &nbsp;(at&nbsp;
+              = entry.posted_on_as_string
+              | )
+          span class="clear-left"
     p
     = paginate @entries
   = render 'shared/footer'
