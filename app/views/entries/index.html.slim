@@ -14,7 +14,7 @@ div class="span6"
       - @entries.each do |entry|
         tr class="entry"
           td class="name"
-            = image_tag(entry.icon)
+            = image_tag entry.icon, :class => 'message-icon'
             br
             = entry.user.display_name
           td
