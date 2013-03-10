@@ -53,6 +53,12 @@ body {
     padding-bottom: 12px;
     margin-top: 12px;
     margin-bottom: 12px;
+
+    p {
+      font-size: 120%;
+      margin-top: 12px;
+      color: #999;
+    }
   }
 
   image {
@@ -100,6 +106,16 @@ body {
 
 .clear-left {
   clear: left;
+}
+
+ul.face-icon {
+  list-style-image: url('list_icon.png');
+  list-style-type: none;
+
+  ul {
+    list-style-image: none;
+    list-style-type: disc;
+  }
 }
 
 div.ads {
