@@ -1,0 +1,17 @@
+<%
+    case params[:section]
+    when 'famn_mobi'
+        content = escape_javascript(render :partial => 'infos/about_famn_mobi', :layout => false)
+    when 'family'
+        content = escape_javascript(render :partial => 'infos/about_family', :layout => false)
+    when 'profit'
+        content = escape_javascript(render :partial => 'infos/about_profit', :layout => false)
+    when 'register'
+        content = escape_javascript(render :partial => 'infos/about_register', :layout => false)
+    when 'development'
+        content = escape_javascript(render :partial => 'infos/about_development', :layout => false)
+    else
+        content = escape_javascript(render :partial => 'infos/about_under_construct', :layout => false)
+    end
+%>
+$("#about_body").html("<%= content %>");

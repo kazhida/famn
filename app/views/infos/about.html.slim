@@ -3,18 +3,26 @@ div class="span3" id="left-pane"
     h3
       | famn.mobi
       small について
-    p
-      | 　famn.mobiは、Family指向な Social Networking Serviceです。
-      | 「ふぁんもび」と読みます。
-
-div class="span3"
-  = render 'about_famn_mobi'
-  = render 'about_family'
-
-div class="span3"
-  = render 'about_register'
-  = render 'about_profit'
-  = render 'about_development'
+    ul class="unstyled"
+      li = about_to 'famn.mobiってなに？',            'famn_mobi'
+      li = about_to 'famn.mobiでいう家族ってなに？',  'family'
+      li = about_to 'どういう使い途があるの？',       'profit'
+      li
+        = about_to 'どうやって始めればいいの？',     'hou_to_begin'
+        ul
+          li = about_to '新規登録方法',               'register'
+          li = about_to 'ユーザの追加',               'add_user'
+          li = about_to 'ユーザの削除',               'del_user'
+          li = about_to '投稿',                       'compose'
+          li = about_to '一覧を見る',                 'browse'
+          li = about_to 'アカウント設定',             'setting'
+          li = about_to '通知を受けとる',             'notice'
+          li = about_to '返信',                       'reply'
+          li = about_to '家族間通信',                 'neighborhood'
+      li = about_to '今後の機能拡張の予定は？',       'development'
+div class="span6"
+  div id="about_body"
+    = render 'about_famn_mobi'
 
 div class="span3 ads"
   = render 'shared/ads'

@@ -18,6 +18,6 @@ p
   div class="inset"
     h5 家族一覧
     ul class="unstyled"
-    - User.by_family_id(current_user.family_id, current_user).each do |user|
-      li
-        == send_to user
+      - User.by_family_id(current_user.family_id, current_user).each do |user|
+        li
+          == send_to user
