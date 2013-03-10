@@ -1,10 +1,56 @@
-div data-role="page" data-theme="b"
+div data-role="page" data-theme="b" id="about_menu"
+  - @back = nil
   = render 'shared/header'
   div data-role="content"
-    = render 'about_famn_mobi', :formats => [:html]
-    = render 'about_family', :formats => [:html]
-    = render 'about_register', :formats => [:html]
-    = render 'about_profit', :formats => [:html]
-    = render 'about_development', :formats => [:html]
-    = render 'about_privacy', :formats => [:html]
+
+    ul data-role="listview" data-theme="c"
+      li = jump_to 'famn.mobiってなに？',            'about_famn_mobi'
+      li = jump_to 'famn.mobiでいう家族ってなに？',  'about_family'
+      li = jump_to 'どういう使い途があるの？',       'about_profit'
+      li = jump_to 'どうやって始めればいいの？',     'about_how_to_begin'
+      li = jump_to '今後の機能拡張の予定は？',       'about_development'
+      li = jump_to '個人情報の保護方針は？',         'about_privacy'
+
+  = render 'shared/footer', :formats => [:html]
+
+div data-role="page" data-theme="b" id="about_famn_mobi"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_famn_mobi', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+div data-role="page" data-theme="b" id="about_family"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_family', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+div data-role="page" data-theme="b" id="about_how_to_begin"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_under_construct', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+div data-role="page" data-theme="b" id="about_profit"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_profit', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+div data-role="page" data-theme="b" id="about_development"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_development', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+div data-role="page" data-theme="b" id="about_privacy"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_privacy', :formats => [:html]
   = render 'shared/footer', :formats => [:html]

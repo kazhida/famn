@@ -1,5 +1,7 @@
 div data-role="header" data-position="fixed"
   h1 famn.mobi
+  - if @back
+    a href="" data-rel="back" data-theme="b" 戻る
   - if current_user
     = link_to 'Logout', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right', 'data-theme' => 'b'
 
