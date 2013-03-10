@@ -1,11 +1,10 @@
 div data-role="page" data-theme="b"
   = render 'shared/header'
   div data-role="content"
-    - self.formats = [:mobile, :html]
-    = render 'about_famn_mobi'
-    = render 'about_family'
-    = render 'about_register'
-    = render 'about_profit'
-    = render 'about_development'
-    = render 'about_privacy'
-  = render 'shared/footer'
+    = render 'about_famn_mobi', :formats => [:html]
+    = render 'about_family', :formats => [:html]
+    = render 'about_register', :formats => [:html]
+    = render 'about_profit', :formats => [:html]
+    = render 'about_development', :formats => [:html]
+    = render 'about_privacy', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
