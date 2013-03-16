@@ -3,22 +3,22 @@ div data-role="header" data-position="fixed"
   - if @back
     a href="" data-rel="back" data-theme="b" 戻る
   - if current_user
-    = link_to 'Logout', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right', 'data-theme' => 'b'
+    = link_to 'Logout', :session, :method => :delete, :confirm => '本当にログアウトしますか？', :class => 'ui-btn-right', 'data-theme' => 'b', 'data-ajax' => false
 
 div data-role="navbar"
   ul
     - if current_user.nil?
-      == nav_item 'Login',    {:controller => :sessions, :action => :new},   {'data-icon' => 'famn-home'}
-      == nav_item 'Register', {:controller => :users,    :action => :new},   {'data-icon' => 'famn-add'}
-      == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info'}
+      == nav_item 'Login',    {:controller => :sessions, :action => :new},   {'data-icon' => 'famn-home', 'data-ajax' => false}
+      == nav_item 'Register', {:controller => :users,    :action => :new},   {'data-icon' => 'famn-add', 'data-ajax' => false }
+      == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info', 'data-ajax' => false}
     - elsif current_user.aruji?
-      == nav_item 'Home',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home'}
-      == nav_item 'Setting',  {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear'}
-      == nav_item 'Users',    {:controller => :users,    :action => :index}, {'data-icon' => 'famn-users'}
-      == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info'}
+      == nav_item 'Home',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home', 'data-ajax' => false}
+      == nav_item 'Setting',  {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear', 'data-ajax' => false}
+      == nav_item 'Users',    {:controller => :users,    :action => :index}, {'data-icon' => 'famn-users', 'data-ajax' => false}
+      == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info', 'data-ajax' => false}
     - else
-      == nav_item 'Home',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home'}
-      == nav_item 'Setting',  {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear'}
-      == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info'}
+      == nav_item 'Home',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home', 'data-ajax' => false}
+      == nav_item 'Setting',  {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear', 'data-ajax' => false}
+      == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info', 'data-ajax' => false}
 
 = render 'shared/flash_message'

@@ -48,8 +48,8 @@ class SessionsController < ApplicationController
     cookies.delete :user_id
     cookies.delete :auto_login_token
     respond_to do |format|
-      format.mobile { redirect_to [:new, :session] }
-      format.html   { redirect_to [:new, :session] }
+      format.mobile { redirect_to :root }
+      format.html   { redirect_to :root }
       format.json   { head :no_content }
     end
   end
