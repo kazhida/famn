@@ -10,8 +10,27 @@
         content = escape_javascript(render :partial => 'infos/about_register', :layout => false)
     when 'development'
         content = escape_javascript(render :partial => 'infos/about_development', :layout => false)
+    when 'register'
+        content = escape_javascript(render :partial => 'infos/about_register', :layout => false)
+    when 'add_user'
+        content = escape_javascript(render :partial => 'infos/about_add_user', :layout => false)
+    when 'del_user'
+        content = escape_javascript(render :partial => 'infos/about_del_user', :layout => false)
+    when 'compose'
+        content = escape_javascript(render :partial => 'infos/about_compose', :layout => false)
+    when 'browse'
+        content = escape_javascript(render :partial => 'infos/about_browse', :layout => false)
+    when 'setting'
+        content = escape_javascript(render :partial => 'infos/about_setting', :layout => false)
+    when 'notice'
+        content = escape_javascript(render :partial => 'infos/about_notice', :layout => false)
+    when 'reply'
+        content = escape_javascript(render :partial => 'infos/about_reply', :layout => false)
+    when 'neighborhood'
+        content = escape_javascript(render :partial => 'infos/about_neighborhood', :layout => false)
     else
         content = escape_javascript(render :partial => 'infos/about_under_construct', :layout => false)
     end
 %>
 $("#about_body").html("<%= content %>");
+

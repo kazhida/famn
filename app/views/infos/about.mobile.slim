@@ -7,12 +7,13 @@ div data-role="page" data-theme="b" id="about_menu"
       li = jump_to 'famn.mobiってなに？',            'about_famn_mobi'
       li = jump_to 'famn.mobiでいう家族ってなに？',  'about_family'
       li = jump_to 'どういう使い途があるの？',       'about_profit'
-      li = jump_to 'どうやって始めればいいの？',     'about_how_to_begin'
+      li = jump_to 'どうやって使うの？',             'about_how_to_begin'
       li = jump_to '今後の機能拡張の予定は？',       'about_development'
       li = jump_to '個人情報の保護方針は？',         'about_privacy'
 
   = render 'shared/footer', :formats => [:html]
 
+/ famn.mobiってなに？
 div data-role="page" data-theme="b" id="about_famn_mobi"
   - @back = true
   = render 'shared/header'
@@ -20,6 +21,7 @@ div data-role="page" data-theme="b" id="about_famn_mobi"
     = render :partial => 'about_famn_mobi', :formats => [:html]
   = render 'shared/footer', :formats => [:html]
 
+/ famn.mobiでいう家族ってなに？
 div data-role="page" data-theme="b" id="about_family"
   - @back = true
   = render 'shared/header'
@@ -27,13 +29,7 @@ div data-role="page" data-theme="b" id="about_family"
     = render :partial => 'about_family', :formats => [:html]
   = render 'shared/footer', :formats => [:html]
 
-div data-role="page" data-theme="b" id="about_how_to_begin"
-  - @back = true
-  = render 'shared/header'
-  div data-role="content"
-    = render :partial => 'about_under_construct', :formats => [:html]
-  = render 'shared/footer', :formats => [:html]
-
+/ どういう使い途があるの？
 div data-role="page" data-theme="b" id="about_profit"
   - @back = true
   = render 'shared/header'
@@ -41,6 +37,102 @@ div data-role="page" data-theme="b" id="about_profit"
     = render :partial => 'about_profit', :formats => [:html]
   = render 'shared/footer', :formats => [:html]
 
+
+/ どうやって使うの？
+div data-role="page" data-theme="b" id="about_how_to_begin"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+
+    p = render :partial => 'about_how_to_begin', :formats => [:html]
+
+    ul data-role="listview" data-theme="c"
+      li = jump_to '新規登録',                   'about_register'
+      li = jump_to 'ユーザの追加',               'about_add_user'
+      li = jump_to 'ユーザの削除',               'about_del_user'
+      li = jump_to '書込',                       'about_compose'
+      li = jump_to '一覧を見る',                 'about_browse'
+      li = jump_to 'アカウント設定',             'about_setting'
+      li = jump_to '通知を受けとる',             'about_notice'
+      li = jump_to '返信',                       'about_reply'
+      li = jump_to '家族間通信',                 'about_neighborhood'
+
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → 新規登録方法
+div data-role="page" data-theme="b" id="about_register"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_register', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → ユーザの追加
+div data-role="page" data-theme="b" id="about_add_user"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_add_user', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → ユーザの削除
+div data-role="page" data-theme="b" id="about_del_user"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_del_user', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → 書込
+div data-role="page" data-theme="b" id="about_compose"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_compose', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → 一覧を見る
+div data-role="page" data-theme="b" id="about_browse"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_browse', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → アカウント設定
+div data-role="page" data-theme="b" id="about_setting"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_setting', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → 通知を受けとる
+div data-role="page" data-theme="b" id="about_notice"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_notice', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → 返信
+div data-role="page" data-theme="b" id="about_reply"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_reply', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+/ どうやって使うの？ → 家族間通信
+div data-role="page" data-theme="b" id="about_neighborhood"
+  - @back = true
+  = render 'shared/header'
+  div data-role="content"
+    = render :partial => 'about_neighborhood', :formats => [:html]
+  = render 'shared/footer', :formats => [:html]
+
+
+/ 今後の機能拡張の予定は？
 div data-role="page" data-theme="b" id="about_development"
   - @back = true
   = render 'shared/header'
@@ -48,6 +140,7 @@ div data-role="page" data-theme="b" id="about_development"
     = render :partial => 'about_development', :formats => [:html]
   = render 'shared/footer', :formats => [:html]
 
+/ 個人情報の保護方針は？
 div data-role="page" data-theme="b" id="about_privacy"
   - @back = true
   = render 'shared/header'

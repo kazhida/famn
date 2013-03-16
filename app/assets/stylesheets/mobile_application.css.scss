@@ -6,6 +6,14 @@
  *= require_self
  */
 
+.caution {
+  padding: 10px;
+  background-color: #ff99cc;
+  border: 1px;
+  border-radius: 12px;
+  margin: 16px;
+}
+
 .message-back {
   color: #fff;
 }
