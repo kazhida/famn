@@ -12,11 +12,15 @@ module ApplicationHelper
     link_to caption, {:controller => :entries, :action => :new, :send_to => user.login_name}
   end
 
-  def message_format(message)
+  def message_format(message, family_name)
     s = message.gsub(/@(\w+)(\s|$)/) do
       trg = $1.to_s
       spc = $2.to_s
-      link_to("@#{trg}", {:controller => :entries, :action => :new, :send_to => "#{trg}"}) + spc
+      if trg == family_name
+        "@#{trg}#{spc}"
+      else
+        link_to("@#{trg}", {:controller => :entries, :action => :new, :send_to => "#{trg}"}) + spc
+      end
     end.gsub(/(#\S+)(\s|$)/) do
       %!<span class="hash-tag">#{$1}</span>#{$2}!
     end

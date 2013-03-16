@@ -9,7 +9,6 @@ div data-role="page" data-theme="b" id="about_menu"
       li = jump_to 'どういう使い途があるの？',       'about_profit'
       li = jump_to 'どうやって使うの？',             'about_how_to_begin'
       li = jump_to '今後の機能拡張の予定は？',       'about_development'
-      li = jump_to '個人情報の保護方針は？',         'about_privacy'
 
   = render 'shared/footer', :formats => [:html]
 
@@ -44,7 +43,7 @@ div data-role="page" data-theme="b" id="about_how_to_begin"
   = render 'shared/header'
   div data-role="content"
 
-    p = render :partial => 'about_how_to_begin', :formats => [:html]
+    = render :partial => 'about_how_to_begin', :formats => [:html]
 
     ul data-role="listview" data-theme="c"
       li = jump_to '新規登録',                   'about_register'
