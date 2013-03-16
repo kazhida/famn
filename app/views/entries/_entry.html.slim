@@ -1,0 +1,10 @@
+tr class="entry" id="message#{@entry.id}"
+  td class="name"
+    = image_tag @entry.icon, :class => 'message-icon'
+    br
+    = @entry.user.display_name
+  td
+    p class="date"
+      = @entry.posted_on_as_string
+    p class="message"
+      = message_format(@entry.message, current_user.family.login_name)

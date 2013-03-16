@@ -18,15 +18,38 @@
   color: #fff;
 }
 
-.message-icon {
+.message-self {
+}
+
+.message-other {
+}
+
+//todo アイコンの右寄せがうまくいってない
+.message-icon-left {
   float: left;
   width: 48px;
   padding: 4px;
-  margin: 4px;
+  margin-top: 4px;
+}
+
+.message-icon-right {
+  float: right;
+  width: 48px;
+  padding: 4px;
+  margin-top: 4px;
+  //margin-right: 0;
+  //margin-left: auto;
+  //position: relative;
+  //left: auto;
 }
 
 .clear-left {
   clear: left;
+  height: 0;
+}
+
+.clear-right {
+  clear: right;
   height: 0;
 }
 
@@ -64,7 +87,6 @@ $balloon_border1: rgba(255, 153, 204, 1);
   :after {
     @if $right {
       left: 100%;
-
     } @else {
       right: 100%;
     }
@@ -75,7 +97,11 @@ $balloon_border1: rgba(255, 153, 204, 1);
     position: absolute;
     pointer-events: none;
     border-color: $balloon_color0;
-    border-right-color: $balloon_color1;
+    @if $right {
+      border-left-color: $balloon_color1;
+    } @else {
+      border-right-color: $balloon_color1;
+    }
     border-width: 8px;
     top: 18px;
     margin-top: -8px;
@@ -95,7 +121,11 @@ $balloon_border1: rgba(255, 153, 204, 1);
     position: absolute;
     pointer-events: none;
     border-color: $balloon_border0;
-    border-right-color: $balloon_border1;
+    @if $right {
+      border-left-color: $balloon_border1;
+    } @else {
+      border-right-color: $balloon_border1;
+    }
     border-width: 12px;
     top: 18px;
     margin-top: -12px;

@@ -1,20 +1,13 @@
 div data-role="page" data-theme="b" data-url="/"
   = render 'entries/header'
   div data-role="content"
-    ul data-role="listview" data-theme="d"
+    ul data-role="listview" data-theme="d" id="message-list"
       - @entries.each do |entry|
-        li
-          = image_tag entry.icon, :class => 'message-icon'
-          div class="arrow_left"
-            p class="message-text"
-              = message_format(entry.message, current_user.family.login_name)
-            p class="message-name"
-              = "#{entry.user.display_name}"
-              | &nbsp;(at&nbsp;
-              = entry.posted_on_as_string
-              | )
-          span class="clear-left"
+        - @entry = entry
+        = render 'entry'
     p
+    = link_to_next_page @entries, 'もっと読む', :remote => true, :'data-role' => 'button', :id => 'more'
     = paginate @entries
+    p id="more-debug" debug
   = render 'shared/footer'
 

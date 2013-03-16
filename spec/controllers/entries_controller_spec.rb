@@ -64,7 +64,7 @@ describe EntriesController do
             :message   => 'MyText',
             :face      => 1,
         }
-        response.should redirect_to(entries_path)
+        response.should redirect_to(:root)
       end
     end
   end

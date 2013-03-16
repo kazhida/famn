@@ -9,6 +9,7 @@ class EntriesController < ApplicationController
     respond_to do |format|
       format.mobile
       format.html
+      format.js
       format.json { render json: @entries }
     end
   end
@@ -33,7 +34,7 @@ class EntriesController < ApplicationController
       begin
         Entry.post!(current_user, params[:message], params[:face]) do |entry|
           @entry = entry
-          NoticeMailer.notify(entry)
+          NoticeMailer.notify(entry)  if ENV['RAILS_ENV'] == 'production'
         end
         format.mobile { redirect_to :root }
         format.html   { redirect_to :root }

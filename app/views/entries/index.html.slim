@@ -10,19 +10,13 @@ div class="span6"
       tr
         th class="name" 名前
         th メッセージ
-    tbody
+    tbody id="message-list"
       - @entries.each do |entry|
-        tr class="entry"
-          td class="name"
-            = image_tag entry.icon, :class => 'message-icon'
-            br
-            = entry.user.display_name
-          td
-            p class="date"
-              = entry.posted_on_as_string
-            p class="message"
-              = message_format(entry.message, current_user.family.login_name)
+        - @entry = entry
+        = render 'entry'
+  = link_to_next_page @entries, 'もっと読む', :remote => true, :class => 'btn', :id => 'more'
   = paginate @entries, :window => 2, :outer_window => 2
+  p id="more-debug" debug
 
 div class="span3 ads"
   = render 'shared/ads'
