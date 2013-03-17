@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 
 class EntriesController < ApplicationController
+
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.by_user(current_user).page(params[:page]).per(12)
-    @mobile  = mobile_request?
+    @entries = Entry.by_user(current_user).page(params[:page]).per(10)
     respond_to do |format|
-      format.js
+      format.js   { render 'entries/index_smart_phone', :layout => false}
       format.html
       format.json { render json: @entries }
     end

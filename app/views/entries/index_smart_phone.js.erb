@@ -1,0 +1,13 @@
+var $list = $('#message-list');
+
+$list.find("#more").remove();
+
+<%  @entries.each do |entry| %>
+<%    @entry = entry %>
+        if ($list.find('#message<%= entry.id %>').length == 0) {
+            $list.append("<%= escape_javascript(render 'entries/entry_smart_phone') %>");
+        }
+<% end %>
+$list.append("<%= escape_javascript(render 'entries/more_smart_phone') %>");
+
+$list.listview('refresh');

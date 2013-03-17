@@ -14,7 +14,6 @@ div class="span6"
       - @entries.each do |entry|
         - @entry = entry
         = render 'entry'
-  = link_to_next_page @entries, 'もっと読む', :remote => true, :class => 'btn', :id => 'more'
   = paginate @entries, :window => 2, :outer_window => 2
   p id="more-debug" debug
 

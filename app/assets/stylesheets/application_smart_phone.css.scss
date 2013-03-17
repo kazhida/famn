@@ -18,29 +18,10 @@
   color: #fff;
 }
 
-.message-self {
-}
-
-.message-other {
-}
-
-//todo アイコンの右寄せがうまくいってない
-.message-icon-left {
+.message-icon {
   float: left;
-  width: 48px;
   padding: 4px;
   margin-top: 4px;
-}
-
-.message-icon-right {
-  float: right;
-  width: 48px;
-  padding: 4px;
-  margin-top: 4px;
-  //margin-right: 0;
-  //margin-left: auto;
-  //position: relative;
-  //left: auto;
 }
 
 .clear-left {
@@ -72,59 +53,57 @@
   padding-right: 8px;
 }
 
-$balloon_color0: rgba(255, 255, 255, 0);
-$balloon_border0: rgba(255, 153, 204, 0);
-$balloon_color1: rgba(255, 255, 255, 1);
-$balloon_border1: rgba(255, 153, 204, 1);
+#more {
+  font-size: 120%;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
 
-@mixin balloon($right)  {
+$balloon_color_0: rgba(255, 255, 255, 0);
+$balloon_color_1: rgba(255, 255, 255, 1);
+$balloon_border_0: rgba(255, 153, 204, 0);
+$balloon_border_1: rgba(255, 153, 204, 1);
+$balloon_border_2: rgba(255, 102, 153, 1);
+
+@mixin balloon($self)  {
   position: relative;
-  background: $balloon_color1;
-  border: 3px solid $balloon_border1;
+  background: $balloon_color_1;
+  @if ($self) {
+    border: 3px solid $balloon_border_2;
+  } @else {
+    border: 3px solid $balloon_border_1;
+  }
   padding: 0px;
   border-radius: 6px;
 
   :after {
-    @if $right {
-      left: 100%;
-    } @else {
-      right: 100%;
-    }
+    right: 100%;
     border: solid transparent;
     content: " ";
     height: 0;
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-color: $balloon_color0;
-    @if $right {
-      border-left-color: $balloon_color1;
-    } @else {
-      border-right-color: $balloon_color1;
-    }
+    border-color: $balloon_color_0;
+    border-right-color: $balloon_color_1;
     border-width: 8px;
     top: 18px;
     margin-top: -8px;
   }
 
   :before {
-    @if $right {
-      left: 100%;
-
-    } @else {
-      right: 100%;
-    }
+    right: 100%;
     border: solid transparent;
     content: " ";
     height: 0;
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-color: $balloon_border0;
-    @if $right {
-      border-left-color: $balloon_border1;
+    border-color: $balloon_border_0;
+    @if ($self) {
+      border-right-color: $balloon_border_2;
     } @else {
-      border-right-color: $balloon_border1;
+      border-right-color: $balloon_border_1;
     }
     border-width: 12px;
     top: 18px;
@@ -132,11 +111,11 @@ $balloon_border1: rgba(255, 153, 204, 1);
   }
 }
 
-.arrow_left {
+.balloon-other {
   @include balloon(false);
 }
 
-.arrow_right {
+.balloon-self {
   @include balloon(true);
 }
 

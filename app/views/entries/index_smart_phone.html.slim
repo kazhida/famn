@@ -5,9 +5,6 @@ div data-role="page" data-theme="b" data-url="/"
       - @entries.each do |entry|
         - @entry = entry
         = render 'entries/entry_smart_phone'
-    p
-    = link_to_next_page @entries, 'もっと読む', :remote => true, :'data-role' => 'button', :id => 'more'
-    = paginate @entries
-    p id="more-debug" debug
+      = render 'entries/more_smart_phone'
   = render 'shared/footer_smart_phone'
 
