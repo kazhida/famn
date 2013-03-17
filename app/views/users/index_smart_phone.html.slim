@@ -1,5 +1,5 @@
 div data-role="page" data-theme="b"
-  = render 'shared/header'
+  = render 'shared/header_smart_phone'
   div data-role="content" data-theme="c"
     div
       ul data-role="listview"
@@ -8,5 +8,5 @@ div data-role="page" data-theme="b"
             = link_to "#{user.display_name} (@#{user.login_name})", user
         li data-icon="plus"
           = link_to '(ユーザ追加)', {:controller => :users, :action => :new}
-  = render 'shared/footer'
+  = render 'shared/footer_smart_phone'
 

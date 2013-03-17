@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   def index
     @users = User.by_family_id(current_user.family_id)
     respond_to do |format|
-      format.mobile
       format.html
       format.json   { render json: @users}
     end
@@ -18,7 +17,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     respond_to do |format|
-      format.mobile
       format.html
       format.json   { render json: @user}
     end
@@ -58,7 +56,6 @@ class UsersController < ApplicationController
     User.delete(params[:id])
     flash[:notice] = "#{user_name}を削除しました。"
     respond_to do |format|
-      format.mobile { redirect_to :controller => :accounts, :action => :edit }
       format.html   { redirect_to :controller => :accounts, :action => :edit }
       format.json   { head :no_content }
     end

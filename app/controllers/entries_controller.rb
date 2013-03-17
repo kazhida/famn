@@ -5,11 +5,10 @@ class EntriesController < ApplicationController
   # GET /entries.json
   def index
     @entries = Entry.by_user(current_user).page(params[:page]).per(12)
-
+    @mobile  = mobile_request?
     respond_to do |format|
-      format.mobile
-      format.html
       format.js
+      format.html
       format.json { render json: @entries }
     end
   end
@@ -21,7 +20,6 @@ class EntriesController < ApplicationController
     @send_to = params[:send_to] ? "@#{params[:send_to]} " : ''
 
     respond_to do |format|
-      format.mobile
       format.html # new.html.slim
       format.json { render json: @entry }
     end
@@ -36,11 +34,9 @@ class EntriesController < ApplicationController
           @entry = entry
           NoticeMailer.notify(entry)  if ENV['RAILS_ENV'] == 'production'
         end
-        format.mobile { redirect_to :root }
         format.html   { redirect_to :root }
         format.json   { render json: @entry, status: :created, location: @entry }
       rescue
-        format.mobile { render action: 'new', alert: '書き込めませんでした。' }
         format.html   { render action: 'new', alert: '書き込めませんでした。' }
         format.json   { render json: @entry.errors, status: :unprocessable_entity }
       end
@@ -52,7 +48,6 @@ class EntriesController < ApplicationController
   def destroy
     Entry.delete(params[:id])
     respond_to do |format|
-      format.mobile { redirect_to entries_url }
       format.html   { redirect_to entries_url }
       format.json   { head :no_content }
     end

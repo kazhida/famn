@@ -7,7 +7,6 @@ class AccountsController < ApplicationController
   # GET /account/edit
   def edit
     respond_to do |format|
-      format.mobile
       format.html
       format.json   { head :no_content }
     end
@@ -51,7 +50,6 @@ class AccountsController < ApplicationController
   def unverified
     @user = current_user
     respond_to do |format|
-      format.mobile
       format.html
       format.json   { head :no_content }
     end

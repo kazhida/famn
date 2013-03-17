@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
 
   def new
     respond_to do |format|
-      format.mobile
       format.html
       format.json { head 200 }
     end
@@ -27,14 +26,12 @@ class SessionsController < ApplicationController
       end
       flash.notice = 'ログインしました。'
       respond_to do |format|
-        format.mobile { redirect_to :root }
         format.html   { redirect_to :root }
         format.json   { head 201 }
       end
     else
       flash.alert = 'ログイン名またはパスワードが正しくありません。'
       respond_to do |format|
-        format.mobile { redirect_to :root }
         format.html   { redirect_to :root }
         format.json   { head 401 }
       end
@@ -48,7 +45,6 @@ class SessionsController < ApplicationController
     cookies.delete :user_id
     cookies.delete :auto_login_token
     respond_to do |format|
-      format.mobile { redirect_to :root }
       format.html   { redirect_to :root }
       format.json   { head :no_content }
     end

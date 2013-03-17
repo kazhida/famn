@@ -23,6 +23,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn'
 gem 'pg'
 gem 'kaminari'
+gem 'jpmobile'
 
 group :development, :test do
   gem 'capistrano'

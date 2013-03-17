@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 
 class ApplicationController < ActionController::Base
+  include Jpmobile::ViewSelector
   protect_from_forgery
   clear_helpers
 
-  before_filter :set_mobile_format
+  #before_filter :set_mobile_format
   before_filter :authenticate_user
   before_filter :reject_unverified_user
 
@@ -56,7 +57,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_mobile_format
-    request.format = :mobile  if mobile_request?
+    request.format = :mobile    if mobile_request? && !request.xhr?
   end
 
   def mobile_request?

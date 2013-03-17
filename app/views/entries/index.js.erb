@@ -3,7 +3,11 @@ var $p = $('#message-list');
 <%  @entries.each do |entry| %>
 <%    @entry = entry %>
     if ($p('#message<%= entry.id %>').length == 0) {
-        $p.append(<%= escape_javascript(render 'entries/entry') %>);
+<%      if @mobile %>
+            $p.append(<%= escape_javascript(render 'entries/entry_smart_phone') %>);
+        <% else %>
+            $p.append(<%= escape_javascript(render 'entries/entry') %>);
+        <% end %>
     }
 <% end %>
 $('#more').replaceWith("<%= escape_javascript(link_to_next_page(@entries, 'もっと読む', remote: true, id: 'more')) %>");
