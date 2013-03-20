@@ -1,20 +1,35 @@
+- message_class = @entry.user == current_user ? 'message-self' : 'message-other'
 li
-  = image_tag @entry.icon, :class => 'message-icon', :size => '64x64'
-  -if @entry.user == current_user
-    div class="balloon-self"
-      p class="message-text"
+  div class="#{message_class}"
+    = image_tag @entry.icon, :class => 'msg-icon', :size => '64x64'
+    div class="msg-balloon"
+      p class="msg-text"
         = message_format(@entry.message, current_user.family.login_name)
-      p class="message-name"
+      p class="msg-name"
         = "#{@entry.user.display_name}"
         | &nbsp;(at&nbsp;
         = @entry.posted_on_as_string
         | )
-  - else
-    div class="balloon-other"
-      p class="message-text"
-        = message_format(@entry.message, current_user.family.login_name)
-      p class="message-name"
-        = "#{@entry.user.display_name}"
-        | &nbsp;(at&nbsp;
-        = @entry.posted_on_as_string
-        | )
+      br class="float-clear"
+  /-if @entry.user == current_user
+  /  div class="message-self"
+  /    = image_tag @entry.icon, :class => 'msg-icon', :size => '64x64'
+  /    div class="msg-balloon"
+  /      p class="msg-text"
+  /        = message_format(@entry.message, current_user.family.login_name)
+  /      p class="msg-name"
+  /        = "#{@entry.user.display_name}"
+  /        | &nbsp;(at&nbsp;
+  /        = @entry.posted_on_as_string
+  /        | )
+  /- else
+  /  div class="message-self"
+  /    = image_tag @entry.icon, :class => 'msg-icon', :size => '64x64'
+  /    div class="msg-balloon"
+  /      p class="msg-text"
+  /        = message_format(@entry.message, current_user.family.login_name)
+  /      p class="msg-name"
+  /        = "#{@entry.user.display_name}"
+  /        | &nbsp;(at&nbsp;
+  /        = @entry.posted_on_as_string
+  /        | )

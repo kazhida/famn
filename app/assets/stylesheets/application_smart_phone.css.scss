@@ -14,44 +14,175 @@
   margin: 16px;
 }
 
+$balloon_color_0: rgba(255, 255, 255, 0);
+$balloon_color_1: rgba(255, 255, 255, 1);
+$balloon_border_0: rgba(255, 153, 204, 0);
+$balloon_border_1: rgba(255, 153, 204, 1);
+$balloon_border_2: rgba(255, 102, 153, 1);
+
+@mixin message-entry($self) {
+
+  .msg-icon {
+    @if $self {
+      float: right;
+    } @else {
+      float: left;
+    }
+    padding: 4px;
+    margin-top: 4px;
+  }
+
+  .msg-balloon {
+    position: relative;
+    background: $balloon_color_1;
+    @if ($self) {
+      border: 3px solid $balloon_border_2;
+    } @else {
+      border: 3px solid $balloon_border_1;
+    }
+    padding: 0px;
+    border-radius: 6px;
+    @if $self {
+      margin-right: 80px;
+    } @else {
+      margin-left: 80px;
+    }
+
+    :after {
+      @if $self {
+        left: 100%;
+      } @else {
+        right: 100%;
+      }
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: $balloon_color_0;
+      @if $self {
+        border-left-color: $balloon_color_1;
+      } @else {
+        border-right-color: $balloon_color_1;
+      }
+      border-width: 8px;
+      top: 18px;
+      margin-top: -8px;
+    }
+
+    :before {
+      @if $self {
+        left: 100%;
+      } @else {
+        right: 100%;
+      }
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: $balloon_border_0;
+      @if ($self) {
+        border-left-color: $balloon_border_2;
+      } @else {
+        border-right-color: $balloon_border_1;
+      }
+      border-width: 12px;
+      top: 18px;
+      margin-top: -12px;
+    }
+  }
+
+  .msg-text {
+    font-size: 100%;
+    white-space: normal;
+    padding-top: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 0px;
+
+    span.hash-tag {
+      color: #c33;
+    }
+  }
+
+  .msg-name {
+    font-size: 80%;
+    text-align: right;
+    padding-right: 8px;
+  }
+
+  .float-clear {
+    @if $self {
+      clear: right;
+    } @else {
+      clear: left;
+    }
+  }
+}
+
+.message-self {
+  @include message-entry(true);
+}
+
+.message-other {
+  @include message-entry(false);
+}
+
 .message-back {
   color: #fff;
 }
 
-.message-icon {
-  float: left;
-  padding: 4px;
-  margin-top: 4px;
+#message-more {
+  position: relative;
+  background-color: #ffffe0;
+  background-image: url('face_more.png');
+  background-repeat: no-repeat;
+  background-position: 20px 20px;
+  font-size: 120%;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 80px;
 }
 
-.clear-left {
-  clear: left;
-  height: 0;
-}
 
-.clear-right {
-  clear: right;
-  height: 0;
-}
+//.message-icon {
+//  float: left;
+//  padding: 4px;
+//  margin-top: 4px;
+//}
+//
+//.clear-left {
+//  clear: left;
+//  height: 0;
+//}
+//
+//.clear-right {
+//  clear: right;
+//  height: 0;
+//}
 
-.message-text {
-  font-size: 100%;
-  white-space: normal;
-  padding-top: 16px;
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-bottom: 0px;
-
-  span.hash-tag {
-    color: #c33;
-  }
-}
-
-.message-name {
-  font-size: 80%;
-  text-align: right;
-  padding-right: 8px;
-}
+//.message-text {
+//  font-size: 100%;
+//  white-space: normal;
+//  padding-top: 16px;
+//  padding-left: 8px;
+//  padding-right: 8px;
+//  padding-bottom: 0px;
+//
+//  span.hash-tag {
+//    color: #c33;
+//  }
+//}
+//
+//.message-name {
+//  font-size: 80%;
+//  text-align: right;
+//  padding-right: 8px;
+//}
+//
 
 #more {
   font-size: 120%;
@@ -59,65 +190,60 @@
   padding-bottom: 24px;
 }
 
-$balloon_color_0: rgba(255, 255, 255, 0);
-$balloon_color_1: rgba(255, 255, 255, 1);
-$balloon_border_0: rgba(255, 153, 204, 0);
-$balloon_border_1: rgba(255, 153, 204, 1);
-$balloon_border_2: rgba(255, 102, 153, 1);
 
-@mixin balloon($self)  {
-  position: relative;
-  background: $balloon_color_1;
-  @if ($self) {
-    border: 3px solid $balloon_border_2;
-  } @else {
-    border: 3px solid $balloon_border_1;
-  }
-  padding: 0px;
-  border-radius: 6px;
-
-  :after {
-    right: 100%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: $balloon_color_0;
-    border-right-color: $balloon_color_1;
-    border-width: 8px;
-    top: 18px;
-    margin-top: -8px;
-  }
-
-  :before {
-    right: 100%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: $balloon_border_0;
-    @if ($self) {
-      border-right-color: $balloon_border_2;
-    } @else {
-      border-right-color: $balloon_border_1;
-    }
-    border-width: 12px;
-    top: 18px;
-    margin-top: -12px;
-  }
-}
-
-.balloon-other {
-  @include balloon(false);
-}
-
-.balloon-self {
-  @include balloon(true);
-}
+//@mixin balloon($self)  {
+//  position: relative;
+//  background: $balloon_color_1;
+//  @if ($self) {
+//    border: 3px solid $balloon_border_2;
+//  } @else {
+//    border: 3px solid $balloon_border_1;
+//  }
+//  padding: 0px;
+//  border-radius: 6px;
+//
+//  :after {
+//    right: 100%;
+//    border: solid transparent;
+//    content: " ";
+//    height: 0;
+//    width: 0;
+//    position: absolute;
+//    pointer-events: none;
+//    border-color: $balloon_color_0;
+//    border-right-color: $balloon_color_1;
+//    border-width: 8px;
+//    top: 18px;
+//    margin-top: -8px;
+//  }
+//
+//  :before {
+//    right: 100%;
+//    border: solid transparent;
+//    content: " ";
+//    height: 0;
+//    width: 0;
+//    position: absolute;
+//    pointer-events: none;
+//    border-color: $balloon_border_0;
+//    @if ($self) {
+//      border-right-color: $balloon_border_2;
+//    } @else {
+//      border-right-color: $balloon_border_1;
+//    }
+//    border-width: 12px;
+//    top: 18px;
+//    margin-top: -12px;
+//  }
+//}
+//
+//.balloon-other {
+//  @include balloon(false);
+//}
+//
+//.balloon-self {
+//  @include balloon(true);
+//}
 
 .ui-icon-famn-add {
   background: url(famn-add.png) no-repeat transparent;

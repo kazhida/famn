@@ -2,11 +2,13 @@ div data-role="page" data-theme="b"
   = render 'shared/header_smart_phone'
   div data-role="content" data-theme="c"
     div
-      ul data-role="listview"
+      ul data-role="listview" data-inset="true"
+        li data-role="list-divider" 家族
         - User.by_family_id(current_user.family_id).each do |user|
           li
             = link_to "#{user.display_name} (@#{user.login_name})", user
         li data-icon="plus"
           = link_to '(ユーザ追加)', {:controller => :users, :action => :new}
+        /li data-role="list-divider" ご近所
   = render 'shared/footer_smart_phone'
 
