@@ -302,7 +302,7 @@ describe User, 'ユーザを追加するとき' do
         }
     )
     user.should_not be_nil
-    Family.all.count.should == 3
+    Family.all.count.should == 4
     Family.find(user.family_id).should_not be_nil
   end
 end

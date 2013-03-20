@@ -94,3 +94,11 @@ kuro:
   mail_address: kuro@example.com
   family_id: 2
   aruji:  false
+kazuyuki:
+  id: 13
+  login_name: kazuyuki
+  display_name: 一幸
+  password_digest: foobar
+  mail_address: kazhida@example.com
+  family_id: 3
+  aruji: true

@@ -6,3 +6,8 @@ ito:
   id: 2
   login_name: ito
   display_name: 伊藤
+hida:
+  id: 3
+  login_name: hida
+  display_name: 樋田
+

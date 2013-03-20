@@ -83,13 +83,7 @@ class User < ActiveRecord::Base
             :new_password,  :presence => { :if => :changing_password? }
   validates :password,
             :new_password,  :length => {:minimum => 6, :allow_blank =>true}, :confirmation => true
-
-  validate do
-    if aruji.nil?
-      errors.add(:login_name, 'need aruji-flag.')
-    end
-  end
-
+  validates_inclusion_of :aruji, :in => [false, true]
 
   before_validation do
     if setting_password?

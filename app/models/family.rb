@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 class Family < ActiveRecord::Base
-  has_many :users,   :dependent => :destroy
-  has_many :entries, :dependent => :destroy
+  has_many :users,          :dependent => :destroy
+  has_many :entries,        :dependent => :destroy
+  has_many :neighborhoods,  :dependent => :destroy
 
   attr_accessible :login_name
   attr_accessible :display_name

@@ -1,0 +1,10 @@
+hida_ito:
+  family_id: 3
+  neighbor_id: 2
+  accepted: false
+  rejected: true
+hida_sakamoto:
+  family_id: 3
+  neighbor_id: 1
+  accepted: true
+  rejected: false

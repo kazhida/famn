@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225095024) do
+ActiveRecord::Schema.define(:version => 20130320043744) do
 
   create_table "destinations", :force => true do |t|
     t.integer  "entry_id"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20130225095024) do
   end
 
   add_index "families", ["login_name"], :name => "index_families_on_name", :unique => true
+
+  create_table "neighborhoods", :force => true do |t|
+    t.integer  "family_id"
+    t.integer  "neighbor_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "rejected",    :default => false, :null => false
+    t.boolean  "accepted",    :default => false, :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login_name",          :limit => 64,                      :null => false
