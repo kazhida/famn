@@ -4,22 +4,23 @@ div class="span3" id="left-pane"
       | famn.mobi
       small について
     ul class="face-icon"
-      li = about_to 'famn.mobiってなに？',            'famn_mobi'
-      li = about_to 'famn.mobiでいう家族ってなに？',  'family'
-      li = about_to 'どういう使い途があるの？',       'profit'
+      li = about_to 'famn.mobiってなに？',            'about_famn_mobi'
+      li = about_to 'famn.mobiでいう家族ってなに？',  'about_family'
+      li = about_to 'どういう使い途があるの？',       'about_profit'
       li
-        = about_to 'どうやって使うの？',              'how_to_begin'
+        = about_to 'どうやって使うの？',              'about_how_to_begin'
         ul
-          li = about_to '新規登録',                   'register'
-          li = about_to 'ユーザの追加',               'add_user'
-          li = about_to 'ユーザの削除',               'del_user'
-          li = about_to '書込',                       'compose'
-          li = about_to '一覧を見る',                 'browse'
-          li = about_to 'アカウント設定',             'setting'
-          li = about_to '通知を受けとる',             'notice'
-          li = about_to '返信',                       'reply'
-          li = about_to '家族間通信',                 'neighborhood'
-      li = about_to '今後の機能拡張の予定は？',       'development'
+          li = about_to '新規登録',                   'about_register'
+          li = about_to 'ユーザの追加',               'about_add_user'
+          li = about_to 'ユーザの削除',               'about_del_user'
+          li = about_to '書込',                       'about_compose'
+          li = about_to '一覧を見る',                 'about_browse'
+          li = about_to 'アカウント設定',             'about_setting'
+          li = about_to '通知を受けとる',             'about_notice'
+          li = about_to '返信',                       'about_reply'
+          li = about_to '家族間通信',                 'about_neighborhood'
+      li = about_to 'だれが運営しているの？',         'about_management'
+      li = about_to '今後の機能拡張の予定は？',       'about_development'
 div class="span6"
   div id="about_body"
     = render 'about_famn_mobi'

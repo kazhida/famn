@@ -8,6 +8,7 @@ div data-role="page" data-theme="b" id="about_menu"
       li = jump_to 'famn.mobiでいう家族ってなに？',  'about_family'
       li = jump_to 'どういう使い途があるの？',       'about_profit'
       li = jump_to 'どうやって使うの？',             'about_how_to_begin'
+      li = jump_to 'だれが運営しているの？',         'about_management'
       li = jump_to '今後の機能拡張の予定は？',       'about_development'
 
   = render 'shared/footer_smart_phone'
@@ -130,6 +131,13 @@ div data-role="page" data-theme="b" id="about_neighborhood"
     = render :partial => 'about_neighborhood'
   = render 'shared/footer_smart_phone'
 
+/ だれが運営しているの？
+div data-role="page" data-theme="b" id="about_management"
+  - @back = true
+  = render 'shared/header_smart_phone'
+  div data-role="content"
+    = render :partial => 'about_management'
+  = render 'shared/footer_smart_phone'
 
 / 今後の機能拡張の予定は？
 div data-role="page" data-theme="b" id="about_development"
