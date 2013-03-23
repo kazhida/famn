@@ -5,6 +5,7 @@ Famn::Application.routes.draw do
   resource :infos, :only => [] do
     get :about
     get :privacy_policy
+    get :terms_of_service
   end
 
   resources :entries, :except => [:show, :edit, :update] do

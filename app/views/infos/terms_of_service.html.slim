@@ -1,0 +1,15 @@
+div class="span3" id="left-pane"
+  div class="inset"
+    h3 利用規約
+    p
+      | 　このサイトのご利用にあたっては、右の利用規約をお守りください。
+    p
+      | 　また、ご不明な点がありましたら、
+      = image_tag('inquiry.png', :alt => '問い合わせ先メールアドレス')
+      | までお問い合わせください。
+
+div class="span6"
+  = render 'terms'
+
+div class="span3 ads"
+  = render 'shared/ads'

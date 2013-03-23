@@ -9,4 +9,5 @@ div id="user_menu" class="navbar"
       - else
         == nav_item 'ログイン', {:controller => :sessions, :action => :new}
       == nav_item 'famn.mobiについて', {:controller => :infos, :action => :about}
+      == nav_item '利用規約', {:controller => :infos, :action => :terms_of_service}
       == nav_item '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}
