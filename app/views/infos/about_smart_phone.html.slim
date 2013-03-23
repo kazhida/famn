@@ -47,6 +47,7 @@ div data-role="page" data-theme="b" id="about_how_to_begin"
     = render :partial => 'about_how_to_begin'
 
     ul data-role="listview" data-theme="c"
+      li = jump_to '必要なもの',                 'about_required'
       li = jump_to '新規登録',                   'about_register'
       li = jump_to 'ユーザの追加',               'about_add_user'
       li = jump_to 'ユーザの削除',               'about_del_user'
@@ -59,7 +60,15 @@ div data-role="page" data-theme="b" id="about_how_to_begin"
 
   = render 'shared/footer_smart_phone'
 
-/ どうやって使うの？ → 新規登録方法
+/ どうやって使うの？ → 新規登録
+div data-role="page" data-theme="b" id="about_required"
+  - @back = true
+  = render 'shared/header_smart_phone'
+  div data-role="content"
+    = render :partial => 'about_required'
+  = render 'shared/footer_smart_phone'
+
+/ どうやって使うの？ → 新規登録
 div data-role="page" data-theme="b" id="about_register"
   - @back = true
   = render 'shared/header_smart_phone'
