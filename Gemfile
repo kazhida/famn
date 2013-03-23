@@ -12,9 +12,9 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
+#gem 'thin'
 gem 'therubyracer', :platforms => :ruby
 gem 'libv8', :platform => :ruby
-gem 'thin'
 gem 'less-rails'
 gem 'slim-rails'
 gem 'jquery-rails'
