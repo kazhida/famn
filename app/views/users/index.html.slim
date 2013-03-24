@@ -32,5 +32,26 @@ div class="span6"
           i class="icon-plus"
           | ユーザの追加
 
+      table class="table" width="100%" id="neighborhood-table"
+        thead
+          tr
+            th ご近所
+            th 承認
+            th 拒否
+        tbody
+          - Neighborhood.neighborhood_of(current_user.family_id).each do |neighbor|
+            tr
+              td = "#{neighbor.neighborhood.display_name} (@#{neighbor.neighborhood.login_name})"
+              td
+                - if neighbor.neighborhood.accepted?
+                  span class="label label-success" ○
+                - else
+                  span class="label" -
+              td
+                - if neighbor.neighborhood.accepted?
+                  span class="label label-important" ×
+                - else
+                  span class="label" -
+
 div class="span3 ads"
   = render 'shared/ads'

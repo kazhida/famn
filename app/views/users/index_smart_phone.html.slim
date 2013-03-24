@@ -9,6 +9,11 @@ div data-role="page" data-theme="b"
             = link_to "#{user.display_name} (@#{user.login_name})", user
         li data-icon="plus"
           = link_to '(ユーザ追加)', {:controller => :users, :action => :new}
-        /li data-role="list-divider" ご近所
+        - neighbors = Neighborhood.neighborhood_of(current_user.family_id)
+        - unless neighbors.empty?
+          li data-role="list-divider" ご近所
+          - neighbors.each do |neighbor|
+            li = "#{neighbor.neighborhood.display_name} (@#{neighbor.neighborhood.login_name})"
+
   = render 'shared/footer_smart_phone'
 

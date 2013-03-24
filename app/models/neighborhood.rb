@@ -1,5 +1,6 @@
 class Neighborhood < ActiveRecord::Base
   belongs_to :family
+  belongs_to :neighborhood, :class_name => 'Family', :foreign_key => 'neighbor_id'
 
   attr_accessible :family_id
   attr_accessible :neighbor_id
