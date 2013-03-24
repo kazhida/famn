@@ -41,15 +41,20 @@ class Neighborhood < ActiveRecord::Base
     not (rejected? || accepted?)
   end
 
-  def self.add_neighborhood(family_id, neighbor_id)
-    n = neighborhood_of(family_id, neighbor_id)
-    if n.nil?
-      n = Neighborhood.new
-      n.family_id = family_id
-      n.neighbor_id = neighbor_id
-      n.accepted = false
-      n.rejected = false
-      n.save
+  def self.add_neighborhood(family, neighborhood)
+    family = family.id              if family.kind_of?(Family)
+    neighborhood = neighborhood.id  if neighborhood.kind_of?(Family)
+
+    if family && neighborhood
+      n = neighborhood_of(family, neighborhood)
+      if n.nil?
+        n = Neighborhood.new
+        n.family_id = family
+        n.neighbor_id = neighborhood
+        n.accepted = false
+        n.rejected = false
+        n.save
+      end
     end
   end
 

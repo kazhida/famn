@@ -11,6 +11,30 @@ describe Neighborhood, '新規作成するとき' do
     @neighborhood.neighbor_id = 2
   end
 
+  it 'id直指定で、レコードを増やす' do
+    expect {
+      Neighborhood.add_neighborhood 1, 2
+    }.to change(Neighborhood, :count).by(1)
+  end
+
+  it '既存のidを直指定しても、レコードは増えない' do
+    expect {
+      Neighborhood.add_neighborhood 3, 2
+    }.to change(Neighborhood, :count).by(0)
+  end
+
+  it 'Familyオブジェクト直指定で、レコードを増やす' do
+    expect {
+      Neighborhood.add_neighborhood Family.find(1), Family.find(2)
+    }.to change(Neighborhood, :count).by(1)
+  end
+
+  it 'Familyオブジェクトで既存のを直指定しても、レコードは増えない' do
+    expect {
+      Neighborhood.add_neighborhood Family.find(3), Family.find(2)
+    }.to change(Neighborhood, :count).by(0)
+  end
+
   it '拒絶するのは、あり' do
     @neighborhood.rejected = true
     @neighborhood.accepted = false

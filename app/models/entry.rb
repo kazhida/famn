@@ -29,35 +29,39 @@ class Entry < ActiveRecord::Base
 
   def self.by_user(user)
     destinations = Destination.arel_table
-    to_user = destinations.project(destinations[:entry_id]).where(destinations[:name].eq('@' + user.family.login_name))
+    to_user = destinations.project(destinations[:entry_id]).where(destinations[:name].eq(user.family.login_name))
     entries = Entry.arel_table
     cond = entries[:family_id].eq(user.family_id).or entries[:id].in(to_user)
     @sql = arel_table.where(cond).order('posted_on DESC').to_sql
     where(cond).order('posted_on DESC')
   end
 
-  def set_destination(message)
+  def set_message(msg)
+    self.message = msg
     @destinations = Array.new
 
-    message.gsub(/(@\w+)\s|$/) do
-      @destinations.push "#{$1}"  unless $1.nil? or $1.empty?
-      "#{$1}"
+    unless msg.nil?
+      msg.gsub(/@(\w+)\s|$/) do
+        @destinations.push "#{$1}"  unless $1.nil? or $1.empty?
+        "#{$1}"
+      end
     end
   end
 
   def self.post!(user, message, face, &proc)
     entry = Entry.new
-    entry.message   = message
     entry.user      = user
     entry.family    = user.family
     entry.posted_on = DateTime.current
+    entry.set_message message
     entry.face      = face
-    entry.set_destination message
 
     transaction do
       entry.save!
-      entry.destinations.each do |destination|
-        Destination.create!(entry_id: entry.id, name: destination)
+
+      entry.destinations.each do |dest|
+        Destination.create!(entry_id: entry.id, name: dest)
+        Neighborhood.add_neighborhood(Family.find_by_login_name(dest), entry.family)
       end
       unless proc.nil?
         proc.call entry
