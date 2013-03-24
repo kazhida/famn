@@ -60,9 +60,17 @@ class Neighborhood < ActiveRecord::Base
 
   def self.neighborhood_of(family_id, neighbor_id = nil)
     if neighbor_id.nil?
-      where :family_id => family_id
+      where(:family_id => family_id)
     else
       Neighborhood.find_by_family_id_and_neighbor_id(family_id, neighbor_id)
+    end
+  end
+
+  def self.neighborhood_ids(family_id, include_suspend)
+    if include_suspend
+      select(:neighbor_id).where(:family_id => family_id).where(:rejected => false)
+    else
+      select(:neighbor_id).where(:family_id => family_id).where(:accepted => true)
     end
   end
 end

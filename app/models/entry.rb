@@ -28,12 +28,25 @@ class Entry < ActiveRecord::Base
   end
 
   def self.by_user(user)
-    destinations = Destination.arel_table
-    to_user = destinations.project(destinations[:entry_id]).where(destinations[:name].eq(user.family.login_name))
     entries = Entry.arel_table
-    cond = entries[:family_id].eq(user.family_id).or entries[:id].in(to_user)
-    @sql = arel_table.where(cond).order('posted_on DESC').to_sql
-    where(cond).order('posted_on DESC')
+    from_family = entries[:family_id].eq(user.family_id)
+
+    dest = Destination.arel_table
+    from_others = entries[:id].in(dest.project(dest[:entry_id]).where(dest[:name].eq(user.family.login_name)))
+
+    neighbor = Neighborhood.arel_table
+    accept_families = neighbor.project(neighbor[:neighbor_id]).where(neighbor[:family_id].eq(user.family_id))
+    if user.aruji
+      accept_families = accept_families.where(neighbor[:rejected].eq(false))
+    else
+      accept_families = accept_families.where(neighbor[:accepted].eq(true))
+    end
+    from_others = from_others.and (entries[:family_id].in(accept_families.ast))
+
+    #cond1 = entries[:id].in(dest.project(dest[:entry_id]).where(dest[:name].eq(user.family.login_name)))
+    #cond1 = cond1.and entries[:family_id].in(neighbor)
+    #cond = from_family.or cond1
+    where(from_family.or from_others).order('posted_on DESC')
   end
 
   def set_message(msg)

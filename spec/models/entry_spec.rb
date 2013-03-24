@@ -81,6 +81,7 @@ describe Entry, 'エントリを取り出したとき' do
     proc {
       Entry.post!(ito, '@sakamoto またあそぼ', 1)
     }.should_not raise_error
+    Neighborhood.neighborhood_of(@user.family_id, ito.family_id).accept
     @entries = Entry.by_user(@user)
     @entries.count.should == 5
   end
