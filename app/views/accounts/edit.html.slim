@@ -62,22 +62,22 @@ div class="span3" id="index-users"
         thead
           tr
             th ご近所
-            th 承認
-            th 拒否
+            th 承認/拒否
         tbody
           - Neighborhood.neighborhood_of(current_user.family_id).each do |neighbor|
             tr
               td = "#{neighbor.neighborhood.display_name} (@#{neighbor.neighborhood.login_name})"
               td
-                - if neighbor.accepted?
-                  span class="label label-success" ○
-                - else
-                  span class="label" -
-              td
-                - if neighbor.rejected?
-                  span class="label label-important" ×
-                - else
-                  span class="label" -
+                div class="btn-group"
+                  a class="btn dropdown-toggle" data-toggle="dropdown" href="#"
+                    = '承認済' if neighbor.accepted?
+                    = '拒否中' if neighbor.rejected?
+                    = '未決定' if neighbor.suspended?
+                    span class="caret"
+                  ul class="dropdown-menu"
+                    li = link_to '承認', accept_neighborhood_path(neighbor),  :method => :post
+                    li = link_to '拒否', reject_neighborhood_path(neighbor),  :method => :post
+                    li = link_to '保留', suspend_neighborhood_path(neighbor), :method => :post
 
 div class="span3 ads"
   = render 'shared/ads'

@@ -16,10 +16,10 @@ Famn::Application.routes.draw do
     get  :unverified
   end
   resources :users,   :except => [:edit, :update]
-  resource :neighborhoods, :only => [:show] do
-    post :accept
-    post :reject
-    post :suspend
+  resources :neighborhoods, :only => [:show, :edit] do
+    post :accept,  :on => :member
+    post :reject,  :on => :member
+    post :suspend, :on => :member
   end
 
   get 'v/:id/:token' => 'accounts#verify', id: /\d+/, token: /[0-9a-f]+/, :as => :account_verification

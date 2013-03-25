@@ -4,7 +4,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
     respond_to do |format|
       format.html
-      format.json   { render json: @users}
+      format.json   { render json: @neighborhood}
     end
   end
 
@@ -12,9 +12,9 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
     yield @neighborhood
     respond_to do |format|
-      format.js
+      format.js     { render js: @neighborhood, layout: false}
       format.html   { redirect_to :back}
-      format.json   { render json: @users}
+      format.json   { head :no_content }
     end
   end
 

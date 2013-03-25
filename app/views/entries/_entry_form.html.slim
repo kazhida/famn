@@ -2,7 +2,7 @@
   = label_tag :message do
     p
       span class="label label-info" 新規メッセージ(250文字以内)
-  = text_area_tag :message, @send_to, :maxlength => 250, :class => 'width90', :rows => 6
+  = text_area_tag :message, @reply_to, :maxlength => 250, :class => 'width90', :rows => 6
   - (1..4).each do |look|
     span class="icon"
       = radio_button_tag :face, look, look == 1

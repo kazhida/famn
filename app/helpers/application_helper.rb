@@ -7,9 +7,9 @@ module ApplicationHelper
     "<li#{cls}>" + link_to(name, options, html_options) + '</li>'
   end
 
-  def send_to(user)
+  def reply_to(user)
     caption = "#{user.display_name} (@#{user.login_name})"
-    link_to caption, {:controller => :entries, :action => :new, :send_to => user.login_name}
+    link_to(caption, {:controller => :entries, :action => :new, :reply_to => user.login_name}).html_safe
   end
 
   def message_format(message, family_name)

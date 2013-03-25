@@ -20,4 +20,4 @@ p
     ul class="unstyled"
       - User.by_family_id(current_user.family_id, current_user).each do |user|
         li
-          == send_to user
+          = reply_to user

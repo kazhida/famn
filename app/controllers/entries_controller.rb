@@ -17,7 +17,7 @@ class EntriesController < ApplicationController
   # GET /entries/new.json
   def new
     @entry = Entry.new
-    @send_to = params[:send_to] ? "@#{params[:send_to]} " : ''
+    @reply_to = params[:reply_to] ? "@#{params[:reply_to]} " : ''
 
     respond_to do |format|
       format.html # new.html.slim

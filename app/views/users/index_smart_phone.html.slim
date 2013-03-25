@@ -13,7 +13,8 @@ div data-role="page" data-theme="b"
         - unless neighbors.empty?
           li data-role="list-divider" ご近所
           - neighbors.each do |neighbor|
-            li = "#{neighbor.neighborhood.display_name} (@#{neighbor.neighborhood.login_name})"
+            li
+              = link_to "#{neighbor.neighborhood.display_name} (@#{neighbor.neighborhood.login_name})", neighbor
 
   = render 'shared/footer_smart_phone'
 
