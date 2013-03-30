@@ -10,6 +10,7 @@ Famn::Application.routes.draw do
 
   resources :entries, :except => [:show, :edit, :update] do
     get 'page/:page', :action => :index, :on => :collection
+    get :reload,                         :on => :collection
   end
   resource  :session, :only   => [:new, :create, :destroy]
   resource  :account, :only   => [:edit, :update] do

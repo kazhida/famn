@@ -2,14 +2,23 @@
 
 class EntriesController < ApplicationController
 
+  PER_PAGE = 10
+
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.by_user(current_user).page(params[:page]).per(10)
+    @entries = Entry.by_user(current_user).page(params[:page]).per(PER_PAGE)
     respond_to do |format|
       format.js   { render 'entries/index_smart_phone', :layout => false}
       format.html
       format.json { render json: @entries }
+    end
+  end
+
+  def reload
+    @entries = Entry.by_user(current_user).page(1).per(PER_PAGE)
+    respond_to do |format|
+      format.js   { render 'entries/reload_smart_phone', :layout => false}
     end
   end
 
