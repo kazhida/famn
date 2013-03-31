@@ -1,5 +1,5 @@
 class EntryPostedOnToDatetime < ActiveRecord::Migration
   def change
-    change_column :entries, :posted_on, :datetime, :null => false
+    #change_column :entries, :posted_on, :datetime, :null => false
   end
 end
