@@ -19,11 +19,13 @@ test:
   timeout: 5000
 
 production:
-  adapter:  postgresql
+  adapter:  mysql2
   encoding: unicode
-  database: famn_production
+  database: <%= ENV['FAMN_DATABASE_NAME'] || 'famn_production' %>
+  reconnect: false
   pool: 5
   username: <%= ENV['FAMN_DATABASE_USERNAME'] || 'famn' %>
   password: <%= ENV['FAMN_DATABASE_PASSWORD'] %>
   host:     <%= ENV['FAMN_DATABASE_HOST'] || 'localhost' %>
+  port:     <%= ENV['FAMN_DATABASE_PORT'] || 3306 %>
   timeout:  5000

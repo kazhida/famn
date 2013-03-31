@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+require 'date'
+
 [
   {
       login_name: 'admin',
@@ -7,7 +9,7 @@
   },
   {
       login_name: 'visitor',
-      display_name: '['
+      display_name: '訪問者'
   },
   {
     login_name: 'sakamot0',
@@ -39,9 +41,9 @@ end
   },
   {
       login_name: 'guest',
-      display_name: 'ゲスト]',
+      display_name: 'ゲスト',
       password: 'have_fun',
-      mail_address: 'hirohumi@example.com',
+      mail_address: 'guest@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
@@ -49,7 +51,7 @@ end
       login_name: 'guest1',
       display_name: 'ゲスト (1)',
       password: 'have_to_fun',
-      mail_address: 'hirohumi@example.com',
+      mail_address: 'guest@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
@@ -57,7 +59,7 @@ end
       login_name: 'guest2',
       display_name: 'ゲスト (2)',
       password: 'have_to_fun',
-      mail_address: 'hirohumi@example.com',
+      mail_address: 'guest@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
@@ -65,7 +67,7 @@ end
       login_name: 'guest3',
       display_name: 'ゲスト (3)',
       password: 'have_to_fun',
-      mail_address: 'hirohumi@example.com',
+      mail_address: 'guest@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
@@ -73,7 +75,7 @@ end
       login_name: 'guest4',
       display_name: 'ゲスト (4)',
       password: 'have_to_fun',
-      mail_address: 'hirohumi@example.com',
+      mail_address: 'guest@example.com',
       family: Family.find_by_login_name('visitor'),
       aruji:  true
   },
@@ -154,6 +156,11 @@ end
 
 [
   {
+      message:  'ゲストアカウント作りました。',
+      user: User.by_names('visitor', 'guest1'),
+      posted_on: DateTime::new(2013, 01, 01, 07, 02)
+  },
+  {
     message:  'hi.',
     user: User.by_names('it0', 'hirohumi'),
     posted_on: Date::new(2012, 01, 01)
@@ -212,3 +219,4 @@ end
       posted_on: Date::new(2012, i, 9)
   )
 end
+

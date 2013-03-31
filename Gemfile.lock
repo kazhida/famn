@@ -76,6 +76,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.7.2)
+    mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -83,7 +84,6 @@ GEM
     net-ssh (2.6.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -162,6 +162,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unicorn-rails (1.0.0)
+      rack
+      unicorn
 
 PLATFORMS
   ruby
@@ -176,7 +179,7 @@ DEPENDENCIES
   kaminari
   less-rails
   libv8
-  pg
+  mysql2
   rails (~> 3.2.13)
   rspec-rails
   sass-rails (~> 3.2.3)
@@ -186,3 +189,4 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   unicorn
+  unicorn-rails

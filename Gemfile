@@ -6,8 +6,6 @@ gem  'rails', '~> 3.2.13'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
 end
@@ -21,17 +19,17 @@ gem 'jquery-rails'
 gem 'jquery_mobile_rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn'
-gem 'pg'
+gem 'unicorn-rails'
+#gem 'pg'
 gem 'kaminari'
 gem 'jpmobile'
 
+group :production do
+  gem 'mysql2'
+end
+
 group :development, :test do
   gem 'capistrano'
-  #gem 'debugger'
   gem 'sqlite3'
-  #gem 'better_errors'
   gem 'rspec-rails'
-  #gem 'rails-footnotes'
-  #gem 'factory_girl_rails'
-  #gem 'binding_of_caller'
 end
