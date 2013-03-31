@@ -25,7 +25,7 @@ gem 'kaminari'
 gem 'jpmobile'
 
 group :production do
-  gem 'mysql2'
+  gem 'mysql'
   gem 'activerecord-mysql-adapter'
 end
 
