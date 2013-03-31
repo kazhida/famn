@@ -26,6 +26,7 @@ gem 'jpmobile'
 
 group :production do
   gem 'mysql2'
+  gem 'activerecord-mysql-adapter'
 end
 
 group :development, :test do
