@@ -15,7 +15,6 @@ div class="span6"
         - @entry = entry
         = render 'entry'
   = paginate @entries, :window => 2, :outer_window => 2
-  p id="more-debug" debug
 
 div class="span3 ads"
   = render 'shared/ads'
