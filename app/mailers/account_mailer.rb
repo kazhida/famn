@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 class AccountMailer < ActionMailer::Base
-  default :from => 'info@famn.jp'
+  default :from => 'info@famn.mobi'
 
   def email_verification(admin, user)
     @admin = admin
