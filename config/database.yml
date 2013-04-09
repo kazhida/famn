@@ -20,7 +20,7 @@ test:
 
 production:
   adapter:  mysql2
-  encoding: unicode
+  encoding: utf8
   database: <%= ENV['FAMN_DATABASE_NAME'] || 'famn_production' %>
   reconnect: false
   pool: 5
