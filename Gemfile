@@ -8,13 +8,13 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
+  gem 'less-rails'
+  gem 'slim-rails'
 end
 
 #gem 'thin'
 gem 'therubyracer', :platforms => :ruby
 gem 'libv8', :platform => :ruby
-gem 'less-rails'
-gem 'slim-rails'
 gem 'jquery-rails'
 gem 'jquery_mobile_rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
