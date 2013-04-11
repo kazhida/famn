@@ -23,6 +23,7 @@ gem 'unicorn-rails'
 #gem 'pg'
 gem 'kaminari'
 gem 'jpmobile'
+gem 'mina'
 
 group :production do
   gem 'mysql2'

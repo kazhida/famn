@@ -1,9 +1,9 @@
 worker_processes 2
 
-working_directory '/home/cloudn/famn'
+working_directory '/var/www/famn/current'
 
-listen            "/tmp/unicorn_#{application}.sock"
-pid               "/tmp/unicorn_#{application}.pid"
+listen  '/tmp/unicorn_famn.sock'
+pid     '/tmp/unicorn_famn.pid'
 timeout 60
 
 stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])

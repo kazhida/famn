@@ -12,20 +12,23 @@ require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 
 set :domain, 'famn.mobi'
 set :deploy_to, '/var/www/famn'
-set :repository, 'git@github.com:kazhida/famn.git'
+set :repository, 'https://github.com/kazhida/famn.git'
 set :branch, 'master'
+set :rails_env,  ENV['RAILS_ENV'] || 'production'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
 set :shared_paths, ['config/database.yml', 'log']
 
 # Optional settings:
-set :user, 'cloudn'    # Username in the server to SSH to.
+set :user, 'kazhida'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.
 
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
 task :environment do
+  queue %[source ~/.bashrc]
+
   # If you're using rbenv, use this to load the rbenv environment.
   # Be sure to commit your .rbenv-version to your repository.
   invoke :'rbenv:load'
@@ -44,8 +47,8 @@ task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/shared/config"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
 
-  queue! %[touch "#{deploy_to}/shared/config/database.yml"]
-  queue  %[-----> Be sure to edit 'shared/config/database.yml'.]
+  #queue! %[touch "#{deploy_to}/shared/config/database.yml"]
+  #queue  %[-----> Be sure to edit 'shared/config/database.yml'.]
 end
 
 desc 'Deploys the current version to the server.'
