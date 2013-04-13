@@ -4,10 +4,10 @@ working_directory '/var/www/famn/current'
 
 listen  '/tmp/unicorn_famn.sock'
 pid     '/tmp/unicorn_famn.pid'
-timeout 60
+timeout 30
 
-stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+stderr_path File.expand_path('log/unicorn.stderr.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/unicorn.stdout.log', ENV['RAILS_ROOT'])
 
 preload_app true
 
