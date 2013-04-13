@@ -9,7 +9,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
   gem 'less-rails'
-  gem 'slim-rails'
 end
 
 #gem 'thin'
@@ -25,6 +24,7 @@ gem 'kaminari'
 gem 'jpmobile'
 gem 'mina'
 gem 'slim'
+gem 'slim-rails'
 
 group :production do
   gem 'mysql2'
