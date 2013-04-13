@@ -1,5 +1,5 @@
 ActionMailer::Base.smtp_settings =
-    if ENV['FAMN_SMTP_PASSWORD'].nil
+    if ENV['FAMN_SMTP_PASSWORD'].nil?
       {
           :address        => ENV['FAMN_SMTP_ADDRESS']        || 'localhost',
           :port           => ENV['FAMN_SMTP_PORT']           ||  25
