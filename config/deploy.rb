@@ -2,7 +2,6 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
-# require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -22,7 +21,6 @@ set :shared_paths, ['config/database.yml', 'log']
 
 # Optional settings:
 set :user, 'kazhida'    # Username in the server to SSH to.
-#   set :port, '30000'     # SSH port number.
 
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
@@ -32,9 +30,6 @@ task :environment do
   # If you're using rbenv, use this to load the rbenv environment.
   # Be sure to commit your .rbenv-version to your repository.
   invoke :'rbenv:load'
-
-  # For those using RVM, use this to load an RVM version@gemset.
-  # invoke :'rvm:use[ruby-1.9.3-p125@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -67,6 +62,16 @@ task :deploy => :environment do
       queue 'touch tmp/restart.txt'
     end
   end
+end
+
+task :restart => :environment do
+  set :pid, '/tmp/unicorn_famn.pid'
+
+  queue %[test -s "#{pid}" && kill -$1 `cat #{pid}`]
+  queue %[cd #{deploy_to}/current]
+  queue %[bundle exec unicorn -D -E #{rails_env} -c config/unicorn.rb]
+
+  run!
 end
 
 # For help in making your deploy script, see the Mina documentation:
