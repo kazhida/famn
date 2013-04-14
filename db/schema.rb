@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320043744) do
+ActiveRecord::Schema.define(:version => 20130414134430) do
 
   create_table "destinations", :force => true do |t|
     t.integer  "entry_id"
