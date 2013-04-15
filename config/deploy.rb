@@ -65,10 +65,10 @@ task :deploy => :environment do
 end
 
 task :restart => :environment do
-  set :pid, '/tmp/unicorn_famn.pid'
+  set :pid_file, '/tmp/unicorn_famn.pid'
 
-  queue %[source ~/.bashrc]
-  queue %[test -s "#{pid}" && kill `cat #{pid}`]
+  queue %[source ~/.famnenv]
+  queue %[test -s "#{pid_file}" && kill `cat #{pid_file}`]
   queue %[cd #{deploy_to}/current]
   queue %[bundle exec unicorn_rails -D -E #{rails_env} -c config/unicorn.rb]
 end
