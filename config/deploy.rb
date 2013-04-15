@@ -67,9 +67,10 @@ end
 task :restart => :environment do
   set :pid, '/tmp/unicorn_famn.pid'
 
-  queue! %[test -s "#{pid}" && kill `cat #{pid}`]
-  queue! %[cd #{deploy_to}/current]
-  queue! %[bundle exec unicorn_rails -D -E #{rails_env} -c config/unicorn.rb]
+  queue %[source ~/.bashrc]
+  queue %[test -s "#{pid}" && kill `cat #{pid}`]
+  queue %[cd #{deploy_to}/current]
+  queue %[bundle exec unicorn_rails -D -E #{rails_env} -c config/unicorn.rb]
 end
 
 # For help in making your deploy script, see the Mina documentation:
