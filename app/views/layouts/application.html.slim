@@ -16,5 +16,6 @@ html
           = link_to image_tag('famn_logo.png', :size => '360x64', :alt => 'サイトロゴ'), :root
           p famn.mobiは、家族向けSNSです。家族の内輪でメッセージを共有します。
         = render '/shared/user_menu'
+        p = Rails.env
       div id='content' class="row-fluid"
         = yield
