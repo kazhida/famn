@@ -17,5 +17,6 @@ html
           p famn.mobiは、家族向けSNSです。家族の内輪でメッセージを共有します。
         = render '/shared/user_menu'
         p = Rails.env.production? ? 'production' : 'else'
+        p = request.formats
       div id='content' class="row-fluid"
         = yield
