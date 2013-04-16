@@ -1,7 +1,8 @@
 /*
- *= require jquery.mobile
  *= require famn-theme.min
  *= require_self
+ *= require_tree .
+ *= require jquery.mobile
  */
 
 .caution {
