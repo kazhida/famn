@@ -10,7 +10,7 @@ $list.find("#message-more").remove();
 <% end %>
 $list.append("<%= escape_javascript(render 'entries/more_smart_phone') %>");
 
-if ($list.find("#message-more").innerHTML == "") {
+if ($list.find("#message-more").text.replace(/\s/g,"").length == 0) {
     $list.find("#message-more").remove();
 }
 
