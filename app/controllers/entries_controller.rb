@@ -41,7 +41,10 @@ class EntriesController < ApplicationController
       begin
         Entry.post!(current_user, params[:message], params[:face]) do |entry|
           @entry = entry
-          NoticeMailer.notify(entry)  if ENV['RAILS_ENV'] == 'production'
+          begin
+            NoticeMailer.notify(entry)  if ENV['RAILS_ENV'] == 'production'
+          rescue
+          end
         end
         format.html   { redirect_to :root }
         format.json   { render json: @entry, status: :created, location: @entry }

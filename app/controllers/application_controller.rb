@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    redirect_to [:new, :session]  unless current_user
+    redirect_to [:new, :session]  if current_user.nil?
   end
 
   def reject_unverified_user
