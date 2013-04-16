@@ -1,7 +1,6 @@
 ActionMailer::Base.smtp_settings =
     if ENV['FAMN_SMTP_AUTHENTICATION'].nil?
       {
-          :enable_starttls_auto => false,
           :address        => ENV['FAMN_SMTP_ADDRESS']        || 'localhost',
           :port           => ENV['FAMN_SMTP_PORT']           ||  25
       }
