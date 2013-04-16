@@ -46,10 +46,12 @@ div class="span3" id="index-users"
                 - else
                   span class="label label-info" 仮
               - if user.id == current_user.id
-                td
-              - else
-                td = link_to user, :confirm => '本当に削除しますか?', :method =>:delete do
+                td = link_to user, :confirm => '家族全体が削除されます。本当に削除しますか?', :method =>:delete do
                   button class="btn btn-danger btn-mini"
+                    i class="icon-trash" style="margin-top: 1px;"
+              - else
+                td = link_to user, :confirm => "#{user.display_name}を削除します。本当に削除しますか?", :method =>:delete do
+                  button class="btn btn-warning btn-mini"
                     i class="icon-trash" style="margin-top: 1px;"
 
       = link_to :controller => :users, :action => :new do

@@ -52,12 +52,26 @@ class UsersController < ApplicationController
 
   # DELETE /users
   def destroy
-    user_name = User.find(params[:id]).login_name
-    User.delete(params[:id])
-    flash[:notice] = "#{user_name}を削除しました。"
-    respond_to do |format|
-      format.html   { redirect_to :controller => :accounts, :action => :edit }
-      format.json   { head :no_content }
+    user = User.find(params[:id])
+    family_id = user.family_id
+    user_name = user.login_name
+    if user == current_user
+      if User.where("family_id = #{family_id} and login_name != '#{user_name}' and aruji").count > 0
+        user.destroy
+      else
+        Family.find(family_id).destroy
+      end
+      respond_to do |format|
+        format.html   { redirect_to :root }
+        format.json   { head :no_content }
+      end
+    else
+      user.destroy
+      flash[:notice] = "#{user_name}を削除しました。"
+      respond_to do |format|
+        format.html   { redirect_to :controller => :accounts, :action => :edit }
+        format.json   { head :no_content }
+      end
     end
   end
 end

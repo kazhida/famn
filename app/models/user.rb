@@ -4,7 +4,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   belongs_to      :family
-  has_many        :entries, :dependent => :destroy
+  has_many        :entries, :dependent => :delete_all
 
   attr_accessible :login_name
   attr_accessible :display_name
