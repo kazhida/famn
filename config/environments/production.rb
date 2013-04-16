@@ -23,6 +23,7 @@ Famn::Application.configure do
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
+  # for smart phone
   config.assets.precompile += %w(application_smart_phone.css application_smart_phone.js)
 
   # Specifies the header that your server uses for sending files
