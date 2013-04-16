@@ -16,12 +16,5 @@ html
           = link_to image_tag('famn_logo.png', :size => '360x64', :alt => 'サイトロゴ'), :root
           p famn.mobiは、家族向けSNSです。家族の内輪でメッセージを共有します。
         = render '/shared/user_menu'
-        ul
-          li = ENV['FAMN_SMTP_AUTHENTICATION']
-          li = ENV['FAMN_SMTP_ADDRESS']
-          li = ENV['FAMN_SMTP_DOMAIN']
-          li = ENV['FAMN_SMTP_PASSWORD']
-          li = ENV['FAMN_SMTP_PORT']
-          li = ENV['FAMN_SMTP_USER_NAME']
       div id='content' class="row-fluid"
         = yield
