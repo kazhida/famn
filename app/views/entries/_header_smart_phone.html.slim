@@ -7,12 +7,12 @@ div data-role="navbar"
   ul
     - if current_user.nil?
       == nav_item 'Login',    {:controller => :sessions, :action => :new},   {'data-icon' => 'famn-home',     'data-ajax' => false}
-      == nav_item 'Register', {:controller => :users,    :action => :new},   {'data-icon' => 'famn-add',      'data-ajax' => false}
+      == nav_item '新規登録', {:controller => :users,    :action => :new},   {'data-icon' => 'famn-add',      'data-ajax' => false}
       == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info',     'data-ajax' => false}
     - else
       == nav_item 'Home',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home',     'data-ajax' => false}
-      == nav_item 'Compose',  {:controller => :entries,  :action => :new},   {'data-icon' => 'famn-compose',  'data-ajax' => false}
-      == nav_item 'Setting',  {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear',     'data-ajax' => false}
+      == nav_item '書込',     {:controller => :entries,  :action => :new},   {'data-icon' => 'famn-compose',  'data-ajax' => false}
+      == nav_item '設定',     {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear',     'data-ajax' => false}
       == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info',     'data-ajax' => false}
 
 = render 'shared/flash_message'
