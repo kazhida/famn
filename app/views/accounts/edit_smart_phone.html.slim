@@ -1,5 +1,6 @@
-div data-role="page" data-theme="b" id="edit-account"
+div data-role="page" data-theme="b"
   = render 'shared/header_smart_phone'
+
   div data-role="content"
     = form_for current_user, :url => :account do |f|
       - if current_user.aruji
@@ -23,35 +24,6 @@ div data-role="page" data-theme="b" id="edit-account"
         | 自分宛のメッセージのときだけ受けとる
       br
       = f.submit '更新', :class => 'btn btn-primary buttons', 'data-theme' => 'a'
-  = render 'shared/footer_smart_phone'
 
-div data-role="page" data-theme="b" id="index-users"
-  = render 'shared/header_smart_phone'
-  div data-role="content"
-    ul data-role="listview"
-      li data-role="list-divider" ユーザ一覧
-      - User.by_family_id(current_user.family_id).each do |user|
-        li
-          a href="#"
-            = "#{user.display_name} (@#{user.login_name})"
-          = link_to '削除', user, :confirm => '本当に削除しますか?', :method =>:delete, :'data-icon' => 'delete'
-    = link_to 'ユーザ追加', {:controller => :users, :action => :new}
-  = render 'shared/footer_smart_phone'
+  /= render 'shared/footer_smart_phone'
 
-div data-role="page" data-theme="b" id="add-user"
-  = render 'shared/header_smart_phone'
-  div data-role="content"
-    h5 ユーザの追加
-    = form_tag :account do
-      = label_tag         :display_name,  '表示用ユーザ名'
-      = text_field_tag    :display_name,  '', :class => 'input-medium', :placeholder => '(例: 龍馬)'
-      = label_tag         :login_name,    'ログイン用ユーザ名'
-      = text_field_tag    :login_name,    '', :class => 'input-medium', :placeholder => '(例: ryoma)'
-      = label_tag         :mail_address,  'メール・アドレス'
-      = email_field_tag   :mail_address,  '', :class => 'input-large',  :placeholder => '(例: ryoma@example.com)'
-      = hidden_field_tag  :aruji, false
-      p
-        | 　上記のユーザを作成し、本人確認のメールを指定したアドレスに送信します。
-        | メールを受けとったユーザが本登録を行う必要があります。
-      = submit_tag '送信', :class => 'btn btn-info'
-  = render 'shared/footer_smart_phone'

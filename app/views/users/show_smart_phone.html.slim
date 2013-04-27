@@ -1,6 +1,7 @@
-div data-role="page" data-theme="b"
+div data-role="page" data-theme="b" data-url="#{url_for(@user)}"
   - @back = true
   = render 'shared/header_smart_phone'
+
   div data-role="content"
     h1
       = @user.display_name
@@ -8,4 +9,5 @@ div data-role="page" data-theme="b"
       = @user.login_name
     - if current_user.aruji? && current_user.id != @user.id
       = link_to '削除', @user, :confirm => '本当に削除しますか?', :method =>:delete, 'data-role' => 'button', 'data-icon' => 'delete', 'data-iconpos' => 'right', 'data-theme' => 'e'
+
   = render 'shared/footer_smart_phone'

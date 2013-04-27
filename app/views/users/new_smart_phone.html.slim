@@ -1,8 +1,11 @@
 div data-role="page" data-theme="b"
+  - @back = true
   = render 'shared/header_smart_phone'
+
   div data-role="content"
     - if current_user
       = render 'shared/register_add'
     - else
       = render 'shared/register_new'
-  = render 'shared/footer_smart_phone'
+
+  /= render 'shared/footer_smart_phone'

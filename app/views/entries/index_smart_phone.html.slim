@@ -1,10 +1,12 @@
 div data-role="page" data-theme="b" data-url="/"
   = render 'entries/header_smart_phone'
+
   div data-role="content"
     ul data-role="listview" data-theme="d" id="message-list"
       - @entries.each do |entry|
         - @entry = entry
         = render 'entries/entry_smart_phone'
       = render 'entries/more_smart_phone'
+
   = render 'shared/footer_smart_phone'
 

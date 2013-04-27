@@ -1,6 +1,7 @@
 div data-role="page" data-theme="b" data-url="#{url_for(@neighborhood)}"
   - @back = true
   = render 'shared/header_smart_phone'
+
   div data-role="content"
     h1
       = @neighborhood.neighborhood.display_name
@@ -10,4 +11,5 @@ div data-role="page" data-theme="b" data-url="#{url_for(@neighborhood)}"
       = link_button_to '承認', accept_neighborhood_path(@neighborhood),  :accept,  @neighborhood.accepted?
       = link_button_to '拒否', reject_neighborhood_path(@neighborhood),  :reject,  @neighborhood.rejected?
       = link_button_to '保留', suspend_neighborhood_path(@neighborhood), :suspend, @neighborhood.suspended?
+
   = render 'shared/footer_smart_phone'

@@ -1,5 +1,6 @@
 div data-role="page" data-theme="b"
   = render 'entries/header_smart_phone'
+
   div data-role="content"
     = form_tag :entries do
       = label_tag     :message, 'メッセージ'
@@ -10,4 +11,5 @@ div data-role="page" data-theme="b"
           = label_tag "face_#{look}" do
             = image_tag current_user.icon(look), :size => '24x24'
       = submit_tag '送信', 'data-theme' => 'a'
-  = render 'shared/footer_smart_phone'
+
+  /= render 'shared/footer_smart_phone'
