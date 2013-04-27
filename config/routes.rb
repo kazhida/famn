@@ -16,7 +16,11 @@ Famn::Application.routes.draw do
   resource  :account, :only   => [:edit, :update] do
     get  :unverified
   end
-  resources :users,   :except => [:edit, :update]
+
+  resources :users,   :except => [:edit, :update] do
+    get :current, :on => :collection
+  end
+
   resources :neighborhoods, :only => [:show, :edit] do
     post :accept,  :on => :member
     post :reject,  :on => :member

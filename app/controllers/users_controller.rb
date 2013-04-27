@@ -22,6 +22,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def current
+    @user = User.find(params[:id])
+    if @user
+      respond_to do |format|
+        format.html
+        format.json   { render json: @user}
+      end
+    else
+      respond_to do |format|
+        format.html   { head 401 }
+        format.json   { head 401 }
+      end
+    end
+  end
+
   # GET /users/new
   def new
   end
