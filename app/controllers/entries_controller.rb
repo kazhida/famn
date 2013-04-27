@@ -67,7 +67,7 @@ class EntriesController < ApplicationController
 
   protected
 
-  def is_entries_page
+  def is_entries_page?
     true
   end
 end

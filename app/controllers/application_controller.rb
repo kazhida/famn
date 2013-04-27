@@ -31,10 +31,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def is_entries_page
+  def is_entries_page?
     false
   end
-  helper_method :is_entries_page
+  helper_method :is_entries_page?
 
   private
 
