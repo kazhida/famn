@@ -64,4 +64,10 @@ class EntriesController < ApplicationController
       format.json   { head :no_content }
     end
   end
+
+  protected
+
+  def is_entries_page
+    true
+  end
 end

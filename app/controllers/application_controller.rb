@@ -29,6 +29,13 @@ class ApplicationController < ActionController::Base
     render 'errors/404', :status => 404
   end
 
+  protected
+
+  def is_entries_page
+    false
+  end
+  helper_method :is_entries_page
+
   private
 
   # カレントユーザ
@@ -42,6 +49,11 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :current_user
+
+  def content_only
+    / famn\.content_only/ =~ request.user_agent
+  end
+  helper_method :content_only
 
   def logout
     session.delete :user_id

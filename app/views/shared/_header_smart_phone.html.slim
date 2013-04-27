@@ -1,4 +1,4 @@
-- unless params[:content_only]
+- unless content_only
   div data-role="header" data-position="fixed"
     h1 famn.mobi
     - if @back
@@ -12,6 +12,11 @@
         == nav_item 'Login',    {:controller => :sessions, :action => :new},   {'data-icon' => 'famn-home', 'data-ajax' => false}
         == nav_item '新規登録', {:controller => :users,    :action => :new},   {'data-icon' => 'famn-add',  'data-ajax' => false }
         == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info', 'data-ajax' => false}
+      - elsif is_entries_page?
+        == nav_item 'Home',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home',     'data-ajax' => false}
+        == nav_item '書込',     {:controller => :entries,  :action => :new},   {'data-icon' => 'famn-compose',  'data-ajax' => false}
+        == nav_item '設定',     {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear',     'data-ajax' => false}
+        == nav_item 'About',    {:controller => :infos,    :action => :about}, {'data-icon' => 'famn-info',     'data-ajax' => false}
       - elsif current_user.aruji?
         == nav_item 'Home',     {:controller => :entries,  :action => :index}, {'data-icon' => 'famn-home', 'data-ajax' => false}
         == nav_item '設定',     {:controller => :accounts, :action => :edit},  {'data-icon' => 'famn-gear', 'data-ajax' => false}
