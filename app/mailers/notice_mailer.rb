@@ -6,20 +6,21 @@ class NoticeMailer < ActionMailer::Base
   def notify(entry)
     @entry = entry
     unless entry.family.login_name == 'visitor'
-      bcc = []
+      dest = []
       User.by_family_id(entry.family.id).each do |user|
-        if user.notice?(entry.destinations) && user != entry.user
-          bcc.push %!#{user.mail_address}!  unless /@example¥.com/ =~ user.mail_address
+        if user.notice?(entry.destinations)
+          dest.push %!#{user.mail_address}!  unless /@example¥.com/ =~ user.mail_address
         end
       end
-      mail(
-          :to => entry.user.mail_address,
-          :bcc => bcc,
-          :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
-      ) do |format|
-        format.html
-        format.text
-      end.deliver
+      unless dest.empty?
+        mail(
+            :to => dest,
+            :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
+        ) do |format|
+          format.html
+          format.text
+        end.deliver
+      end
     end
   end
 end
