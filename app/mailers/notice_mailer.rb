@@ -8,13 +8,14 @@ class NoticeMailer < ActionMailer::Base
     unless entry.family.login_name == 'visitor'
       dest = []
       User.by_family_id(entry.family.id).each do |user|
-        if user.notice?(entry.destinations)
+        if user.notice?(entry.destinations) && user != entry.user
           dest.push %!#{user.mail_address}!  unless /@example¥.com/ =~ user.mail_address
         end
       end
       unless dest.empty?
         mail(
-            :to => dest,
+            :to => entry.user.mail_address,
+            :cc => dest,
             :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
         ) do |format|
           format.html
