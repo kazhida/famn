@@ -4,4 +4,4 @@ h3 = @entry.user.display_name
 p = @entry.message
 
 hr
-/= link_to 'ふぁん・もび', url_for(:root, :only_path => false)
+= link_to 'ふぁん・もび', url_for(:controller => :entries, :action => :index, :only_path => false)
