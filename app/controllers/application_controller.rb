@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def content_only
-    / famn\.content_only/ =~ request.user_agent
+    / famn\.content_only/ =~ request.env['HTTP_USER_AGENT']
   end
   helper_method :content_only
 
