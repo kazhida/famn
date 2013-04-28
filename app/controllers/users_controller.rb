@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 class UsersController < ApplicationController
-  skip_before_filter :authenticate_user,      only: [:index, :show, :new, :create]
+  skip_before_filter :authenticate_user,      only: [:index, :show, :new, :create, :current]
   skip_before_filter :reject_unverified_user, only: [:index, :show, :new, :create]
 
   # GET /users
