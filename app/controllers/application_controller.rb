@@ -48,6 +48,7 @@ class ApplicationController < ActionController::Base
     end
     # androidクライアント用に、faceをクッキーに仕込む
     cookies[:my_face] = @current_user.face  if @current_user
+    @current_user
   end
   helper_method :current_user
 
