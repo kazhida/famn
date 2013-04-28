@@ -27,9 +27,10 @@ body {
 }
 
 #left-pane {
-  background: url(bg_side_0.jpg) transparent;
+  //background: url(bg_side_0.jpg) transparent;
   background-size: cover;
   background-origin: border-box;
+  background: rgba(255, 187, 221, 0.5);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
   min-height: 640px;
   margin-left: 0px;
@@ -47,7 +48,7 @@ body {
 #header {
   .semi-hero-unit {
     border-radius: 6px;
-    background: rgba(255, 187, 221, 0.5);
+    background: rgba(255, 187, 221, 1);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
     padding-top: 24px;
     padding-left: 60px;

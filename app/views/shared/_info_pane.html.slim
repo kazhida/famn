@@ -12,7 +12,12 @@
       | &nbsp;(@
       = current_user.family.login_name
       | )
+
 = render 'shared/flash_message'
+
+- if is_entries_page?
+  div class="inset"
+    = render 'entries/entry_form'
 p
 - unless current_user.nil?
   div class="inset"
