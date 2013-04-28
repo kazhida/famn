@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   clear_helpers
 
-  #before_filter :set_mobile_format
   before_filter :authenticate_user
   before_filter :reject_unverified_user
 
@@ -47,6 +46,8 @@ class ApplicationController < ActionController::Base
       token = cookies.signed[:auto_login_token]
       @current_user ||= User.find_by_id_and_auto_login_token(id, token)
     end
+    # androidクライアント用に、faceをクッキーに仕込む
+    cookies[:my_face] = @current_user.face  if @current_user
   end
   helper_method :current_user
 
