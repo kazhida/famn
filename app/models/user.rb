@@ -235,7 +235,13 @@ class User < ActiveRecord::Base
   end
 
   def notice?(destinations = [])
-    notice && (!notice_only_replied || destinations.include?("@#{login_name}"))
+    included = true
+    if notice_only_replied
+      included = false
+      included = true   if destinations.include?("@#{login_name}")
+      included = true   if destinations.include?("@#{family.login_name}")
+    end
+    notice && included
   end
 
   def icon(look = nil)
