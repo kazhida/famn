@@ -4,7 +4,11 @@ div data-role="page" data-theme="b" data-url="#{url_for(:controller => :sessions
   div data-role="content"
     = render 'login_form'
 
+    ul data-role="listview" data-inset="true" data-theme="c"
+      li data-role="list-divider" ゲスト用アカウント
+      li 家族名：visitor
+      li ユーザ名：guest
+      li パスワード：have_fun
+
   div data-role="footer" data-position="fixed"
     = link_to '新規登録', {:controller => :users, :action => :new}, {:'data-theme' => 'b', :'data-icon' => 'plus'}
-
-
