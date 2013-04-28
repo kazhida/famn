@@ -23,10 +23,10 @@ class UsersController < ApplicationController
   end
 
   def current
-    @user = User.find(params[:id])
+    @user = current_user
     if @user
       respond_to do |format|
-        format.html   { render new: @user }
+        format.html   { render show: @user }
         format.json   { render json: @user}
       end
     else
