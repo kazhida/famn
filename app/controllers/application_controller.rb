@@ -47,7 +47,14 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find_by_id_and_auto_login_token(id, token)
     end
     # androidクライアント用に、faceをクッキーに仕込む
-    cookies[:my_face] = @current_user.face  if @current_user
+    if @current_user
+      cookies[:my_face] = @current_user.face
+      if @current_user.aruji
+        cookies[:aruji] = true
+      else
+        cookies.delete :aruji
+      end
+    end
     @current_user
   end
   helper_method :current_user
