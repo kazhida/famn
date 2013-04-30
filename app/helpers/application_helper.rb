@@ -13,6 +13,8 @@ module ApplicationHelper
   end
 
   def message_format(message, family_name)
+
+    message = Jpmobile::Emoticon.emoticons_to_image(message)  if Jpmobile::Emoticon.pc_emoticon?
     s = message.gsub(/@(\w+)(\s|$)/) do
       trg = $1.to_s
       spc = $2.to_s
