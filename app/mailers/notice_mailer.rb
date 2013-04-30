@@ -17,8 +17,8 @@ class NoticeMailer < ActionMailer::Base
             :to => dest,
             :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
         ) do |format|
-          format.text
           format.html
+          format.text
         end.deliver
       end
     end
