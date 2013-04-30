@@ -1,6 +1,6 @@
 <%= @entry.user.display_name %> のメッセージ (at <%= @entry.posted_on_as_string %>)
 
-<%= Jpmobile::Emoticon.unicodecr_to_external @entry.message %>
+<%= @entry.mail_message %>
 
 ----- - ----- - ----- - ----- - -----
 <%= url_for(:controller => :entries, :action => :index, :only_path => false) %> (ふぁん・もび)

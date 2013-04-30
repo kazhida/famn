@@ -10,7 +10,10 @@ class Entry < ActiveRecord::Base
   attr_accessible :family
   attr_accessible :posted_on
   attr_accessible :face
+  attr_reader     :mail_message
   attr_reader     :destinations
+
+  @mail_message = nil
 
   validates_presence_of :message
   validates_presence_of :user
@@ -50,7 +53,8 @@ class Entry < ActiveRecord::Base
   end
 
   def set_message(msg)
-    self.message = msg
+    self.message = Jpmobile::Emoticon.external_to_unicodecr_unicode60(msg)
+    @mail_message = msg
     @destinations = Array.new
 
     unless msg.nil?
@@ -66,7 +70,7 @@ class Entry < ActiveRecord::Base
     entry.user      = user
     entry.family    = user.family
     entry.posted_on = DateTime.current
-    entry.set_message Jpmobile::Emoticon.external_to_unicodecr_unicode60(message)
+    entry.set_message message
     entry.face      = face
     print entry.message
 
