@@ -66,8 +66,9 @@ class Entry < ActiveRecord::Base
     entry.user      = user
     entry.family    = user.family
     entry.posted_on = DateTime.current
-    entry.set_message Emoticon.external_to_unicodecr_unicode60(message)
+    entry.set_message Jpmobile::Emoticon.external_to_unicodecr_unicode60(message)
     entry.face      = face
+    print entry.message
 
     transaction do
       entry.save!
