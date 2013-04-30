@@ -1,7 +1,7 @@
 h3 = @entry.user.display_name
 = @entry.posted_on_as_string
 
-p = @entry.message
+p = Jpmobile::Emoticon.unicodecr_to_external @entry.message
 
 hr
 = link_to 'ふぁん・もび', url_for(:controller => :entries, :action => :index, :only_path => false)
