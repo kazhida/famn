@@ -1,0 +1,16 @@
+---
+applications:
+  .:
+    name: famn
+    framework:
+      name: rails3
+      info:
+        mem: 256M
+        description: Rails Application
+        exec: 
+    url: famn.cloudnpaas.com
+    mem: 128M
+    instances: 1
+    services:
+      mysql-31cc5:
+        type: mysql
