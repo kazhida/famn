@@ -4,17 +4,17 @@ div data-role="page" data-theme="b" data-url="#{url_for(:controller => :sessions
   div data-role="content"
     = render 'login_form'
 
-    ul data-role="listview" data-inset="true" data-theme="c"
-      li data-role="list-divider" ゲスト用アカウント
-      li
-        h4 visitor
-        p class="ui-li-aside" 家族名
-      li
-        h4 guest
-        p class="ui-li-aside" ユーザ名
-      li
-        h4 have_fun
-        p class="ui-li-aside" パスワード
+    h4 ゲスト用アカウント
 
-  div data-role="footer" data-position="fixed"
-    = link_to '新規登録', {:controller => :users, :action => :new}, {:'data-theme' => 'b', :'data-icon' => 'plus'}
+    p 始めるまえに、サンプルを見てみたい人のために、ゲストアカウントが用意されています。
+    ul
+      li 家族名: visitor
+      li ユーザ名: guest
+      li パスワード: have_fun
+
+    h4 新規登録
+
+    p
+      | 初めてのかたは、
+      = link_to '詳細を確認', {:controller => :infos, :action => :about}
+      | の上、上部のナビゲーションバーで新規登録に移動してください。
