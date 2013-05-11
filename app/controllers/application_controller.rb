@@ -40,11 +40,11 @@ class ApplicationController < ActionController::Base
   # カレントユーザ
   def current_user
     if session[:user_id]
-      @current_user ||= User.find_by_id(session[:user_id])
+      @current_user ||= User.find(session[:user_id])
     elsif cookies.signed[:user_id]
       id = cookies.signed[:user_id]
       token = cookies.signed[:auto_login_token]
-      @current_user ||= User.find_by_id_and_auto_login_token(id, token)
+      @current_user ||= User.where(id: id).where(auto_login_token: token).first
     end
     # androidクライアント用に、faceをクッキーに仕込む
     if @current_user
