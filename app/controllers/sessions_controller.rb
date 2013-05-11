@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
     cookies.delete :user_id
     cookies.delete :auto_login_token
     respond_to do |format|
-      format.html   { redirect_to :root }
+      format.html   { redirect_to :root, :notice => 'ログアウトしました。' }
       format.json   { head :no_content }
     end
   end
