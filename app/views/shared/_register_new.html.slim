@@ -1,20 +1,31 @@
 h5 新規登録
-= form_tag :users do
-  = label_tag         :family_display_name, '表示用家族名'
-  = text_field_tag    :family_display_name, '', :class => 'input-medium', :placeholder => '(例: 坂本)'
-  = label_tag         :display_name,        '表示用ユーザ名'
-  = text_field_tag    :display_name,        '', :class => 'input-medium', :placeholder => '(例: 龍馬)'
-  = label_tag         :family_login_name,   'ログイン用家族名'
-  = text_field_tag    :family_login_name,   '', :class => 'input-medium', :placeholder => '(例: sakamoto)'
-  = label_tag         :login_name,          'ログイン用ユーザ名'
-  = text_field_tag    :login_name,          '', :class => 'input-medium', :placeholder => '(例: ryoma)'
-  = label_tag         :mail_address,        'メール・アドレス'
-  = email_field_tag   :mail_address,        '', :class => 'input-large',  :placeholder => '(例: ryoma@example.com)'
-  = hidden_field_tag  :aruji, true
-  p
-    | 　送信ボタンをクリックすると、
-    | 本人確認のメールを指定したアドレスに送信します。
-    | そのメールに記載されたURLにアクセスすることで、
-    | 本登録されます。
-  = submit_tag '送信', :class => 'btn btn-info', 'data-theme' => 'a'
-  p &nbsp;
+= form_tag :users, class: 'form-horizontal' do
+  fieldset
+    div class="control-group"
+      = label_tag           :family_display_name, '表示用家族名', :class => 'control-label'
+      div class="controls"
+        = text_field_tag    :family_display_name, '', :class => 'input-large', :placeholder => '(例: 坂本)'
+    div class="control-group"
+      = label_tag           :display_name,        '表示用ユーザ名', :class => 'control-label'
+      div class="controls"
+        = text_field_tag    :display_name,        '', :class => 'input-large', :placeholder => '(例: 龍馬)'
+    div class="control-group"
+      = label_tag           :family_login_name,   'ログイン用家族名', :class => 'control-label'
+      div class="controls"
+        = text_field_tag    :family_login_name,   '', :class => 'input-large', :placeholder => '(例: sakamoto)'
+    div class="control-group"
+      = label_tag           :login_name,          'ログイン用ユーザ名', :class => 'control-label'
+      div class="controls"
+        = text_field_tag    :login_name,          '', :class => 'input-large', :placeholder => '(例: ryoma)'
+    div class="control-group"
+      = label_tag           :mail_address,        'メール・アドレス', :class => 'control-label'
+      div class="controls"
+        = email_field_tag   :mail_address,        '', :class => 'input-large',  :placeholder => '(例: ryoma@example.com)'
+    = hidden_field_tag  :aruji, true
+    p
+      | 　送信ボタンをクリックすると、
+      | 本人確認のメールを指定したアドレスに送信します。
+      | そのメールに記載されたURLにアクセスすることで、
+      | 本登録されます。
+    div class="button-panel"
+      = submit_tag '送信', :class => 'btn btn-info', 'data-theme' => 'a'
