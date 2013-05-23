@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 class NoticeMailer < ActionMailer::Base
-  default :from => 'info@famn.mobi'
+  SENDER = 'info@famn.mobi'
+  default :from => SENDER
 
   def notify(entry)
     @entry = entry
@@ -14,11 +15,12 @@ class NoticeMailer < ActionMailer::Base
       end
       unless dest.empty?
         mail(
-            :to => dest,
-            :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
+            to: SENDER,
+            cc: dest,
+            subject: "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
         ) do |format|
           format.html
-          format.text
+#          format.text
         end.deliver
       end
     end
