@@ -15,12 +15,10 @@ class NoticeMailer < ActionMailer::Base
       end
       unless dest.empty?
         mail(
-            to: SENDER,
-            cc: dest,
-            subject: "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
+            :to => dest,
+            :subject => "[famn.mobi] #{entry.user.display_name}さんのメッセージ"
         ) do |format|
           format.html
-#          format.text
         end.deliver
       end
     end
