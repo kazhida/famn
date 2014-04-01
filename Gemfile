@@ -24,6 +24,7 @@ gem 'jpmobile'
 gem 'mina'
 gem 'slim'
 gem 'slim-rails'
+gem 'protected_attributes'
 
 group :production do
   gem 'mysql2'
