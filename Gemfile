@@ -12,6 +12,7 @@ group :assets do
 end
 
 #gem 'thin'
+gem 'therubyracer'
 gem 'jquery-rails'
 gem 'jquery_mobile_rails'
 gem 'bcrypt-ruby'
