@@ -1,13 +1,12 @@
-div id="user_menu" class="navbar"
-  div class="navbar-inner"
-    ul class="nav"
-      - if current_user
-        == nav_item 'メッセージ一覧', {:controller => :entries, :action => :index}
-        == nav_item 'アカウント編集', {:controller => :accounts, :action => :edit}
-        li
-          = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？'
-      - else
-        == nav_item 'ログイン', {:controller => :sessions, :action => :new}
-      == nav_item 'famn.mobiについて', {:controller => :infos, :action => :about}
-      == nav_item '利用規約', {:controller => :infos, :action => :terms_of_service}
-      == nav_item '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}
+nav id="user_menu" class="navbar navbar-default" role="navigation"
+  ul class="nav navbar-nav"
+    - if current_user
+      == nav_item 'メッセージ一覧', {:controller => :entries, :action => :index}
+      == nav_item 'アカウント編集', {:controller => :accounts, :action => :edit}
+      li
+        = link_to 'ログアウト', :session, :method => :delete, :confirm => '本当にログアウトしますか？'
+    - else
+      == nav_item 'ログイン', {:controller => :sessions, :action => :new}
+    == nav_item 'famn.mobiについて', {:controller => :infos, :action => :about}
+    == nav_item '利用規約', {:controller => :infos, :action => :terms_of_service}
+    == nav_item '個人情報保護方針', {:controller => :infos, :action => :privacy_policy}

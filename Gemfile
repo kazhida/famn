@@ -1,23 +1,20 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
-gem  'rails', '~> 3.2.13'
+ruby '2.0.0'
+gem  'rails', '~> 4.0.1'
 gem  'rake'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
-  gem 'less-rails'
+  gem 'sass-rails', '~> 4.0.1'
+  gem 'coffee-rails', '~> 4.0.1'
+  gem 'bootstrap-sass', '~> 3.1.1'
 end
 
 #gem 'thin'
-gem 'therubyracer', :platforms => :ruby
-gem 'libv8', :platform => :ruby
 gem 'jquery-rails'
 gem 'jquery_mobile_rails'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 gem 'unicorn'
 gem 'unicorn-rails'
 #gem 'pg'

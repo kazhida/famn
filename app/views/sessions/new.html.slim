@@ -1,4 +1,4 @@
-div class="span3" id="left-pane"
+div class="col-md-3" id="left-pane"
   = render 'shared/info_pane'
   p
     | 初めてのかたは、
@@ -8,11 +8,11 @@ div class="span3" id="left-pane"
     = link_to(:controller => :users, :action => :new) do
       button class="btn btn-primary" 新規登録
 
-div class="span3"
+div class="col-md-3"
   div class="well"
     = render 'login_form'
 
-div class="span2"
+div class="col-md-2"
   p
     | 　famn.mobiは、Family指向な Social Networking Serviceです。
     | 「ふぁんもび」と読みます。
@@ -26,5 +26,5 @@ div class="span2"
     | 　ただし、このゲストアカウントで投稿したメッセージは、
     | 不定期にリセットされますので、あらかじめご了承ください。
 
-div class="span4 ads"
+div class="col-md-4 ads"
   = render 'shared/ads'

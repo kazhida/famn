@@ -1,4 +1,4 @@
-div class="span3" id="left-pane"
+div class="col-md-3" id="left-pane"
   = render '/shared/info_pane'
   -if current_user.nil?
     h3 登録方法
@@ -16,13 +16,13 @@ div class="span3" id="left-pane"
       | そのメールのURLをクリックすると本登録され、
       | 当サイトのサービスを利用することができるようになります。
 
-div class="span5"
+div class="col-md-5"
   div class="well"
     - if current_user
       = render 'shared/register_add'
     - else
       = render 'shared/register_new'
 
-div class="span4 ads"
+div class="col-md-4 ads"
   = render 'shared/ads'
 

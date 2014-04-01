@@ -1,7 +1,7 @@
-div class="span3" id="left-pane"
+div class="col-md-3" id="left-pane"
   = render '/shared/info_pane'
 
-div class="span5 well"
+div class="col-md-5 well"
   table class="table entries" width="100%"
     thead
       tr
@@ -13,5 +13,5 @@ div class="span5 well"
         = render 'entry'
   = paginate @entries, :window => 2, :outer_window => 2
 
-div class="span4 ads"
+div class="col-md-4 ads"
   = render 'shared/ads'

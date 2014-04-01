@@ -1,4 +1,4 @@
-div class="span3" id="left-pane"
+div class="col-md-3" id="left-pane"
   div class="inset"
     h3
       | famn.mobi
@@ -22,10 +22,10 @@ div class="span3" id="left-pane"
           li = about_to '家族間通信',                 'about_neighborhood'
       li = about_to 'だれが運営しているの？',         'about_management'
       li = about_to '今後の機能拡張の予定は？',       'about_development'
-div class="span5"
+div class="col-md-5"
   div id="about_body" class="well"
     = render 'about_famn_mobi'
 
-div class="span4 ads"
+div class="col-md-4 ads"
   = render 'shared/ads'
 

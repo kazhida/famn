@@ -29,5 +29,5 @@ Famn::Application.routes.draw do
 
   get 'v/:id/:token' => 'accounts#verify', id: /\d+/, token: /[0-9a-f]+/, :as => :account_verification
 
-  match '*anything' => 'errors#404'
+  get '*path', controller: 'application', action: 'render_404'
 end

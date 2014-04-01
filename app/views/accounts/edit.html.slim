@@ -1,7 +1,7 @@
-div class="span3" id="left-pane"
+div class="col-md-3" id="left-pane"
   = render '/shared/info_pane'
 
-div class="span5" id="edit-account"
+div class="col-md-5" id="edit-account"
   div class="well"
     = form_for current_user, :url => :account, html: {class: 'form-horizontal'} do |f|
       fieldset
@@ -104,5 +104,5 @@ div class="span5" id="edit-account"
                     li = link_to '拒否', reject_neighborhood_path(neighbor),  :method => :post
                     li = link_to '保留', suspend_neighborhood_path(neighbor), :method => :post
 
-div class="span4 ads"
+div class="col-md-4 ads"
   = render 'shared/ads'
