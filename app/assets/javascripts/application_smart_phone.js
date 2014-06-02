@@ -5,5 +5,5 @@
  * Time: 11:19
  * To change this template use File | Settings | File Templates.
  */
-//= require jquery.mobile.min
+//= require jquery.mobile
 //= require jquery_ujs
