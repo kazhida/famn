@@ -7,4 +7,3 @@
  */
 //= require jquery.mobile.min
 //= require jquery_ujs
-//= require jquery.mobile
